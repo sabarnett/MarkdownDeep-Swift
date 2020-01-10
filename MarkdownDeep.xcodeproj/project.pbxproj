@@ -1,0 +1,1242 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E829B76F23C241C3002BA727 /* TestDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829B76E23C241C3002BA727 /* TestDefinition.swift */; };
+		E829B77123C24210002BA727 /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829B77023C24210002BA727 /* TestHelper.swift */; };
+		E8353C1823BFCEEF00602189 /* HeadingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8353C1723BFCEEF00602189 /* HeadingTests.swift */; };
+		E83717A323C620EC0010AD7C /* SpanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83717A223C620EC0010AD7C /* SpanTests.swift */; };
+		E83717BE23C621060010AD7C /* Emphasis.html in Resources */ = {isa = PBXBuildFile; fileRef = E83717A423C621050010AD7C /* Emphasis.html */; };
+		E83717BF23C621060010AD7C /* ImplicitReferenceLinkWithTitle.txt in Resources */ = {isa = PBXBuildFile; fileRef = E83717A523C621050010AD7C /* ImplicitReferenceLinkWithTitle.txt */; };
+		E83717C023C621060010AD7C /* HtmlEncodeLinks.html in Resources */ = {isa = PBXBuildFile; fileRef = E83717A623C621050010AD7C /* HtmlEncodeLinks.html */; };
+		E83717C123C621060010AD7C /* LinkTitlesWithEmbeddedQuotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = E83717A723C621050010AD7C /* LinkTitlesWithEmbeddedQuotes.txt */; };
+		E83717C223C621060010AD7C /* ReferenceLinkWithIDOnNextLine.txt in Resources */ = {isa = PBXBuildFile; fileRef = E83717A823C621050010AD7C /* ReferenceLinkWithIDOnNextLine.txt */; };
+		E83717C323C621060010AD7C /* LinkTitlesWithEmbeddedQuotes.html in Resources */ = {isa = PBXBuildFile; fileRef = E83717A923C621050010AD7C /* LinkTitlesWithEmbeddedQuotes.html */; };
+		E83717C423C621060010AD7C /* BackslashEscapes.txt in Resources */ = {isa = PBXBuildFile; fileRef = E83717AA23C621050010AD7C /* BackslashEscapes.txt */; };
+		E83717C523C621060010AD7C /* LinkedImage.html in Resources */ = {isa = PBXBuildFile; fileRef = E83717AB23C621050010AD7C /* LinkedImage.html */; };
+		E83717C623C621060010AD7C /* EscapesInUrls.txt in Resources */ = {isa = PBXBuildFile; fileRef = E83717AC23C621050010AD7C /* EscapesInUrls.txt */; };
+		E83717C723C621060010AD7C /* ExplicitReferenceLinkWithTitle.html in Resources */ = {isa = PBXBuildFile; fileRef = E83717AD23C621050010AD7C /* ExplicitReferenceLinkWithTitle.html */; };
+		E83717C823C621060010AD7C /* ImplicitReferenceLinkWithTitle.html in Resources */ = {isa = PBXBuildFile; fileRef = E83717AE23C621050010AD7C /* ImplicitReferenceLinkWithTitle.html */; };
+		E83717C923C621060010AD7C /* HtmlEncodeLinks.txt in Resources */ = {isa = PBXBuildFile; fileRef = E83717AF23C621050010AD7C /* HtmlEncodeLinks.txt */; };
+		E83717CA23C621060010AD7C /* ExplicitReferenceLinkWithoutTitle.html in Resources */ = {isa = PBXBuildFile; fileRef = E83717B023C621050010AD7C /* ExplicitReferenceLinkWithoutTitle.html */; };
+		E83717CB23C621060010AD7C /* ImplicitReferenceLinkWithoutTitle.html in Resources */ = {isa = PBXBuildFile; fileRef = E83717B123C621050010AD7C /* ImplicitReferenceLinkWithoutTitle.html */; };
+		E83717CC23C621060010AD7C /* EscapesInUrls.html in Resources */ = {isa = PBXBuildFile; fileRef = E83717B223C621050010AD7C /* EscapesInUrls.html */; };
+		E83717CD23C621060010AD7C /* ExplicitReferenceLinkWithoutTitle.txt in Resources */ = {isa = PBXBuildFile; fileRef = E83717B323C621050010AD7C /* ExplicitReferenceLinkWithoutTitle.txt */; };
+		E83717CE23C621060010AD7C /* ImplicitReferenceLinkWithoutTitle.txt in Resources */ = {isa = PBXBuildFile; fileRef = E83717B423C621050010AD7C /* ImplicitReferenceLinkWithoutTitle.txt */; };
+		E83717CF23C621060010AD7C /* InlineLinkWithTitle.txt in Resources */ = {isa = PBXBuildFile; fileRef = E83717B523C621050010AD7C /* InlineLinkWithTitle.txt */; };
+		E83717D023C621060010AD7C /* LinkedImage.txt in Resources */ = {isa = PBXBuildFile; fileRef = E83717B623C621050010AD7C /* LinkedImage.txt */; };
+		E83717D123C621060010AD7C /* BackslashEscapes.html in Resources */ = {isa = PBXBuildFile; fileRef = E83717B723C621050010AD7C /* BackslashEscapes.html */; };
+		E83717D223C621060010AD7C /* InlineLinkWithTitle.html in Resources */ = {isa = PBXBuildFile; fileRef = E83717B823C621050010AD7C /* InlineLinkWithTitle.html */; };
+		E83717D323C621060010AD7C /* FormattingInLinkText.txt in Resources */ = {isa = PBXBuildFile; fileRef = E83717B923C621050010AD7C /* FormattingInLinkText.txt */; };
+		E83717D423C621060010AD7C /* FormattingInLinkText.html in Resources */ = {isa = PBXBuildFile; fileRef = E83717BA23C621050010AD7C /* FormattingInLinkText.html */; };
+		E83717D523C621060010AD7C /* ReferenceLinkWithIDOnNextLine.html in Resources */ = {isa = PBXBuildFile; fileRef = E83717BB23C621050010AD7C /* ReferenceLinkWithIDOnNextLine.html */; };
+		E83717D623C621060010AD7C /* ExplicitReferenceLinkWithTitle.txt in Resources */ = {isa = PBXBuildFile; fileRef = E83717BC23C621060010AD7C /* ExplicitReferenceLinkWithTitle.txt */; };
+		E83717D723C621060010AD7C /* Emphasis.txt in Resources */ = {isa = PBXBuildFile; fileRef = E83717BD23C621060010AD7C /* Emphasis.txt */; };
+		E8442D6C23AFFAF300F5F37C /* LinkInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8442D6B23AFFAF300F5F37C /* LinkInfo.swift */; };
+		E8442D6E23AFFBBD00F5F37C /* FootnodeReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8442D6D23AFFBBD00F5F37C /* FootnodeReference.swift */; };
+		E8482C2123C88CE8006C1677 /* SafeModeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8482C2023C88CE8006C1677 /* SafeModeTests.swift */; };
+		E8482C2523C88DE0006C1677 /* Basic(SafeMode).html in Resources */ = {isa = PBXBuildFile; fileRef = E8482C2323C88DE0006C1677 /* Basic(SafeMode).html */; };
+		E8482C2623C88DE0006C1677 /* Basic(SafeMode).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482C2423C88DE0006C1677 /* Basic(SafeMode).txt */; };
+		E8482C6C23C88E19006C1677 /* PHPMarkdownTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8482C6B23C88E19006C1677 /* PHPMarkdownTests.swift */; };
+		E8482CDB23C8948E006C1677 /* phpm-InsDel.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482CB923C8948D006C1677 /* phpm-InsDel.txt */; };
+		E8482CDC23C8948E006C1677 /* phpm-CodeSpans.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482CBA23C8948D006C1677 /* phpm-CodeSpans.txt */; };
+		E8482CDD23C8948E006C1677 /* phpm-EmailAutoLinks.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482CBB23C8948D006C1677 /* phpm-EmailAutoLinks.txt */; };
+		E8482CDE23C8948E006C1677 /* phpm-BackslashEscapes.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482CBC23C8948D006C1677 /* phpm-BackslashEscapes.html */; };
+		E8482CDF23C8948E006C1677 /* phpm-InlineHTML(Simple).html in Resources */ = {isa = PBXBuildFile; fileRef = E8482CBD23C8948D006C1677 /* phpm-InlineHTML(Simple).html */; };
+		E8482CE023C8948E006C1677 /* phpm-Headers.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482CBE23C8948D006C1677 /* phpm-Headers.html */; };
+		E8482CE123C8948E006C1677 /* phpm-HorizontalRules.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482CBF23C8948D006C1677 /* phpm-HorizontalRules.txt */; };
+		E8482CE223C8948E006C1677 /* phpm-CodeBlockInAListItem.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482CC023C8948D006C1677 /* phpm-CodeBlockInAListItem.html */; };
+		E8482CE323C8948E006C1677 /* phpm-InlineHTML(Span).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482CC123C8948D006C1677 /* phpm-InlineHTML(Span).txt */; };
+		E8482CE423C8948E006C1677 /* phpm-Nesting.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482CC223C8948D006C1677 /* phpm-Nesting.html */; };
+		E8482CE523C8948E006C1677 /* phpm-InlineHTMLcomments.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482CC323C8948D006C1677 /* phpm-InlineHTMLcomments.txt */; };
+		E8482CE623C8948E006C1677 /* phpm-Emphasis.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482CC423C8948D006C1677 /* phpm-Emphasis.txt */; };
+		E8482CE723C8948E006C1677 /* phpm-SpecificBugs.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482CC523C8948D006C1677 /* phpm-SpecificBugs.html */; };
+		E8482CE823C8948E006C1677 /* phpm-EmailAutoLinks.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482CC623C8948D006C1677 /* phpm-EmailAutoLinks.html */; };
+		E8482CE923C8948E006C1677 /* phpm-CodeBlockInAListItem.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482CC723C8948D006C1677 /* phpm-CodeBlockInAListItem.txt */; };
+		E8482CEA23C8948E006C1677 /* phpm-ParensInURL.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482CC823C8948D006C1677 /* phpm-ParensInURL.html */; };
+		E8482CEB23C8948E006C1677 /* phpm-InlineHTML(Span).html in Resources */ = {isa = PBXBuildFile; fileRef = E8482CC923C8948D006C1677 /* phpm-InlineHTML(Span).html */; };
+		E8482CEC23C8948E006C1677 /* phpm-InlineHTMLcomments.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482CCA23C8948D006C1677 /* phpm-InlineHTMLcomments.html */; };
+		E8482CED23C8948E006C1677 /* phpm-ParensInURL.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482CCB23C8948D006C1677 /* phpm-ParensInURL.txt */; };
+		E8482CEE23C8948E006C1677 /* phpm-TightBlocks.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482CCC23C8948D006C1677 /* phpm-TightBlocks.txt */; };
+		E8482CEF23C8948E006C1677 /* phpm-CodeSpans.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482CCD23C8948E006C1677 /* phpm-CodeSpans.html */; };
+		E8482CF023C8948E006C1677 /* phpm-Nesting.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482CCE23C8948E006C1677 /* phpm-Nesting.txt */; };
+		E8482CF123C8948E006C1677 /* phpm-SpecificBugs.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482CCF23C8948E006C1677 /* phpm-SpecificBugs.txt */; };
+		E8482CF223C8948E006C1677 /* phpm-Headers.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482CD023C8948E006C1677 /* phpm-Headers.txt */; };
+		E8482CF323C8948E006C1677 /* phpm-MD5Hashes.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482CD123C8948E006C1677 /* phpm-MD5Hashes.txt */; };
+		E8482CF423C8948E006C1677 /* phpm-HorizontalRules.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482CD223C8948E006C1677 /* phpm-HorizontalRules.html */; };
+		E8482CF523C8948E006C1677 /* phpm-LinksInlineStyle.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482CD323C8948E006C1677 /* phpm-LinksInlineStyle.txt */; };
+		E8482CF623C8948E006C1677 /* phpm-TightBlocks.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482CD423C8948E006C1677 /* phpm-TightBlocks.html */; };
+		E8482CF723C8948E006C1677 /* phpm-MD5Hashes.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482CD523C8948E006C1677 /* phpm-MD5Hashes.html */; };
+		E8482CF823C8948E006C1677 /* phpm-BackslashEscapes.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482CD623C8948E006C1677 /* phpm-BackslashEscapes.txt */; };
+		E8482CF923C8948E006C1677 /* phpm-Emphasis.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482CD723C8948E006C1677 /* phpm-Emphasis.html */; };
+		E8482CFA23C8948E006C1677 /* phpm-InsDel.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482CD823C8948E006C1677 /* phpm-InsDel.html */; };
+		E8482CFB23C8948E006C1677 /* phpm-LinksInlineStyle.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482CD923C8948E006C1677 /* phpm-LinksInlineStyle.html */; };
+		E8482CFC23C8948E006C1677 /* phpm-InlineHTML(Simple).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482CDA23C8948E006C1677 /* phpm-InlineHTML(Simple).txt */; };
+		E8482CFF23C8A03C006C1677 /* mdTest01Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8482CFE23C8A03C006C1677 /* mdTest01Tests.swift */; };
+		E8482D0123C8A15A006C1677 /* code-inside-list.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482D0023C8A15A006C1677 /* code-inside-list.html */; };
+		E8482D0323C8A165006C1677 /* code-inside-list.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482D0223C8A165006C1677 /* code-inside-list.txt */; };
+		E8482D0C23C8A172006C1677 /* line-endings-cr.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482D0423C8A172006C1677 /* line-endings-cr.txt */; };
+		E8482D0D23C8A172006C1677 /* line-endings-crlf.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482D0523C8A172006C1677 /* line-endings-crlf.txt */; };
+		E8482D0E23C8A172006C1677 /* markdown-readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482D0623C8A172006C1677 /* markdown-readme.txt */; };
+		E8482D0F23C8A172006C1677 /* line-endings-lf.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482D0723C8A172006C1677 /* line-endings-lf.html */; };
+		E8482D1023C8A172006C1677 /* line-endings-cr.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482D0823C8A172006C1677 /* line-endings-cr.html */; };
+		E8482D1123C8A172006C1677 /* line-endings-crlf.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482D0923C8A172006C1677 /* line-endings-crlf.html */; };
+		E8482D1223C8A172006C1677 /* line-endings-lf.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482D0A23C8A172006C1677 /* line-endings-lf.txt */; };
+		E8482D1323C8A172006C1677 /* markdown-readme.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482D0B23C8A172006C1677 /* markdown-readme.html */; };
+		E84CD6A723BE765B00F3D111 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84CD6A623BE765B00F3D111 /* StringExtensionTests.swift */; };
+		E87BEC7223AE9B4200CEA45E /* MarkdownDeep.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E87BEC6823AE9B4200CEA45E /* MarkdownDeep.framework */; };
+		E87BEC7723AE9B4200CEA45E /* MarkdownDeepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87BEC7623AE9B4200CEA45E /* MarkdownDeepTests.swift */; };
+		E87BEC7923AE9B4200CEA45E /* MarkdownDeep.h in Headers */ = {isa = PBXBuildFile; fileRef = E87BEC6B23AE9B4200CEA45E /* MarkdownDeep.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E87BEC8323AE9C3100CEA45E /* Abbreviation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87BEC8223AE9C3100CEA45E /* Abbreviation.swift */; };
+		E87BEC8523AE9EEC00CEA45E /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87BEC8423AE9EEC00CEA45E /* Block.swift */; };
+		E892538223B1419100473BC5 /* StringScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E892538123B1419100473BC5 /* StringScanner.swift */; };
+		E892538423B1444800473BC5 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E892538323B1444800473BC5 /* StringExtensions.swift */; };
+		E892538623B14FBF00473BC5 /* LinkDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E892538523B14FBF00473BC5 /* LinkDefinition.swift */; };
+		E8A52C1C23C0BFF700C6953E /* CodeBlocks.html in Resources */ = {isa = PBXBuildFile; fileRef = E8A52C1A23C0BFF700C6953E /* CodeBlocks.html */; };
+		E8A52C1D23C0BFF700C6953E /* CodeBlocks.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8A52C1B23C0BFF700C6953E /* CodeBlocks.txt */; };
+		E8A52C1F23C0C00D00C6953E /* BlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A52C1E23C0C00D00C6953E /* BlockTests.swift */; };
+		E8A52C2223C0CA9400C6953E /* AtxHeadings.html in Resources */ = {isa = PBXBuildFile; fileRef = E8A52C2023C0CA9400C6953E /* AtxHeadings.html */; };
+		E8A52C2323C0CA9400C6953E /* AtxHeadings.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8A52C2123C0CA9400C6953E /* AtxHeadings.txt */; };
+		E8B833E423B534A2000F31D7 /* MarkdownDeep.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B833E323B534A2000F31D7 /* MarkdownDeep.swift */; };
+		E8BC2AFA23AFA35F006B9C16 /* HtmlTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BC2AF923AFA35F006B9C16 /* HtmlTag.swift */; };
+		E8CAD55523B67E79004E7AA7 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CAD55423B67E79004E7AA7 /* Stack.swift */; };
+		E8D6DB7223C389DE0090414A /* HardWrappedListItems.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB4C23C389DD0090414A /* HardWrappedListItems.txt */; };
+		E8D6DB7323C389DE0090414A /* HardWrappedParagraphWithListLikeLine.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB4D23C389DD0090414A /* HardWrappedParagraphWithListLikeLine.txt */; };
+		E8D6DB7423C389DE0090414A /* SetExtHeadings.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB4E23C389DD0090414A /* SetExtHeadings.html */; };
+		E8D6DB7523C389DE0090414A /* HtmlBlock.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB4F23C389DD0090414A /* HtmlBlock.html */; };
+		E8D6DB7623C389DE0090414A /* ParagraphBreaks.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB5023C389DD0090414A /* ParagraphBreaks.txt */; };
+		E8D6DB7723C389DE0090414A /* SimpleParagraph.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB5123C389DD0090414A /* SimpleParagraph.txt */; };
+		E8D6DB7823C389DE0090414A /* HtmlAttributeWithoutValue.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB5223C389DD0090414A /* HtmlAttributeWithoutValue.html */; };
+		E8D6DB7923C389DE0090414A /* HardWrappedParagraphWithListLikeLine.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB5323C389DD0090414A /* HardWrappedParagraphWithListLikeLine.html */; };
+		E8D6DB7A23C389DE0090414A /* SetExtHeadings.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB5423C389DD0090414A /* SetExtHeadings.txt */; };
+		E8D6DB7B23C389DE0090414A /* SimpleUnorderedList.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB5523C389DD0090414A /* SimpleUnorderedList.html */; };
+		E8D6DB7C23C389DE0090414A /* SimpleOrderedList.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB5623C389DD0090414A /* SimpleOrderedList.txt */; };
+		E8D6DB7D23C389DE0090414A /* MultipleParagraphs.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB5723C389DD0090414A /* MultipleParagraphs.txt */; };
+		E8D6DB7E23C389DE0090414A /* HardWrappedParagraph.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB5823C389DD0090414A /* HardWrappedParagraph.txt */; };
+		E8D6DB7F23C389DE0090414A /* NestedListItems.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB5923C389DD0090414A /* NestedListItems.txt */; };
+		E8D6DB8023C389DE0090414A /* PartiallyIndentedLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB5A23C389DD0090414A /* PartiallyIndentedLists.txt */; };
+		E8D6DB8123C389DE0090414A /* HtmlComments.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB5B23C389DD0090414A /* HtmlComments.txt */; };
+		E8D6DB8223C389DE0090414A /* SimpleUnorderedList.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB5C23C389DD0090414A /* SimpleUnorderedList.txt */; };
+		E8D6DB8323C389DE0090414A /* MultipleParagraphs.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB5D23C389DD0090414A /* MultipleParagraphs.html */; };
+		E8D6DB8423C389DE0090414A /* SimpleParagraph.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB5E23C389DD0090414A /* SimpleParagraph.html */; };
+		E8D6DB8523C389DE0090414A /* InsTypes.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB5F23C389DD0090414A /* InsTypes.html */; };
+		E8D6DB8623C389DE0090414A /* HardWrappedParagraph.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB6023C389DD0090414A /* HardWrappedParagraph.html */; };
+		E8D6DB8723C389DE0090414A /* HtmlAttributeWithoutValue.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB6123C389DD0090414A /* HtmlAttributeWithoutValue.txt */; };
+		E8D6DB8823C389DE0090414A /* ParagraphBreaks.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB6223C389DD0090414A /* ParagraphBreaks.html */; };
+		E8D6DB8923C389DE0090414A /* HtmlBlock.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB6323C389DD0090414A /* HtmlBlock.txt */; };
+		E8D6DB8A23C389DE0090414A /* NestedListItems.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB6423C389DD0090414A /* NestedListItems.html */; };
+		E8D6DB8B23C389DE0090414A /* QuoteBlocksNested.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB6523C389DE0090414A /* QuoteBlocksNested.html */; };
+		E8D6DB8C23C389DE0090414A /* PartiallyIndentedLists.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB6623C389DE0090414A /* PartiallyIndentedLists.html */; };
+		E8D6DB8D23C389DE0090414A /* QuoteBlocks.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB6723C389DE0090414A /* QuoteBlocks.txt */; };
+		E8D6DB8E23C389DE0090414A /* InsTypes.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB6823C389DE0090414A /* InsTypes.txt */; };
+		E8D6DB8F23C389DE0090414A /* QuoteBlocks.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB6923C389DE0090414A /* QuoteBlocks.html */; };
+		E8D6DB9023C389DE0090414A /* ComplexListItems.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB6A23C389DE0090414A /* ComplexListItems.txt */; };
+		E8D6DB9123C389DE0090414A /* SimpleOrderedList.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB6B23C389DE0090414A /* SimpleOrderedList.html */; };
+		E8D6DB9223C389DE0090414A /* HardWrappedParagraphInListItem.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB6C23C389DE0090414A /* HardWrappedParagraphInListItem.html */; };
+		E8D6DB9323C389DE0090414A /* QuoteBlocksNested.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB6D23C389DE0090414A /* QuoteBlocksNested.txt */; };
+		E8D6DB9423C389DE0090414A /* HardWrappedListItems.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB6E23C389DE0090414A /* HardWrappedListItems.html */; };
+		E8D6DB9523C389DE0090414A /* HardWrappedParagraphInListItem.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB6F23C389DE0090414A /* HardWrappedParagraphInListItem.txt */; };
+		E8D6DB9623C389DE0090414A /* HtmlComments.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB7023C389DE0090414A /* HtmlComments.html */; };
+		E8D6DB9723C389DE0090414A /* ComplexListItems.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB7123C389DE0090414A /* ComplexListItems.html */; };
+		E8DA200823B22AAD007D0368 /* TableSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA200723B22AAD007D0368 /* TableSpec.swift */; };
+		E8DA200A23B23024007D0368 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA200923B23024007D0368 /* Utils.swift */; };
+		E8DA357C23C73F5D00B47C6F /* MarkdownInHtml(ExtraMode).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8DA355623C73F5D00B47C6F /* MarkdownInHtml(ExtraMode).txt */; };
+		E8DA357D23C73F5D00B47C6F /* DefinitionLists(ExtraMode).html in Resources */ = {isa = PBXBuildFile; fileRef = E8DA355723C73F5D00B47C6F /* DefinitionLists(ExtraMode).html */; };
+		E8DA357E23C73F5D00B47C6F /* DefinitionLists(ExtraMode).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8DA355823C73F5D00B47C6F /* DefinitionLists(ExtraMode).txt */; };
+		E8DA357F23C73F5D00B47C6F /* MarkdownInHtml-Nested(ExtraMode).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8DA355923C73F5D00B47C6F /* MarkdownInHtml-Nested(ExtraMode).txt */; };
+		E8DA358023C73F5D00B47C6F /* Emphasis(ExtraMode).html in Resources */ = {isa = PBXBuildFile; fileRef = E8DA355A23C73F5D00B47C6F /* Emphasis(ExtraMode).html */; };
+		E8DA358123C73F5D00B47C6F /* FencedCodeBlocksAlt(ExtraMode).html in Resources */ = {isa = PBXBuildFile; fileRef = E8DA355B23C73F5D00B47C6F /* FencedCodeBlocksAlt(ExtraMode).html */; };
+		E8DA358223C73F5D00B47C6F /* MarkdownInHtml-DeepNested(ExtraMode).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8DA355C23C73F5D00B47C6F /* MarkdownInHtml-DeepNested(ExtraMode).txt */; };
+		E8DA358323C73F5D00B47C6F /* Abbreviations(ExtraMode).html in Resources */ = {isa = PBXBuildFile; fileRef = E8DA355D23C73F5D00B47C6F /* Abbreviations(ExtraMode).html */; };
+		E8DA358423C73F5D00B47C6F /* FencedCodeBlocks(ExtraMode).html in Resources */ = {isa = PBXBuildFile; fileRef = E8DA355E23C73F5D00B47C6F /* FencedCodeBlocks(ExtraMode).html */; };
+		E8DA358523C73F5D00B47C6F /* Issue12(ExtraMode).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8DA355F23C73F5D00B47C6F /* Issue12(ExtraMode).txt */; };
+		E8DA358623C73F5D00B47C6F /* TableAlignment(ExtraMode).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8DA356023C73F5D00B47C6F /* TableAlignment(ExtraMode).txt */; };
+		E8DA358723C73F5D00B47C6F /* Footnotes(ExtraMode).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8DA356123C73F5D00B47C6F /* Footnotes(ExtraMode).txt */; };
+		E8DA358823C73F5D00B47C6F /* MarkdownInHtml-DeepNested(ExtraMode).html in Resources */ = {isa = PBXBuildFile; fileRef = E8DA356223C73F5D00B47C6F /* MarkdownInHtml-DeepNested(ExtraMode).html */; };
+		E8DA358923C73F5D00B47C6F /* TableFormatting(ExtraMode).html in Resources */ = {isa = PBXBuildFile; fileRef = E8DA356323C73F5D00B47C6F /* TableFormatting(ExtraMode).html */; };
+		E8DA358A23C73F5D00B47C6F /* FencedCodeBlocks(ExtraMode).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8DA356423C73F5D00B47C6F /* FencedCodeBlocks(ExtraMode).txt */; };
+		E8DA358B23C73F5D00B47C6F /* BackslashEscapes(ExtraMode).html in Resources */ = {isa = PBXBuildFile; fileRef = E8DA356523C73F5D00B47C6F /* BackslashEscapes(ExtraMode).html */; };
+		E8DA358C23C73F5D00B47C6F /* HeaderIDs(ExtraMode)(AutoHeadingIDs).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8DA356623C73F5D00B47C6F /* HeaderIDs(ExtraMode)(AutoHeadingIDs).txt */; };
+		E8DA358D23C73F5D00B47C6F /* MarkdownInHtml-DeepNested(ExtraMode)(MarkdownInHtml).html in Resources */ = {isa = PBXBuildFile; fileRef = E8DA356723C73F5D00B47C6F /* MarkdownInHtml-DeepNested(ExtraMode)(MarkdownInHtml).html */; };
+		E8DA358E23C73F5D00B47C6F /* HeaderIDs(ExtraMode).html in Resources */ = {isa = PBXBuildFile; fileRef = E8DA356823C73F5D00B47C6F /* HeaderIDs(ExtraMode).html */; };
+		E8DA358F23C73F5D00B47C6F /* Issue26(ExtraMode).html in Resources */ = {isa = PBXBuildFile; fileRef = E8DA356923C73F5D00B47C6F /* Issue26(ExtraMode).html */; };
+		E8DA359023C73F5D00B47C6F /* TableAlignment(ExtraMode).html in Resources */ = {isa = PBXBuildFile; fileRef = E8DA356A23C73F5D00B47C6F /* TableAlignment(ExtraMode).html */; };
+		E8DA359123C73F5D00B47C6F /* Issue26(ExtraMode).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8DA356B23C73F5D00B47C6F /* Issue26(ExtraMode).txt */; };
+		E8DA359223C73F5D00B47C6F /* MarkdownInHtml-Nested(ExtraMode).html in Resources */ = {isa = PBXBuildFile; fileRef = E8DA356C23C73F5D00B47C6F /* MarkdownInHtml-Nested(ExtraMode).html */; };
+		E8DA359323C73F5D00B47C6F /* Emphasis(ExtraMode).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8DA356D23C73F5D00B47C6F /* Emphasis(ExtraMode).txt */; };
+		E8DA359423C73F5D00B47C6F /* FencedCodeBlocksAlt(ExtraMode).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8DA356E23C73F5D00B47C6F /* FencedCodeBlocksAlt(ExtraMode).txt */; };
+		E8DA359523C73F5D00B47C6F /* Tables(ExtraMode).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8DA356F23C73F5D00B47C6F /* Tables(ExtraMode).txt */; };
+		E8DA359623C73F5D00B47C6F /* Issue30(ExtraMode).html in Resources */ = {isa = PBXBuildFile; fileRef = E8DA357023C73F5D00B47C6F /* Issue30(ExtraMode).html */; };
+		E8DA359723C73F5D00B47C6F /* Tables(ExtraMode).html in Resources */ = {isa = PBXBuildFile; fileRef = E8DA357123C73F5D00B47C6F /* Tables(ExtraMode).html */; };
+		E8DA359823C73F5D00B47C6F /* MarkdownInHtml(ExtraMode).html in Resources */ = {isa = PBXBuildFile; fileRef = E8DA357223C73F5D00B47C6F /* MarkdownInHtml(ExtraMode).html */; };
+		E8DA359923C73F5D00B47C6F /* HeaderIDs(ExtraMode)(AutoHeadingIDs).html in Resources */ = {isa = PBXBuildFile; fileRef = E8DA357323C73F5D00B47C6F /* HeaderIDs(ExtraMode)(AutoHeadingIDs).html */; };
+		E8DA359A23C73F5D00B47C6F /* Abbreviations(ExtraMode).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8DA357423C73F5D00B47C6F /* Abbreviations(ExtraMode).txt */; };
+		E8DA359B23C73F5D00B47C6F /* HeaderIDs(ExtraMode).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8DA357523C73F5D00B47C6F /* HeaderIDs(ExtraMode).txt */; };
+		E8DA359C23C73F5D00B47C6F /* Issue12(ExtraMode).html in Resources */ = {isa = PBXBuildFile; fileRef = E8DA357623C73F5D00B47C6F /* Issue12(ExtraMode).html */; };
+		E8DA359D23C73F5D00B47C6F /* TableFormatting(ExtraMode).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8DA357723C73F5D00B47C6F /* TableFormatting(ExtraMode).txt */; };
+		E8DA359E23C73F5D00B47C6F /* Issue30(ExtraMode).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8DA357823C73F5D00B47C6F /* Issue30(ExtraMode).txt */; };
+		E8DA359F23C73F5D00B47C6F /* BackslashEscapes(ExtraMode).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8DA357923C73F5D00B47C6F /* BackslashEscapes(ExtraMode).txt */; };
+		E8DA35A023C73F5D00B47C6F /* Footnotes(ExtraMode).html in Resources */ = {isa = PBXBuildFile; fileRef = E8DA357A23C73F5D00B47C6F /* Footnotes(ExtraMode).html */; };
+		E8DA35A123C73F5D00B47C6F /* MarkdownInHtml-DeepNested(ExtraMode)(MarkdownInHtml).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8DA357B23C73F5D00B47C6F /* MarkdownInHtml-DeepNested(ExtraMode)(MarkdownInHtml).txt */; };
+		E8DA35A323C7461400B47C6F /* ExtraModeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA35A223C7461400B47C6F /* ExtraModeTests.swift */; };
+		E8E368A323B65940007539F7 /* BlockProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E368A223B65940007539F7 /* BlockProcessor.swift */; };
+		E8EECEC523B3CC72007DB50B /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EECEC423B3CC72007DB50B /* Token.swift */; };
+		E8EECEC723B3CEC0007DB50B /* SpanFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EECEC623B3CEC0007DB50B /* SpanFormatter.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E87BEC7323AE9B4200CEA45E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E87BEC5F23AE9B4100CEA45E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E87BEC6723AE9B4100CEA45E;
+			remoteInfo = MarkdownDeep;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E829B76E23C241C3002BA727 /* TestDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDefinition.swift; sourceTree = "<group>"; };
+		E829B77023C24210002BA727 /* TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelper.swift; sourceTree = "<group>"; };
+		E8353C1723BFCEEF00602189 /* HeadingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingTests.swift; sourceTree = "<group>"; };
+		E83717A223C620EC0010AD7C /* SpanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpanTests.swift; sourceTree = "<group>"; };
+		E83717A423C621050010AD7C /* Emphasis.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Emphasis.html; sourceTree = "<group>"; };
+		E83717A523C621050010AD7C /* ImplicitReferenceLinkWithTitle.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ImplicitReferenceLinkWithTitle.txt; sourceTree = "<group>"; };
+		E83717A623C621050010AD7C /* HtmlEncodeLinks.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HtmlEncodeLinks.html; sourceTree = "<group>"; };
+		E83717A723C621050010AD7C /* LinkTitlesWithEmbeddedQuotes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LinkTitlesWithEmbeddedQuotes.txt; sourceTree = "<group>"; };
+		E83717A823C621050010AD7C /* ReferenceLinkWithIDOnNextLine.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReferenceLinkWithIDOnNextLine.txt; sourceTree = "<group>"; };
+		E83717A923C621050010AD7C /* LinkTitlesWithEmbeddedQuotes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = LinkTitlesWithEmbeddedQuotes.html; sourceTree = "<group>"; };
+		E83717AA23C621050010AD7C /* BackslashEscapes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BackslashEscapes.txt; sourceTree = "<group>"; };
+		E83717AB23C621050010AD7C /* LinkedImage.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = LinkedImage.html; sourceTree = "<group>"; };
+		E83717AC23C621050010AD7C /* EscapesInUrls.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EscapesInUrls.txt; sourceTree = "<group>"; };
+		E83717AD23C621050010AD7C /* ExplicitReferenceLinkWithTitle.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ExplicitReferenceLinkWithTitle.html; sourceTree = "<group>"; };
+		E83717AE23C621050010AD7C /* ImplicitReferenceLinkWithTitle.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ImplicitReferenceLinkWithTitle.html; sourceTree = "<group>"; };
+		E83717AF23C621050010AD7C /* HtmlEncodeLinks.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HtmlEncodeLinks.txt; sourceTree = "<group>"; };
+		E83717B023C621050010AD7C /* ExplicitReferenceLinkWithoutTitle.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ExplicitReferenceLinkWithoutTitle.html; sourceTree = "<group>"; };
+		E83717B123C621050010AD7C /* ImplicitReferenceLinkWithoutTitle.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ImplicitReferenceLinkWithoutTitle.html; sourceTree = "<group>"; };
+		E83717B223C621050010AD7C /* EscapesInUrls.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = EscapesInUrls.html; sourceTree = "<group>"; };
+		E83717B323C621050010AD7C /* ExplicitReferenceLinkWithoutTitle.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ExplicitReferenceLinkWithoutTitle.txt; sourceTree = "<group>"; };
+		E83717B423C621050010AD7C /* ImplicitReferenceLinkWithoutTitle.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ImplicitReferenceLinkWithoutTitle.txt; sourceTree = "<group>"; };
+		E83717B523C621050010AD7C /* InlineLinkWithTitle.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = InlineLinkWithTitle.txt; sourceTree = "<group>"; };
+		E83717B623C621050010AD7C /* LinkedImage.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LinkedImage.txt; sourceTree = "<group>"; };
+		E83717B723C621050010AD7C /* BackslashEscapes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = BackslashEscapes.html; sourceTree = "<group>"; };
+		E83717B823C621050010AD7C /* InlineLinkWithTitle.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = InlineLinkWithTitle.html; sourceTree = "<group>"; };
+		E83717B923C621050010AD7C /* FormattingInLinkText.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FormattingInLinkText.txt; sourceTree = "<group>"; };
+		E83717BA23C621050010AD7C /* FormattingInLinkText.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = FormattingInLinkText.html; sourceTree = "<group>"; };
+		E83717BB23C621050010AD7C /* ReferenceLinkWithIDOnNextLine.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ReferenceLinkWithIDOnNextLine.html; sourceTree = "<group>"; };
+		E83717BC23C621060010AD7C /* ExplicitReferenceLinkWithTitle.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ExplicitReferenceLinkWithTitle.txt; sourceTree = "<group>"; };
+		E83717BD23C621060010AD7C /* Emphasis.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Emphasis.txt; sourceTree = "<group>"; };
+		E8442D6B23AFFAF300F5F37C /* LinkInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkInfo.swift; sourceTree = "<group>"; };
+		E8442D6D23AFFBBD00F5F37C /* FootnodeReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootnodeReference.swift; sourceTree = "<group>"; };
+		E8482C2023C88CE8006C1677 /* SafeModeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeModeTests.swift; sourceTree = "<group>"; };
+		E8482C2323C88DE0006C1677 /* Basic(SafeMode).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Basic(SafeMode).html"; sourceTree = "<group>"; };
+		E8482C2423C88DE0006C1677 /* Basic(SafeMode).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Basic(SafeMode).txt"; sourceTree = "<group>"; };
+		E8482C6B23C88E19006C1677 /* PHPMarkdownTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPMarkdownTests.swift; sourceTree = "<group>"; };
+		E8482CB923C8948D006C1677 /* phpm-InsDel.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "phpm-InsDel.txt"; sourceTree = "<group>"; };
+		E8482CBA23C8948D006C1677 /* phpm-CodeSpans.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "phpm-CodeSpans.txt"; sourceTree = "<group>"; };
+		E8482CBB23C8948D006C1677 /* phpm-EmailAutoLinks.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "phpm-EmailAutoLinks.txt"; sourceTree = "<group>"; };
+		E8482CBC23C8948D006C1677 /* phpm-BackslashEscapes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "phpm-BackslashEscapes.html"; sourceTree = "<group>"; };
+		E8482CBD23C8948D006C1677 /* phpm-InlineHTML(Simple).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "phpm-InlineHTML(Simple).html"; sourceTree = "<group>"; };
+		E8482CBE23C8948D006C1677 /* phpm-Headers.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "phpm-Headers.html"; sourceTree = "<group>"; };
+		E8482CBF23C8948D006C1677 /* phpm-HorizontalRules.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "phpm-HorizontalRules.txt"; sourceTree = "<group>"; };
+		E8482CC023C8948D006C1677 /* phpm-CodeBlockInAListItem.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "phpm-CodeBlockInAListItem.html"; sourceTree = "<group>"; };
+		E8482CC123C8948D006C1677 /* phpm-InlineHTML(Span).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "phpm-InlineHTML(Span).txt"; sourceTree = "<group>"; };
+		E8482CC223C8948D006C1677 /* phpm-Nesting.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "phpm-Nesting.html"; sourceTree = "<group>"; };
+		E8482CC323C8948D006C1677 /* phpm-InlineHTMLcomments.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "phpm-InlineHTMLcomments.txt"; sourceTree = "<group>"; };
+		E8482CC423C8948D006C1677 /* phpm-Emphasis.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "phpm-Emphasis.txt"; sourceTree = "<group>"; };
+		E8482CC523C8948D006C1677 /* phpm-SpecificBugs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "phpm-SpecificBugs.html"; sourceTree = "<group>"; };
+		E8482CC623C8948D006C1677 /* phpm-EmailAutoLinks.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "phpm-EmailAutoLinks.html"; sourceTree = "<group>"; };
+		E8482CC723C8948D006C1677 /* phpm-CodeBlockInAListItem.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "phpm-CodeBlockInAListItem.txt"; sourceTree = "<group>"; };
+		E8482CC823C8948D006C1677 /* phpm-ParensInURL.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "phpm-ParensInURL.html"; sourceTree = "<group>"; };
+		E8482CC923C8948D006C1677 /* phpm-InlineHTML(Span).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "phpm-InlineHTML(Span).html"; sourceTree = "<group>"; };
+		E8482CCA23C8948D006C1677 /* phpm-InlineHTMLcomments.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "phpm-InlineHTMLcomments.html"; sourceTree = "<group>"; };
+		E8482CCB23C8948D006C1677 /* phpm-ParensInURL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "phpm-ParensInURL.txt"; sourceTree = "<group>"; };
+		E8482CCC23C8948D006C1677 /* phpm-TightBlocks.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "phpm-TightBlocks.txt"; sourceTree = "<group>"; };
+		E8482CCD23C8948E006C1677 /* phpm-CodeSpans.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "phpm-CodeSpans.html"; sourceTree = "<group>"; };
+		E8482CCE23C8948E006C1677 /* phpm-Nesting.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "phpm-Nesting.txt"; sourceTree = "<group>"; };
+		E8482CCF23C8948E006C1677 /* phpm-SpecificBugs.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "phpm-SpecificBugs.txt"; sourceTree = "<group>"; };
+		E8482CD023C8948E006C1677 /* phpm-Headers.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "phpm-Headers.txt"; sourceTree = "<group>"; };
+		E8482CD123C8948E006C1677 /* phpm-MD5Hashes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "phpm-MD5Hashes.txt"; sourceTree = "<group>"; };
+		E8482CD223C8948E006C1677 /* phpm-HorizontalRules.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "phpm-HorizontalRules.html"; sourceTree = "<group>"; };
+		E8482CD323C8948E006C1677 /* phpm-LinksInlineStyle.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "phpm-LinksInlineStyle.txt"; sourceTree = "<group>"; };
+		E8482CD423C8948E006C1677 /* phpm-TightBlocks.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "phpm-TightBlocks.html"; sourceTree = "<group>"; };
+		E8482CD523C8948E006C1677 /* phpm-MD5Hashes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "phpm-MD5Hashes.html"; sourceTree = "<group>"; };
+		E8482CD623C8948E006C1677 /* phpm-BackslashEscapes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "phpm-BackslashEscapes.txt"; sourceTree = "<group>"; };
+		E8482CD723C8948E006C1677 /* phpm-Emphasis.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "phpm-Emphasis.html"; sourceTree = "<group>"; };
+		E8482CD823C8948E006C1677 /* phpm-InsDel.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "phpm-InsDel.html"; sourceTree = "<group>"; };
+		E8482CD923C8948E006C1677 /* phpm-LinksInlineStyle.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "phpm-LinksInlineStyle.html"; sourceTree = "<group>"; };
+		E8482CDA23C8948E006C1677 /* phpm-InlineHTML(Simple).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "phpm-InlineHTML(Simple).txt"; sourceTree = "<group>"; };
+		E8482CFE23C8A03C006C1677 /* mdTest01Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mdTest01Tests.swift; sourceTree = "<group>"; };
+		E8482D0023C8A15A006C1677 /* code-inside-list.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "code-inside-list.html"; sourceTree = "<group>"; };
+		E8482D0223C8A165006C1677 /* code-inside-list.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "code-inside-list.txt"; sourceTree = "<group>"; };
+		E8482D0423C8A172006C1677 /* line-endings-cr.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "line-endings-cr.txt"; sourceTree = "<group>"; };
+		E8482D0523C8A172006C1677 /* line-endings-crlf.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "line-endings-crlf.txt"; sourceTree = "<group>"; };
+		E8482D0623C8A172006C1677 /* markdown-readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "markdown-readme.txt"; sourceTree = "<group>"; };
+		E8482D0723C8A172006C1677 /* line-endings-lf.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "line-endings-lf.html"; sourceTree = "<group>"; };
+		E8482D0823C8A172006C1677 /* line-endings-cr.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "line-endings-cr.html"; sourceTree = "<group>"; };
+		E8482D0923C8A172006C1677 /* line-endings-crlf.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "line-endings-crlf.html"; sourceTree = "<group>"; };
+		E8482D0A23C8A172006C1677 /* line-endings-lf.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "line-endings-lf.txt"; sourceTree = "<group>"; };
+		E8482D0B23C8A172006C1677 /* markdown-readme.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "markdown-readme.html"; sourceTree = "<group>"; };
+		E84CD6A623BE765B00F3D111 /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
+		E87BEC6823AE9B4200CEA45E /* MarkdownDeep.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MarkdownDeep.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E87BEC6B23AE9B4200CEA45E /* MarkdownDeep.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarkdownDeep.h; sourceTree = "<group>"; };
+		E87BEC6C23AE9B4200CEA45E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E87BEC7123AE9B4200CEA45E /* MarkdownDeepTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarkdownDeepTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E87BEC7623AE9B4200CEA45E /* MarkdownDeepTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownDeepTests.swift; sourceTree = "<group>"; };
+		E87BEC7823AE9B4200CEA45E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E87BEC8223AE9C3100CEA45E /* Abbreviation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Abbreviation.swift; sourceTree = "<group>"; };
+		E87BEC8423AE9EEC00CEA45E /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
+		E892538123B1419100473BC5 /* StringScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringScanner.swift; sourceTree = "<group>"; };
+		E892538323B1444800473BC5 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		E892538523B14FBF00473BC5 /* LinkDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkDefinition.swift; sourceTree = "<group>"; };
+		E8A52C1A23C0BFF700C6953E /* CodeBlocks.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = CodeBlocks.html; sourceTree = "<group>"; };
+		E8A52C1B23C0BFF700C6953E /* CodeBlocks.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CodeBlocks.txt; sourceTree = "<group>"; };
+		E8A52C1E23C0C00D00C6953E /* BlockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockTests.swift; sourceTree = "<group>"; };
+		E8A52C2023C0CA9400C6953E /* AtxHeadings.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AtxHeadings.html; sourceTree = "<group>"; };
+		E8A52C2123C0CA9400C6953E /* AtxHeadings.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AtxHeadings.txt; sourceTree = "<group>"; };
+		E8B833E323B534A2000F31D7 /* MarkdownDeep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownDeep.swift; sourceTree = "<group>"; };
+		E8BC2AF923AFA35F006B9C16 /* HtmlTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlTag.swift; sourceTree = "<group>"; };
+		E8CAD55423B67E79004E7AA7 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		E8D6DB4C23C389DD0090414A /* HardWrappedListItems.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HardWrappedListItems.txt; sourceTree = "<group>"; };
+		E8D6DB4D23C389DD0090414A /* HardWrappedParagraphWithListLikeLine.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HardWrappedParagraphWithListLikeLine.txt; sourceTree = "<group>"; };
+		E8D6DB4E23C389DD0090414A /* SetExtHeadings.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SetExtHeadings.html; sourceTree = "<group>"; };
+		E8D6DB4F23C389DD0090414A /* HtmlBlock.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HtmlBlock.html; sourceTree = "<group>"; };
+		E8D6DB5023C389DD0090414A /* ParagraphBreaks.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ParagraphBreaks.txt; sourceTree = "<group>"; };
+		E8D6DB5123C389DD0090414A /* SimpleParagraph.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleParagraph.txt; sourceTree = "<group>"; };
+		E8D6DB5223C389DD0090414A /* HtmlAttributeWithoutValue.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HtmlAttributeWithoutValue.html; sourceTree = "<group>"; };
+		E8D6DB5323C389DD0090414A /* HardWrappedParagraphWithListLikeLine.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HardWrappedParagraphWithListLikeLine.html; sourceTree = "<group>"; };
+		E8D6DB5423C389DD0090414A /* SetExtHeadings.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SetExtHeadings.txt; sourceTree = "<group>"; };
+		E8D6DB5523C389DD0090414A /* SimpleUnorderedList.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SimpleUnorderedList.html; sourceTree = "<group>"; };
+		E8D6DB5623C389DD0090414A /* SimpleOrderedList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleOrderedList.txt; sourceTree = "<group>"; };
+		E8D6DB5723C389DD0090414A /* MultipleParagraphs.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MultipleParagraphs.txt; sourceTree = "<group>"; };
+		E8D6DB5823C389DD0090414A /* HardWrappedParagraph.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HardWrappedParagraph.txt; sourceTree = "<group>"; };
+		E8D6DB5923C389DD0090414A /* NestedListItems.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NestedListItems.txt; sourceTree = "<group>"; };
+		E8D6DB5A23C389DD0090414A /* PartiallyIndentedLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PartiallyIndentedLists.txt; sourceTree = "<group>"; };
+		E8D6DB5B23C389DD0090414A /* HtmlComments.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HtmlComments.txt; sourceTree = "<group>"; };
+		E8D6DB5C23C389DD0090414A /* SimpleUnorderedList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SimpleUnorderedList.txt; sourceTree = "<group>"; };
+		E8D6DB5D23C389DD0090414A /* MultipleParagraphs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = MultipleParagraphs.html; sourceTree = "<group>"; };
+		E8D6DB5E23C389DD0090414A /* SimpleParagraph.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SimpleParagraph.html; sourceTree = "<group>"; };
+		E8D6DB5F23C389DD0090414A /* InsTypes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = InsTypes.html; sourceTree = "<group>"; };
+		E8D6DB6023C389DD0090414A /* HardWrappedParagraph.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HardWrappedParagraph.html; sourceTree = "<group>"; };
+		E8D6DB6123C389DD0090414A /* HtmlAttributeWithoutValue.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HtmlAttributeWithoutValue.txt; sourceTree = "<group>"; };
+		E8D6DB6223C389DD0090414A /* ParagraphBreaks.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ParagraphBreaks.html; sourceTree = "<group>"; };
+		E8D6DB6323C389DD0090414A /* HtmlBlock.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HtmlBlock.txt; sourceTree = "<group>"; };
+		E8D6DB6423C389DD0090414A /* NestedListItems.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = NestedListItems.html; sourceTree = "<group>"; };
+		E8D6DB6523C389DE0090414A /* QuoteBlocksNested.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = QuoteBlocksNested.html; sourceTree = "<group>"; };
+		E8D6DB6623C389DE0090414A /* PartiallyIndentedLists.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PartiallyIndentedLists.html; sourceTree = "<group>"; };
+		E8D6DB6723C389DE0090414A /* QuoteBlocks.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = QuoteBlocks.txt; sourceTree = "<group>"; };
+		E8D6DB6823C389DE0090414A /* InsTypes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = InsTypes.txt; sourceTree = "<group>"; };
+		E8D6DB6923C389DE0090414A /* QuoteBlocks.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = QuoteBlocks.html; sourceTree = "<group>"; };
+		E8D6DB6A23C389DE0090414A /* ComplexListItems.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ComplexListItems.txt; sourceTree = "<group>"; };
+		E8D6DB6B23C389DE0090414A /* SimpleOrderedList.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SimpleOrderedList.html; sourceTree = "<group>"; };
+		E8D6DB6C23C389DE0090414A /* HardWrappedParagraphInListItem.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HardWrappedParagraphInListItem.html; sourceTree = "<group>"; };
+		E8D6DB6D23C389DE0090414A /* QuoteBlocksNested.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = QuoteBlocksNested.txt; sourceTree = "<group>"; };
+		E8D6DB6E23C389DE0090414A /* HardWrappedListItems.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HardWrappedListItems.html; sourceTree = "<group>"; };
+		E8D6DB6F23C389DE0090414A /* HardWrappedParagraphInListItem.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HardWrappedParagraphInListItem.txt; sourceTree = "<group>"; };
+		E8D6DB7023C389DE0090414A /* HtmlComments.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HtmlComments.html; sourceTree = "<group>"; };
+		E8D6DB7123C389DE0090414A /* ComplexListItems.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ComplexListItems.html; sourceTree = "<group>"; };
+		E8DA200723B22AAD007D0368 /* TableSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSpec.swift; sourceTree = "<group>"; };
+		E8DA200923B23024007D0368 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		E8DA355623C73F5D00B47C6F /* MarkdownInHtml(ExtraMode).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MarkdownInHtml(ExtraMode).txt"; sourceTree = "<group>"; };
+		E8DA355723C73F5D00B47C6F /* DefinitionLists(ExtraMode).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "DefinitionLists(ExtraMode).html"; sourceTree = "<group>"; };
+		E8DA355823C73F5D00B47C6F /* DefinitionLists(ExtraMode).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "DefinitionLists(ExtraMode).txt"; sourceTree = "<group>"; };
+		E8DA355923C73F5D00B47C6F /* MarkdownInHtml-Nested(ExtraMode).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MarkdownInHtml-Nested(ExtraMode).txt"; sourceTree = "<group>"; };
+		E8DA355A23C73F5D00B47C6F /* Emphasis(ExtraMode).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Emphasis(ExtraMode).html"; sourceTree = "<group>"; };
+		E8DA355B23C73F5D00B47C6F /* FencedCodeBlocksAlt(ExtraMode).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "FencedCodeBlocksAlt(ExtraMode).html"; sourceTree = "<group>"; };
+		E8DA355C23C73F5D00B47C6F /* MarkdownInHtml-DeepNested(ExtraMode).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MarkdownInHtml-DeepNested(ExtraMode).txt"; sourceTree = "<group>"; };
+		E8DA355D23C73F5D00B47C6F /* Abbreviations(ExtraMode).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Abbreviations(ExtraMode).html"; sourceTree = "<group>"; };
+		E8DA355E23C73F5D00B47C6F /* FencedCodeBlocks(ExtraMode).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "FencedCodeBlocks(ExtraMode).html"; sourceTree = "<group>"; };
+		E8DA355F23C73F5D00B47C6F /* Issue12(ExtraMode).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Issue12(ExtraMode).txt"; sourceTree = "<group>"; };
+		E8DA356023C73F5D00B47C6F /* TableAlignment(ExtraMode).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "TableAlignment(ExtraMode).txt"; sourceTree = "<group>"; };
+		E8DA356123C73F5D00B47C6F /* Footnotes(ExtraMode).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Footnotes(ExtraMode).txt"; sourceTree = "<group>"; };
+		E8DA356223C73F5D00B47C6F /* MarkdownInHtml-DeepNested(ExtraMode).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "MarkdownInHtml-DeepNested(ExtraMode).html"; sourceTree = "<group>"; };
+		E8DA356323C73F5D00B47C6F /* TableFormatting(ExtraMode).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "TableFormatting(ExtraMode).html"; sourceTree = "<group>"; };
+		E8DA356423C73F5D00B47C6F /* FencedCodeBlocks(ExtraMode).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "FencedCodeBlocks(ExtraMode).txt"; sourceTree = "<group>"; };
+		E8DA356523C73F5D00B47C6F /* BackslashEscapes(ExtraMode).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "BackslashEscapes(ExtraMode).html"; sourceTree = "<group>"; };
+		E8DA356623C73F5D00B47C6F /* HeaderIDs(ExtraMode)(AutoHeadingIDs).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "HeaderIDs(ExtraMode)(AutoHeadingIDs).txt"; sourceTree = "<group>"; };
+		E8DA356723C73F5D00B47C6F /* MarkdownInHtml-DeepNested(ExtraMode)(MarkdownInHtml).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "MarkdownInHtml-DeepNested(ExtraMode)(MarkdownInHtml).html"; sourceTree = "<group>"; };
+		E8DA356823C73F5D00B47C6F /* HeaderIDs(ExtraMode).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "HeaderIDs(ExtraMode).html"; sourceTree = "<group>"; };
+		E8DA356923C73F5D00B47C6F /* Issue26(ExtraMode).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Issue26(ExtraMode).html"; sourceTree = "<group>"; };
+		E8DA356A23C73F5D00B47C6F /* TableAlignment(ExtraMode).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "TableAlignment(ExtraMode).html"; sourceTree = "<group>"; };
+		E8DA356B23C73F5D00B47C6F /* Issue26(ExtraMode).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Issue26(ExtraMode).txt"; sourceTree = "<group>"; };
+		E8DA356C23C73F5D00B47C6F /* MarkdownInHtml-Nested(ExtraMode).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "MarkdownInHtml-Nested(ExtraMode).html"; sourceTree = "<group>"; };
+		E8DA356D23C73F5D00B47C6F /* Emphasis(ExtraMode).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Emphasis(ExtraMode).txt"; sourceTree = "<group>"; };
+		E8DA356E23C73F5D00B47C6F /* FencedCodeBlocksAlt(ExtraMode).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "FencedCodeBlocksAlt(ExtraMode).txt"; sourceTree = "<group>"; };
+		E8DA356F23C73F5D00B47C6F /* Tables(ExtraMode).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Tables(ExtraMode).txt"; sourceTree = "<group>"; };
+		E8DA357023C73F5D00B47C6F /* Issue30(ExtraMode).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Issue30(ExtraMode).html"; sourceTree = "<group>"; };
+		E8DA357123C73F5D00B47C6F /* Tables(ExtraMode).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Tables(ExtraMode).html"; sourceTree = "<group>"; };
+		E8DA357223C73F5D00B47C6F /* MarkdownInHtml(ExtraMode).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "MarkdownInHtml(ExtraMode).html"; sourceTree = "<group>"; };
+		E8DA357323C73F5D00B47C6F /* HeaderIDs(ExtraMode)(AutoHeadingIDs).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "HeaderIDs(ExtraMode)(AutoHeadingIDs).html"; sourceTree = "<group>"; };
+		E8DA357423C73F5D00B47C6F /* Abbreviations(ExtraMode).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Abbreviations(ExtraMode).txt"; sourceTree = "<group>"; };
+		E8DA357523C73F5D00B47C6F /* HeaderIDs(ExtraMode).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "HeaderIDs(ExtraMode).txt"; sourceTree = "<group>"; };
+		E8DA357623C73F5D00B47C6F /* Issue12(ExtraMode).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Issue12(ExtraMode).html"; sourceTree = "<group>"; };
+		E8DA357723C73F5D00B47C6F /* TableFormatting(ExtraMode).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "TableFormatting(ExtraMode).txt"; sourceTree = "<group>"; };
+		E8DA357823C73F5D00B47C6F /* Issue30(ExtraMode).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Issue30(ExtraMode).txt"; sourceTree = "<group>"; };
+		E8DA357923C73F5D00B47C6F /* BackslashEscapes(ExtraMode).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "BackslashEscapes(ExtraMode).txt"; sourceTree = "<group>"; };
+		E8DA357A23C73F5D00B47C6F /* Footnotes(ExtraMode).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Footnotes(ExtraMode).html"; sourceTree = "<group>"; };
+		E8DA357B23C73F5D00B47C6F /* MarkdownInHtml-DeepNested(ExtraMode)(MarkdownInHtml).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MarkdownInHtml-DeepNested(ExtraMode)(MarkdownInHtml).txt"; sourceTree = "<group>"; };
+		E8DA35A223C7461400B47C6F /* ExtraModeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraModeTests.swift; sourceTree = "<group>"; };
+		E8E368A223B65940007539F7 /* BlockProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockProcessor.swift; sourceTree = "<group>"; };
+		E8EECEC423B3CC72007DB50B /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		E8EECEC623B3CEC0007DB50B /* SpanFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpanFormatter.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E87BEC6523AE9B4100CEA45E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E87BEC6E23AE9B4200CEA45E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E87BEC7223AE9B4200CEA45E /* MarkdownDeep.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E829B77223C24290002BA727 /* TestClasses */ = {
+			isa = PBXGroup;
+			children = (
+				E87BEC7623AE9B4200CEA45E /* MarkdownDeepTests.swift */,
+				E84CD6A623BE765B00F3D111 /* StringExtensionTests.swift */,
+				E8353C1723BFCEEF00602189 /* HeadingTests.swift */,
+				E8A52C1E23C0C00D00C6953E /* BlockTests.swift */,
+				E83717A223C620EC0010AD7C /* SpanTests.swift */,
+				E8DA35A223C7461400B47C6F /* ExtraModeTests.swift */,
+				E8482C2023C88CE8006C1677 /* SafeModeTests.swift */,
+				E8482C6B23C88E19006C1677 /* PHPMarkdownTests.swift */,
+				E8482CFE23C8A03C006C1677 /* mdTest01Tests.swift */,
+			);
+			path = TestClasses;
+			sourceTree = "<group>";
+		};
+		E829B77323C242B2002BA727 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E829B76E23C241C3002BA727 /* TestDefinition.swift */,
+				E829B77023C24210002BA727 /* TestHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		E83717A123C6206A0010AD7C /* SpanTests */ = {
+			isa = PBXGroup;
+			children = (
+				E83717B723C621050010AD7C /* BackslashEscapes.html */,
+				E83717AA23C621050010AD7C /* BackslashEscapes.txt */,
+				E83717A423C621050010AD7C /* Emphasis.html */,
+				E83717BD23C621060010AD7C /* Emphasis.txt */,
+				E83717B223C621050010AD7C /* EscapesInUrls.html */,
+				E83717AC23C621050010AD7C /* EscapesInUrls.txt */,
+				E83717B023C621050010AD7C /* ExplicitReferenceLinkWithoutTitle.html */,
+				E83717B323C621050010AD7C /* ExplicitReferenceLinkWithoutTitle.txt */,
+				E83717AD23C621050010AD7C /* ExplicitReferenceLinkWithTitle.html */,
+				E83717BC23C621060010AD7C /* ExplicitReferenceLinkWithTitle.txt */,
+				E83717BA23C621050010AD7C /* FormattingInLinkText.html */,
+				E83717B923C621050010AD7C /* FormattingInLinkText.txt */,
+				E83717A623C621050010AD7C /* HtmlEncodeLinks.html */,
+				E83717AF23C621050010AD7C /* HtmlEncodeLinks.txt */,
+				E83717B123C621050010AD7C /* ImplicitReferenceLinkWithoutTitle.html */,
+				E83717B423C621050010AD7C /* ImplicitReferenceLinkWithoutTitle.txt */,
+				E83717AE23C621050010AD7C /* ImplicitReferenceLinkWithTitle.html */,
+				E83717A523C621050010AD7C /* ImplicitReferenceLinkWithTitle.txt */,
+				E83717B823C621050010AD7C /* InlineLinkWithTitle.html */,
+				E83717B523C621050010AD7C /* InlineLinkWithTitle.txt */,
+				E83717AB23C621050010AD7C /* LinkedImage.html */,
+				E83717B623C621050010AD7C /* LinkedImage.txt */,
+				E83717A923C621050010AD7C /* LinkTitlesWithEmbeddedQuotes.html */,
+				E83717A723C621050010AD7C /* LinkTitlesWithEmbeddedQuotes.txt */,
+				E83717BB23C621050010AD7C /* ReferenceLinkWithIDOnNextLine.html */,
+				E83717A823C621050010AD7C /* ReferenceLinkWithIDOnNextLine.txt */,
+			);
+			path = SpanTests;
+			sourceTree = "<group>";
+		};
+		E8482C1F23C88CBF006C1677 /* SafeMode */ = {
+			isa = PBXGroup;
+			children = (
+				E8482C2323C88DE0006C1677 /* Basic(SafeMode).html */,
+				E8482C2423C88DE0006C1677 /* Basic(SafeMode).txt */,
+			);
+			path = SafeMode;
+			sourceTree = "<group>";
+		};
+		E8482C2223C88D9D006C1677 /* PHPMarkdown */ = {
+			isa = PBXGroup;
+			children = (
+				E8482CBC23C8948D006C1677 /* phpm-BackslashEscapes.html */,
+				E8482CD623C8948E006C1677 /* phpm-BackslashEscapes.txt */,
+				E8482CC023C8948D006C1677 /* phpm-CodeBlockInAListItem.html */,
+				E8482CC723C8948D006C1677 /* phpm-CodeBlockInAListItem.txt */,
+				E8482CCD23C8948E006C1677 /* phpm-CodeSpans.html */,
+				E8482CBA23C8948D006C1677 /* phpm-CodeSpans.txt */,
+				E8482CC623C8948D006C1677 /* phpm-EmailAutoLinks.html */,
+				E8482CBB23C8948D006C1677 /* phpm-EmailAutoLinks.txt */,
+				E8482CD723C8948E006C1677 /* phpm-Emphasis.html */,
+				E8482CC423C8948D006C1677 /* phpm-Emphasis.txt */,
+				E8482CBE23C8948D006C1677 /* phpm-Headers.html */,
+				E8482CD023C8948E006C1677 /* phpm-Headers.txt */,
+				E8482CD223C8948E006C1677 /* phpm-HorizontalRules.html */,
+				E8482CBF23C8948D006C1677 /* phpm-HorizontalRules.txt */,
+				E8482CBD23C8948D006C1677 /* phpm-InlineHTML(Simple).html */,
+				E8482CDA23C8948E006C1677 /* phpm-InlineHTML(Simple).txt */,
+				E8482CC923C8948D006C1677 /* phpm-InlineHTML(Span).html */,
+				E8482CC123C8948D006C1677 /* phpm-InlineHTML(Span).txt */,
+				E8482CCA23C8948D006C1677 /* phpm-InlineHTMLcomments.html */,
+				E8482CC323C8948D006C1677 /* phpm-InlineHTMLcomments.txt */,
+				E8482CD823C8948E006C1677 /* phpm-InsDel.html */,
+				E8482CB923C8948D006C1677 /* phpm-InsDel.txt */,
+				E8482CD923C8948E006C1677 /* phpm-LinksInlineStyle.html */,
+				E8482CD323C8948E006C1677 /* phpm-LinksInlineStyle.txt */,
+				E8482CD523C8948E006C1677 /* phpm-MD5Hashes.html */,
+				E8482CD123C8948E006C1677 /* phpm-MD5Hashes.txt */,
+				E8482CC223C8948D006C1677 /* phpm-Nesting.html */,
+				E8482CCE23C8948E006C1677 /* phpm-Nesting.txt */,
+				E8482CC823C8948D006C1677 /* phpm-ParensInURL.html */,
+				E8482CCB23C8948D006C1677 /* phpm-ParensInURL.txt */,
+				E8482CC523C8948D006C1677 /* phpm-SpecificBugs.html */,
+				E8482CCF23C8948E006C1677 /* phpm-SpecificBugs.txt */,
+				E8482CD423C8948E006C1677 /* phpm-TightBlocks.html */,
+				E8482CCC23C8948D006C1677 /* phpm-TightBlocks.txt */,
+			);
+			path = PHPMarkdown;
+			sourceTree = "<group>";
+		};
+		E8482CFD23C89F7C006C1677 /* mdTest01 */ = {
+			isa = PBXGroup;
+			children = (
+				E8482D0823C8A172006C1677 /* line-endings-cr.html */,
+				E8482D0423C8A172006C1677 /* line-endings-cr.txt */,
+				E8482D0923C8A172006C1677 /* line-endings-crlf.html */,
+				E8482D0523C8A172006C1677 /* line-endings-crlf.txt */,
+				E8482D0723C8A172006C1677 /* line-endings-lf.html */,
+				E8482D0A23C8A172006C1677 /* line-endings-lf.txt */,
+				E8482D0B23C8A172006C1677 /* markdown-readme.html */,
+				E8482D0623C8A172006C1677 /* markdown-readme.txt */,
+				E8482D0223C8A165006C1677 /* code-inside-list.txt */,
+				E8482D0023C8A15A006C1677 /* code-inside-list.html */,
+			);
+			path = mdTest01;
+			sourceTree = "<group>";
+		};
+		E87BEC5E23AE9B4100CEA45E = {
+			isa = PBXGroup;
+			children = (
+				E87BEC6A23AE9B4200CEA45E /* MarkdownDeep */,
+				E87BEC7523AE9B4200CEA45E /* MarkdownDeepTests */,
+				E87BEC6923AE9B4200CEA45E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E87BEC6923AE9B4200CEA45E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E87BEC6823AE9B4200CEA45E /* MarkdownDeep.framework */,
+				E87BEC7123AE9B4200CEA45E /* MarkdownDeepTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E87BEC6A23AE9B4200CEA45E /* MarkdownDeep */ = {
+			isa = PBXGroup;
+			children = (
+				E87BEC8223AE9C3100CEA45E /* Abbreviation.swift */,
+				E87BEC8423AE9EEC00CEA45E /* Block.swift */,
+				E8E368A223B65940007539F7 /* BlockProcessor.swift */,
+				E8442D6D23AFFBBD00F5F37C /* FootnodeReference.swift */,
+				E8BC2AF923AFA35F006B9C16 /* HtmlTag.swift */,
+				E87BEC6C23AE9B4200CEA45E /* Info.plist */,
+				E892538523B14FBF00473BC5 /* LinkDefinition.swift */,
+				E8442D6B23AFFAF300F5F37C /* LinkInfo.swift */,
+				E87BEC6B23AE9B4200CEA45E /* MarkdownDeep.h */,
+				E8B833E323B534A2000F31D7 /* MarkdownDeep.swift */,
+				E8EECEC623B3CEC0007DB50B /* SpanFormatter.swift */,
+				E8CAD55423B67E79004E7AA7 /* Stack.swift */,
+				E892538323B1444800473BC5 /* StringExtensions.swift */,
+				E892538123B1419100473BC5 /* StringScanner.swift */,
+				E8DA200723B22AAD007D0368 /* TableSpec.swift */,
+				E8EECEC423B3CC72007DB50B /* Token.swift */,
+				E8DA200923B23024007D0368 /* Utils.swift */,
+			);
+			path = MarkdownDeep;
+			sourceTree = "<group>";
+		};
+		E87BEC7523AE9B4200CEA45E /* MarkdownDeepTests */ = {
+			isa = PBXGroup;
+			children = (
+				E829B77323C242B2002BA727 /* Helpers */,
+				E829B77223C24290002BA727 /* TestClasses */,
+				E8A52C1823C0BF7A00C6953E /* TestFiles */,
+				E87BEC7823AE9B4200CEA45E /* Info.plist */,
+			);
+			path = MarkdownDeepTests;
+			sourceTree = "<group>";
+		};
+		E8A52C1823C0BF7A00C6953E /* TestFiles */ = {
+			isa = PBXGroup;
+			children = (
+				E8482CFD23C89F7C006C1677 /* mdTest01 */,
+				E8482C2223C88D9D006C1677 /* PHPMarkdown */,
+				E8482C1F23C88CBF006C1677 /* SafeMode */,
+				E8DA355523C73F5D00B47C6F /* ExtraMode */,
+				E83717A123C6206A0010AD7C /* SpanTests */,
+				E8A52C1923C0BF8F00C6953E /* BlockTests */,
+			);
+			path = TestFiles;
+			sourceTree = "<group>";
+		};
+		E8A52C1923C0BF8F00C6953E /* BlockTests */ = {
+			isa = PBXGroup;
+			children = (
+				E8D6DB7123C389DE0090414A /* ComplexListItems.html */,
+				E8D6DB6A23C389DE0090414A /* ComplexListItems.txt */,
+				E8D6DB6E23C389DE0090414A /* HardWrappedListItems.html */,
+				E8D6DB4C23C389DD0090414A /* HardWrappedListItems.txt */,
+				E8D6DB6023C389DD0090414A /* HardWrappedParagraph.html */,
+				E8D6DB5823C389DD0090414A /* HardWrappedParagraph.txt */,
+				E8D6DB6C23C389DE0090414A /* HardWrappedParagraphInListItem.html */,
+				E8D6DB6F23C389DE0090414A /* HardWrappedParagraphInListItem.txt */,
+				E8D6DB5323C389DD0090414A /* HardWrappedParagraphWithListLikeLine.html */,
+				E8D6DB4D23C389DD0090414A /* HardWrappedParagraphWithListLikeLine.txt */,
+				E8D6DB5223C389DD0090414A /* HtmlAttributeWithoutValue.html */,
+				E8D6DB6123C389DD0090414A /* HtmlAttributeWithoutValue.txt */,
+				E8D6DB4F23C389DD0090414A /* HtmlBlock.html */,
+				E8D6DB6323C389DD0090414A /* HtmlBlock.txt */,
+				E8D6DB7023C389DE0090414A /* HtmlComments.html */,
+				E8D6DB5B23C389DD0090414A /* HtmlComments.txt */,
+				E8D6DB5F23C389DD0090414A /* InsTypes.html */,
+				E8D6DB6823C389DE0090414A /* InsTypes.txt */,
+				E8D6DB5D23C389DD0090414A /* MultipleParagraphs.html */,
+				E8D6DB5723C389DD0090414A /* MultipleParagraphs.txt */,
+				E8D6DB6423C389DD0090414A /* NestedListItems.html */,
+				E8D6DB5923C389DD0090414A /* NestedListItems.txt */,
+				E8D6DB6223C389DD0090414A /* ParagraphBreaks.html */,
+				E8D6DB5023C389DD0090414A /* ParagraphBreaks.txt */,
+				E8D6DB6623C389DE0090414A /* PartiallyIndentedLists.html */,
+				E8D6DB5A23C389DD0090414A /* PartiallyIndentedLists.txt */,
+				E8D6DB6923C389DE0090414A /* QuoteBlocks.html */,
+				E8D6DB6723C389DE0090414A /* QuoteBlocks.txt */,
+				E8D6DB6523C389DE0090414A /* QuoteBlocksNested.html */,
+				E8D6DB6D23C389DE0090414A /* QuoteBlocksNested.txt */,
+				E8D6DB4E23C389DD0090414A /* SetExtHeadings.html */,
+				E8D6DB5423C389DD0090414A /* SetExtHeadings.txt */,
+				E8D6DB6B23C389DE0090414A /* SimpleOrderedList.html */,
+				E8D6DB5623C389DD0090414A /* SimpleOrderedList.txt */,
+				E8D6DB5E23C389DD0090414A /* SimpleParagraph.html */,
+				E8D6DB5123C389DD0090414A /* SimpleParagraph.txt */,
+				E8D6DB5523C389DD0090414A /* SimpleUnorderedList.html */,
+				E8D6DB5C23C389DD0090414A /* SimpleUnorderedList.txt */,
+				E8A52C2023C0CA9400C6953E /* AtxHeadings.html */,
+				E8A52C2123C0CA9400C6953E /* AtxHeadings.txt */,
+				E8A52C1A23C0BFF700C6953E /* CodeBlocks.html */,
+				E8A52C1B23C0BFF700C6953E /* CodeBlocks.txt */,
+			);
+			path = BlockTests;
+			sourceTree = "<group>";
+		};
+		E8DA355523C73F5D00B47C6F /* ExtraMode */ = {
+			isa = PBXGroup;
+			children = (
+				E8DA355D23C73F5D00B47C6F /* Abbreviations(ExtraMode).html */,
+				E8DA357423C73F5D00B47C6F /* Abbreviations(ExtraMode).txt */,
+				E8DA356523C73F5D00B47C6F /* BackslashEscapes(ExtraMode).html */,
+				E8DA357923C73F5D00B47C6F /* BackslashEscapes(ExtraMode).txt */,
+				E8DA355723C73F5D00B47C6F /* DefinitionLists(ExtraMode).html */,
+				E8DA355823C73F5D00B47C6F /* DefinitionLists(ExtraMode).txt */,
+				E8DA355A23C73F5D00B47C6F /* Emphasis(ExtraMode).html */,
+				E8DA356D23C73F5D00B47C6F /* Emphasis(ExtraMode).txt */,
+				E8DA355E23C73F5D00B47C6F /* FencedCodeBlocks(ExtraMode).html */,
+				E8DA356423C73F5D00B47C6F /* FencedCodeBlocks(ExtraMode).txt */,
+				E8DA355B23C73F5D00B47C6F /* FencedCodeBlocksAlt(ExtraMode).html */,
+				E8DA356E23C73F5D00B47C6F /* FencedCodeBlocksAlt(ExtraMode).txt */,
+				E8DA357A23C73F5D00B47C6F /* Footnotes(ExtraMode).html */,
+				E8DA356123C73F5D00B47C6F /* Footnotes(ExtraMode).txt */,
+				E8DA356823C73F5D00B47C6F /* HeaderIDs(ExtraMode).html */,
+				E8DA357523C73F5D00B47C6F /* HeaderIDs(ExtraMode).txt */,
+				E8DA357323C73F5D00B47C6F /* HeaderIDs(ExtraMode)(AutoHeadingIDs).html */,
+				E8DA356623C73F5D00B47C6F /* HeaderIDs(ExtraMode)(AutoHeadingIDs).txt */,
+				E8DA357623C73F5D00B47C6F /* Issue12(ExtraMode).html */,
+				E8DA355F23C73F5D00B47C6F /* Issue12(ExtraMode).txt */,
+				E8DA356923C73F5D00B47C6F /* Issue26(ExtraMode).html */,
+				E8DA356B23C73F5D00B47C6F /* Issue26(ExtraMode).txt */,
+				E8DA357023C73F5D00B47C6F /* Issue30(ExtraMode).html */,
+				E8DA357823C73F5D00B47C6F /* Issue30(ExtraMode).txt */,
+				E8DA356223C73F5D00B47C6F /* MarkdownInHtml-DeepNested(ExtraMode).html */,
+				E8DA355C23C73F5D00B47C6F /* MarkdownInHtml-DeepNested(ExtraMode).txt */,
+				E8DA356723C73F5D00B47C6F /* MarkdownInHtml-DeepNested(ExtraMode)(MarkdownInHtml).html */,
+				E8DA357B23C73F5D00B47C6F /* MarkdownInHtml-DeepNested(ExtraMode)(MarkdownInHtml).txt */,
+				E8DA356C23C73F5D00B47C6F /* MarkdownInHtml-Nested(ExtraMode).html */,
+				E8DA355923C73F5D00B47C6F /* MarkdownInHtml-Nested(ExtraMode).txt */,
+				E8DA357223C73F5D00B47C6F /* MarkdownInHtml(ExtraMode).html */,
+				E8DA355623C73F5D00B47C6F /* MarkdownInHtml(ExtraMode).txt */,
+				E8DA356A23C73F5D00B47C6F /* TableAlignment(ExtraMode).html */,
+				E8DA356023C73F5D00B47C6F /* TableAlignment(ExtraMode).txt */,
+				E8DA356323C73F5D00B47C6F /* TableFormatting(ExtraMode).html */,
+				E8DA357723C73F5D00B47C6F /* TableFormatting(ExtraMode).txt */,
+				E8DA357123C73F5D00B47C6F /* Tables(ExtraMode).html */,
+				E8DA356F23C73F5D00B47C6F /* Tables(ExtraMode).txt */,
+			);
+			path = ExtraMode;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		E87BEC6323AE9B4100CEA45E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E87BEC7923AE9B4200CEA45E /* MarkdownDeep.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		E87BEC6723AE9B4100CEA45E /* MarkdownDeep */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E87BEC7C23AE9B4200CEA45E /* Build configuration list for PBXNativeTarget "MarkdownDeep" */;
+			buildPhases = (
+				E87BEC6323AE9B4100CEA45E /* Headers */,
+				E87BEC6423AE9B4100CEA45E /* Sources */,
+				E87BEC6523AE9B4100CEA45E /* Frameworks */,
+				E87BEC6623AE9B4100CEA45E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MarkdownDeep;
+			productName = MarkdownDeep;
+			productReference = E87BEC6823AE9B4200CEA45E /* MarkdownDeep.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E87BEC7023AE9B4200CEA45E /* MarkdownDeepTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E87BEC7F23AE9B4200CEA45E /* Build configuration list for PBXNativeTarget "MarkdownDeepTests" */;
+			buildPhases = (
+				E87BEC6D23AE9B4200CEA45E /* Sources */,
+				E87BEC6E23AE9B4200CEA45E /* Frameworks */,
+				E87BEC6F23AE9B4200CEA45E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E87BEC7423AE9B4200CEA45E /* PBXTargetDependency */,
+			);
+			name = MarkdownDeepTests;
+			productName = MarkdownDeepTests;
+			productReference = E87BEC7123AE9B4200CEA45E /* MarkdownDeepTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E87BEC5F23AE9B4100CEA45E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = "Steven Barnett";
+				TargetAttributes = {
+					E87BEC6723AE9B4100CEA45E = {
+						CreatedOnToolsVersion = 11.2.1;
+						LastSwiftMigration = 1120;
+					};
+					E87BEC7023AE9B4200CEA45E = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+				};
+			};
+			buildConfigurationList = E87BEC6223AE9B4100CEA45E /* Build configuration list for PBXProject "MarkdownDeep" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E87BEC5E23AE9B4100CEA45E;
+			productRefGroup = E87BEC6923AE9B4200CEA45E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E87BEC6723AE9B4100CEA45E /* MarkdownDeep */,
+				E87BEC7023AE9B4200CEA45E /* MarkdownDeepTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E87BEC6623AE9B4100CEA45E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E87BEC6F23AE9B4200CEA45E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8D6DB7823C389DE0090414A /* HtmlAttributeWithoutValue.html in Resources */,
+				E8DA358723C73F5D00B47C6F /* Footnotes(ExtraMode).txt in Resources */,
+				E8D6DB8723C389DE0090414A /* HtmlAttributeWithoutValue.txt in Resources */,
+				E8482D0C23C8A172006C1677 /* line-endings-cr.txt in Resources */,
+				E8D6DB7923C389DE0090414A /* HardWrappedParagraphWithListLikeLine.html in Resources */,
+				E83717C923C621060010AD7C /* HtmlEncodeLinks.txt in Resources */,
+				E8482CF923C8948E006C1677 /* phpm-Emphasis.html in Resources */,
+				E8DA358523C73F5D00B47C6F /* Issue12(ExtraMode).txt in Resources */,
+				E8D6DB9423C389DE0090414A /* HardWrappedListItems.html in Resources */,
+				E8DA359F23C73F5D00B47C6F /* BackslashEscapes(ExtraMode).txt in Resources */,
+				E8DA359423C73F5D00B47C6F /* FencedCodeBlocksAlt(ExtraMode).txt in Resources */,
+				E8A52C2223C0CA9400C6953E /* AtxHeadings.html in Resources */,
+				E8D6DB7623C389DE0090414A /* ParagraphBreaks.txt in Resources */,
+				E8DA359323C73F5D00B47C6F /* Emphasis(ExtraMode).txt in Resources */,
+				E83717D223C621060010AD7C /* InlineLinkWithTitle.html in Resources */,
+				E8D6DB8F23C389DE0090414A /* QuoteBlocks.html in Resources */,
+				E8DA358E23C73F5D00B47C6F /* HeaderIDs(ExtraMode).html in Resources */,
+				E8482CF423C8948E006C1677 /* phpm-HorizontalRules.html in Resources */,
+				E8DA359723C73F5D00B47C6F /* Tables(ExtraMode).html in Resources */,
+				E8D6DB7523C389DE0090414A /* HtmlBlock.html in Resources */,
+				E8D6DB7323C389DE0090414A /* HardWrappedParagraphWithListLikeLine.txt in Resources */,
+				E8DA358D23C73F5D00B47C6F /* MarkdownInHtml-DeepNested(ExtraMode)(MarkdownInHtml).html in Resources */,
+				E8DA358C23C73F5D00B47C6F /* HeaderIDs(ExtraMode)(AutoHeadingIDs).txt in Resources */,
+				E8482CDF23C8948E006C1677 /* phpm-InlineHTML(Simple).html in Resources */,
+				E8A52C2323C0CA9400C6953E /* AtxHeadings.txt in Resources */,
+				E83717C323C621060010AD7C /* LinkTitlesWithEmbeddedQuotes.html in Resources */,
+				E83717CF23C621060010AD7C /* InlineLinkWithTitle.txt in Resources */,
+				E8DA358823C73F5D00B47C6F /* MarkdownInHtml-DeepNested(ExtraMode).html in Resources */,
+				E8D6DB9523C389DE0090414A /* HardWrappedParagraphInListItem.txt in Resources */,
+				E8D6DB7A23C389DE0090414A /* SetExtHeadings.txt in Resources */,
+				E8DA358223C73F5D00B47C6F /* MarkdownInHtml-DeepNested(ExtraMode).txt in Resources */,
+				E8482CEF23C8948E006C1677 /* phpm-CodeSpans.html in Resources */,
+				E8DA35A123C73F5D00B47C6F /* MarkdownInHtml-DeepNested(ExtraMode)(MarkdownInHtml).txt in Resources */,
+				E8482D1023C8A172006C1677 /* line-endings-cr.html in Resources */,
+				E8482CE723C8948E006C1677 /* phpm-SpecificBugs.html in Resources */,
+				E83717D723C621060010AD7C /* Emphasis.txt in Resources */,
+				E83717CC23C621060010AD7C /* EscapesInUrls.html in Resources */,
+				E8482D1223C8A172006C1677 /* line-endings-lf.txt in Resources */,
+				E8D6DB9623C389DE0090414A /* HtmlComments.html in Resources */,
+				E8D6DB8D23C389DE0090414A /* QuoteBlocks.txt in Resources */,
+				E8482CE123C8948E006C1677 /* phpm-HorizontalRules.txt in Resources */,
+				E83717C023C621060010AD7C /* HtmlEncodeLinks.html in Resources */,
+				E8D6DB7723C389DE0090414A /* SimpleParagraph.txt in Resources */,
+				E8482CEB23C8948E006C1677 /* phpm-InlineHTML(Span).html in Resources */,
+				E8482CED23C8948E006C1677 /* phpm-ParensInURL.txt in Resources */,
+				E8482D1123C8A172006C1677 /* line-endings-crlf.html in Resources */,
+				E8DA359A23C73F5D00B47C6F /* Abbreviations(ExtraMode).txt in Resources */,
+				E8D6DB9023C389DE0090414A /* ComplexListItems.txt in Resources */,
+				E8D6DB7D23C389DE0090414A /* MultipleParagraphs.txt in Resources */,
+				E8DA359623C73F5D00B47C6F /* Issue30(ExtraMode).html in Resources */,
+				E8D6DB8023C389DE0090414A /* PartiallyIndentedLists.txt in Resources */,
+				E8D6DB7E23C389DE0090414A /* HardWrappedParagraph.txt in Resources */,
+				E8DA359123C73F5D00B47C6F /* Issue26(ExtraMode).txt in Resources */,
+				E8D6DB8423C389DE0090414A /* SimpleParagraph.html in Resources */,
+				E8D6DB8623C389DE0090414A /* HardWrappedParagraph.html in Resources */,
+				E83717C723C621060010AD7C /* ExplicitReferenceLinkWithTitle.html in Resources */,
+				E8482C2623C88DE0006C1677 /* Basic(SafeMode).txt in Resources */,
+				E83717C123C621060010AD7C /* LinkTitlesWithEmbeddedQuotes.txt in Resources */,
+				E8482CF823C8948E006C1677 /* phpm-BackslashEscapes.txt in Resources */,
+				E8DA359C23C73F5D00B47C6F /* Issue12(ExtraMode).html in Resources */,
+				E83717BE23C621060010AD7C /* Emphasis.html in Resources */,
+				E83717C423C621060010AD7C /* BackslashEscapes.txt in Resources */,
+				E8DA359E23C73F5D00B47C6F /* Issue30(ExtraMode).txt in Resources */,
+				E8DA358623C73F5D00B47C6F /* TableAlignment(ExtraMode).txt in Resources */,
+				E8482CF523C8948E006C1677 /* phpm-LinksInlineStyle.txt in Resources */,
+				E8D6DB8923C389DE0090414A /* HtmlBlock.txt in Resources */,
+				E83717CE23C621060010AD7C /* ImplicitReferenceLinkWithoutTitle.txt in Resources */,
+				E8A52C1C23C0BFF700C6953E /* CodeBlocks.html in Resources */,
+				E8DA359523C73F5D00B47C6F /* Tables(ExtraMode).txt in Resources */,
+				E8DA357E23C73F5D00B47C6F /* DefinitionLists(ExtraMode).txt in Resources */,
+				E8D6DB7F23C389DE0090414A /* NestedListItems.txt in Resources */,
+				E8DA358A23C73F5D00B47C6F /* FencedCodeBlocks(ExtraMode).txt in Resources */,
+				E8482CEA23C8948E006C1677 /* phpm-ParensInURL.html in Resources */,
+				E8DA358423C73F5D00B47C6F /* FencedCodeBlocks(ExtraMode).html in Resources */,
+				E8D6DB8E23C389DE0090414A /* InsTypes.txt in Resources */,
+				E8482CDC23C8948E006C1677 /* phpm-CodeSpans.txt in Resources */,
+				E8D6DB8823C389DE0090414A /* ParagraphBreaks.html in Resources */,
+				E8482D1323C8A172006C1677 /* markdown-readme.html in Resources */,
+				E8482CE223C8948E006C1677 /* phpm-CodeBlockInAListItem.html in Resources */,
+				E8D6DB8223C389DE0090414A /* SimpleUnorderedList.txt in Resources */,
+				E83717D623C621060010AD7C /* ExplicitReferenceLinkWithTitle.txt in Resources */,
+				E8A52C1D23C0BFF700C6953E /* CodeBlocks.txt in Resources */,
+				E83717D123C621060010AD7C /* BackslashEscapes.html in Resources */,
+				E8DA357F23C73F5D00B47C6F /* MarkdownInHtml-Nested(ExtraMode).txt in Resources */,
+				E8D6DB7B23C389DE0090414A /* SimpleUnorderedList.html in Resources */,
+				E8DA359D23C73F5D00B47C6F /* TableFormatting(ExtraMode).txt in Resources */,
+				E8D6DB8A23C389DE0090414A /* NestedListItems.html in Resources */,
+				E83717CA23C621060010AD7C /* ExplicitReferenceLinkWithoutTitle.html in Resources */,
+				E8DA359823C73F5D00B47C6F /* MarkdownInHtml(ExtraMode).html in Resources */,
+				E83717D523C621060010AD7C /* ReferenceLinkWithIDOnNextLine.html in Resources */,
+				E8DA357D23C73F5D00B47C6F /* DefinitionLists(ExtraMode).html in Resources */,
+				E83717D323C621060010AD7C /* FormattingInLinkText.txt in Resources */,
+				E8482CF123C8948E006C1677 /* phpm-SpecificBugs.txt in Resources */,
+				E8482CF223C8948E006C1677 /* phpm-Headers.txt in Resources */,
+				E8482CF723C8948E006C1677 /* phpm-MD5Hashes.html in Resources */,
+				E8482CFB23C8948E006C1677 /* phpm-LinksInlineStyle.html in Resources */,
+				E8482CEC23C8948E006C1677 /* phpm-InlineHTMLcomments.html in Resources */,
+				E8482C2523C88DE0006C1677 /* Basic(SafeMode).html in Resources */,
+				E8DA358323C73F5D00B47C6F /* Abbreviations(ExtraMode).html in Resources */,
+				E8DA359B23C73F5D00B47C6F /* HeaderIDs(ExtraMode).txt in Resources */,
+				E8D6DB9223C389DE0090414A /* HardWrappedParagraphInListItem.html in Resources */,
+				E8482CE423C8948E006C1677 /* phpm-Nesting.html in Resources */,
+				E8482CDE23C8948E006C1677 /* phpm-BackslashEscapes.html in Resources */,
+				E8D6DB9323C389DE0090414A /* QuoteBlocksNested.txt in Resources */,
+				E83717C623C621060010AD7C /* EscapesInUrls.txt in Resources */,
+				E8DA358123C73F5D00B47C6F /* FencedCodeBlocksAlt(ExtraMode).html in Resources */,
+				E83717C523C621060010AD7C /* LinkedImage.html in Resources */,
+				E8482D0F23C8A172006C1677 /* line-endings-lf.html in Resources */,
+				E8D6DB7223C389DE0090414A /* HardWrappedListItems.txt in Resources */,
+				E8DA358923C73F5D00B47C6F /* TableFormatting(ExtraMode).html in Resources */,
+				E8D6DB8123C389DE0090414A /* HtmlComments.txt in Resources */,
+				E8482CF323C8948E006C1677 /* phpm-MD5Hashes.txt in Resources */,
+				E8D6DB8323C389DE0090414A /* MultipleParagraphs.html in Resources */,
+				E8D6DB8C23C389DE0090414A /* PartiallyIndentedLists.html in Resources */,
+				E8482CEE23C8948E006C1677 /* phpm-TightBlocks.txt in Resources */,
+				E8482CE323C8948E006C1677 /* phpm-InlineHTML(Span).txt in Resources */,
+				E83717C223C621060010AD7C /* ReferenceLinkWithIDOnNextLine.txt in Resources */,
+				E8DA359923C73F5D00B47C6F /* HeaderIDs(ExtraMode)(AutoHeadingIDs).html in Resources */,
+				E8482CE523C8948E006C1677 /* phpm-InlineHTMLcomments.txt in Resources */,
+				E83717CB23C621060010AD7C /* ImplicitReferenceLinkWithoutTitle.html in Resources */,
+				E8482CE923C8948E006C1677 /* phpm-CodeBlockInAListItem.txt in Resources */,
+				E8D6DB7C23C389DE0090414A /* SimpleOrderedList.txt in Resources */,
+				E8482CE023C8948E006C1677 /* phpm-Headers.html in Resources */,
+				E8D6DB9123C389DE0090414A /* SimpleOrderedList.html in Resources */,
+				E83717C823C621060010AD7C /* ImplicitReferenceLinkWithTitle.html in Resources */,
+				E8DA359223C73F5D00B47C6F /* MarkdownInHtml-Nested(ExtraMode).html in Resources */,
+				E8D6DB9723C389DE0090414A /* ComplexListItems.html in Resources */,
+				E8D6DB7423C389DE0090414A /* SetExtHeadings.html in Resources */,
+				E8482D0E23C8A172006C1677 /* markdown-readme.txt in Resources */,
+				E8482D0123C8A15A006C1677 /* code-inside-list.html in Resources */,
+				E83717D023C621060010AD7C /* LinkedImage.txt in Resources */,
+				E83717D423C621060010AD7C /* FormattingInLinkText.html in Resources */,
+				E8482CF623C8948E006C1677 /* phpm-TightBlocks.html in Resources */,
+				E8482CE623C8948E006C1677 /* phpm-Emphasis.txt in Resources */,
+				E8482D0323C8A165006C1677 /* code-inside-list.txt in Resources */,
+				E8482CFC23C8948E006C1677 /* phpm-InlineHTML(Simple).txt in Resources */,
+				E8482CDB23C8948E006C1677 /* phpm-InsDel.txt in Resources */,
+				E8DA359023C73F5D00B47C6F /* TableAlignment(ExtraMode).html in Resources */,
+				E8482CDD23C8948E006C1677 /* phpm-EmailAutoLinks.txt in Resources */,
+				E8D6DB8B23C389DE0090414A /* QuoteBlocksNested.html in Resources */,
+				E83717BF23C621060010AD7C /* ImplicitReferenceLinkWithTitle.txt in Resources */,
+				E83717CD23C621060010AD7C /* ExplicitReferenceLinkWithoutTitle.txt in Resources */,
+				E8482CF023C8948E006C1677 /* phpm-Nesting.txt in Resources */,
+				E8482CFA23C8948E006C1677 /* phpm-InsDel.html in Resources */,
+				E8DA357C23C73F5D00B47C6F /* MarkdownInHtml(ExtraMode).txt in Resources */,
+				E8D6DB8523C389DE0090414A /* InsTypes.html in Resources */,
+				E8DA35A023C73F5D00B47C6F /* Footnotes(ExtraMode).html in Resources */,
+				E8DA358F23C73F5D00B47C6F /* Issue26(ExtraMode).html in Resources */,
+				E8482CE823C8948E006C1677 /* phpm-EmailAutoLinks.html in Resources */,
+				E8DA358B23C73F5D00B47C6F /* BackslashEscapes(ExtraMode).html in Resources */,
+				E8482D0D23C8A172006C1677 /* line-endings-crlf.txt in Resources */,
+				E8DA358023C73F5D00B47C6F /* Emphasis(ExtraMode).html in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E87BEC6423AE9B4100CEA45E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E892538423B1444800473BC5 /* StringExtensions.swift in Sources */,
+				E8CAD55523B67E79004E7AA7 /* Stack.swift in Sources */,
+				E892538223B1419100473BC5 /* StringScanner.swift in Sources */,
+				E87BEC8323AE9C3100CEA45E /* Abbreviation.swift in Sources */,
+				E8EECEC523B3CC72007DB50B /* Token.swift in Sources */,
+				E8442D6E23AFFBBD00F5F37C /* FootnodeReference.swift in Sources */,
+				E8442D6C23AFFAF300F5F37C /* LinkInfo.swift in Sources */,
+				E8BC2AFA23AFA35F006B9C16 /* HtmlTag.swift in Sources */,
+				E8B833E423B534A2000F31D7 /* MarkdownDeep.swift in Sources */,
+				E8DA200A23B23024007D0368 /* Utils.swift in Sources */,
+				E8EECEC723B3CEC0007DB50B /* SpanFormatter.swift in Sources */,
+				E892538623B14FBF00473BC5 /* LinkDefinition.swift in Sources */,
+				E87BEC8523AE9EEC00CEA45E /* Block.swift in Sources */,
+				E8DA200823B22AAD007D0368 /* TableSpec.swift in Sources */,
+				E8E368A323B65940007539F7 /* BlockProcessor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E87BEC6D23AE9B4200CEA45E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E84CD6A723BE765B00F3D111 /* StringExtensionTests.swift in Sources */,
+				E8482C2123C88CE8006C1677 /* SafeModeTests.swift in Sources */,
+				E8A52C1F23C0C00D00C6953E /* BlockTests.swift in Sources */,
+				E829B76F23C241C3002BA727 /* TestDefinition.swift in Sources */,
+				E8DA35A323C7461400B47C6F /* ExtraModeTests.swift in Sources */,
+				E8482C6C23C88E19006C1677 /* PHPMarkdownTests.swift in Sources */,
+				E829B77123C24210002BA727 /* TestHelper.swift in Sources */,
+				E87BEC7723AE9B4200CEA45E /* MarkdownDeepTests.swift in Sources */,
+				E83717A323C620EC0010AD7C /* SpanTests.swift in Sources */,
+				E8353C1823BFCEEF00602189 /* HeadingTests.swift in Sources */,
+				E8482CFF23C8A03C006C1677 /* mdTest01Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E87BEC7423AE9B4200CEA45E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E87BEC6723AE9B4100CEA45E /* MarkdownDeep */;
+			targetProxy = E87BEC7323AE9B4200CEA45E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		E87BEC7A23AE9B4200CEA45E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E87BEC7B23AE9B4200CEA45E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E87BEC7D23AE9B4200CEA45E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = MH62Y8D74P;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = MarkdownDeep/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = theoldbloke.com.MarkdownDeep;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E87BEC7E23AE9B4200CEA45E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = MH62Y8D74P;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = MarkdownDeep/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = theoldbloke.com.MarkdownDeep;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		E87BEC8023AE9B4200CEA45E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = MH62Y8D74P;
+				INFOPLIST_FILE = MarkdownDeepTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = theoldbloke.com.MarkdownDeepTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E87BEC8123AE9B4200CEA45E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = MH62Y8D74P;
+				INFOPLIST_FILE = MarkdownDeepTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = theoldbloke.com.MarkdownDeepTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E87BEC6223AE9B4100CEA45E /* Build configuration list for PBXProject "MarkdownDeep" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E87BEC7A23AE9B4200CEA45E /* Debug */,
+				E87BEC7B23AE9B4200CEA45E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E87BEC7C23AE9B4200CEA45E /* Build configuration list for PBXNativeTarget "MarkdownDeep" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E87BEC7D23AE9B4200CEA45E /* Debug */,
+				E87BEC7E23AE9B4200CEA45E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E87BEC7F23AE9B4200CEA45E /* Build configuration list for PBXNativeTarget "MarkdownDeepTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E87BEC8023AE9B4200CEA45E /* Debug */,
+				E87BEC8123AE9B4200CEA45E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E87BEC5F23AE9B4100CEA45E /* Project object */;
+}
