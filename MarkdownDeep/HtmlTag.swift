@@ -204,7 +204,7 @@ public class HtmlTag
         // Check all are allowed
         for (attr) in tagAttributes {
             let keyLower = attr.key.lowercased()
-            if (allowedAttributes[keyLower] == nil) {
+            if !allowed_attributes.contains(keyLower) {
                 // attribute is not allowed
                 return false
             }

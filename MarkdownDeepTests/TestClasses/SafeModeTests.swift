@@ -21,6 +21,6 @@ class SafeModeTests: XCTestCase {
     }
 
     func testBasicSafeMode() {
-        TestHelper().runTest(testFileName: "Basic(SafeMode)")
+        TestHelper().runTest(testFileName: "Basic(SafeMode)", showDebugInfo: true)
     }
 }
