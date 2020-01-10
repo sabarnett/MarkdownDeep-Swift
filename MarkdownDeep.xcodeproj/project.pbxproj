@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E80D27C523C8F6A9009A8109 /* RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D27C423C8F6A9009A8109 /* RandomNumberGenerator.swift */; };
 		E829B76F23C241C3002BA727 /* TestDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829B76E23C241C3002BA727 /* TestDefinition.swift */; };
 		E829B77123C24210002BA727 /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829B77023C24210002BA727 /* TestHelper.swift */; };
 		E8353C1823BFCEEF00602189 /* HeadingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8353C1723BFCEEF00602189 /* HeadingTests.swift */; };
@@ -200,6 +201,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E80D27C423C8F6A9009A8109 /* RandomNumberGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberGenerator.swift; sourceTree = "<group>"; };
 		E829B76E23C241C3002BA727 /* TestDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDefinition.swift; sourceTree = "<group>"; };
 		E829B77023C24210002BA727 /* TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelper.swift; sourceTree = "<group>"; };
 		E8353C1723BFCEEF00602189 /* HeadingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingTests.swift; sourceTree = "<group>"; };
@@ -567,6 +569,7 @@
 				E8DA200723B22AAD007D0368 /* TableSpec.swift */,
 				E8EECEC423B3CC72007DB50B /* Token.swift */,
 				E8DA200923B23024007D0368 /* Utils.swift */,
+				E80D27C423C8F6A9009A8109 /* RandomNumberGenerator.swift */,
 			);
 			path = MarkdownDeep;
 			sourceTree = "<group>";
@@ -958,6 +961,7 @@
 				E8EECEC523B3CC72007DB50B /* Token.swift in Sources */,
 				E8442D6E23AFFBBD00F5F37C /* FootnodeReference.swift in Sources */,
 				E8442D6C23AFFAF300F5F37C /* LinkInfo.swift in Sources */,
+				E80D27C523C8F6A9009A8109 /* RandomNumberGenerator.swift in Sources */,
 				E8BC2AFA23AFA35F006B9C16 /* HtmlTag.swift in Sources */,
 				E8B833E423B534A2000F31D7 /* MarkdownDeep.swift in Sources */,
 				E8DA200A23B23024007D0368 /* Utils.swift in Sources */,

@@ -173,8 +173,11 @@ class Utils {
     // Randomize a string using html entities;
     public static func htmlRandomize(_ dest: inout String, _ str: String) {
         //  Randomize
+        let rnd = RandomNumberGenerator()
+
         for ch in str {
-            let x = Int.random(in: 0..<100)
+//            let x = Int.random(in: 0..<100)
+            let x = (rnd.next()! % 99 + 1)
             if (x > 90) && (ch != "@") {
                 dest.append(ch)
             } else {
@@ -185,7 +188,7 @@ class Utils {
                     dest.append(";")
                 } else {
                     dest.append("&#x")
-                    dest.append(String(format: "%02x", String(chValue)))
+                    dest.append(String(format: "%02x", chValue))
                     dest.append(";")
                 }
             }
