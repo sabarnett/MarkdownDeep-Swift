@@ -179,6 +179,10 @@ extension String {
         let testString = caseInsensitive ? str.lowercased() : str
         let thisString = caseInsensitive ? self.lowercased() : self
 
+        guard self.count - testLength >= startPos else {
+            return -1
+        }
+
         for index in startPos ... self.count - testLength {
             if testString == thisString.substring(from: index, for: testLength) {
                 return index
@@ -218,6 +222,10 @@ extension String {
     func indexOfAny(ch: [Character], startPos: Int = 0) -> Int {
 
         let testChars = Array(self)
+        guard testChars.count > 0 else {
+            return -1
+        }
+        
         for index in startPos ... testChars.count - 1 {
             let current = testChars[index]
             for chr in ch {
