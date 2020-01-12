@@ -24,10 +24,6 @@ class PandocTests: XCTestCase {
         TestHelper().runTest(testFileName: "pandocfailure-to-escape-less-than")
     }
 
-    func testIndented_code_in_list_item() {
-        TestHelper().runTest(testFileName: "pandocindented-code-in-list-item", showDebugInfo: true)
-    }
-
     func testNested_divs() {
         TestHelper().runTest(testFileName: "pandocnested-divs")
     }
@@ -36,14 +32,8 @@ class PandocTests: XCTestCase {
         TestHelper().runTest(testFileName: "pandocnested-emphasis")
     }
 
-    func testUnordered_list_and_horizontal_rules() {
-        TestHelper().runTest(testFileName: "pandocunordered-list-and-horizontal-rules", showDebugInfo: true)
-    }
     func testUnordered_list_followed_by_ordered_list() {
         TestHelper().runTest(testFileName: "pandocunordered-list-followed-by-ordered-list")
     }
 
-    func testUnpredictable_sublists() {
-        TestHelper().runTest(testFileName: "pandocunpredictable-sublists", showDebugInfo: true)
-    }
 }

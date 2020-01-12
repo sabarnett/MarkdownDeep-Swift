@@ -153,20 +153,14 @@
 		E8D05D3D23C9EE9000963D07 /* md11_Links_inline_style.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D05D0F23C9EE9000963D07 /* md11_Links_inline_style.txt */; };
 		E8D05D3E23C9EE9000963D07 /* md11_Links_reference_style.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D05D1023C9EE9000963D07 /* md11_Links_reference_style.html */; };
 		E8D05D3F23C9EE9000963D07 /* md11_Strong_and_em_together.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D05D1123C9EE9000963D07 /* md11_Strong_and_em_together.html */; };
-		E8D05D4F23C9F51500963D07 /* pandocunpredictable-sublists.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D05D4123C9F51500963D07 /* pandocunpredictable-sublists.txt */; };
 		E8D05D5023C9F51500963D07 /* pandocunordered-list-followed-by-ordered-list.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D05D4223C9F51500963D07 /* pandocunordered-list-followed-by-ordered-list.html */; };
 		E8D05D5123C9F51500963D07 /* pandocnested-emphasis.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D05D4323C9F51500963D07 /* pandocnested-emphasis.txt */; };
 		E8D05D5223C9F51500963D07 /* pandocfailure-to-escape-less-than.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D05D4423C9F51500963D07 /* pandocfailure-to-escape-less-than.txt */; };
 		E8D05D5323C9F51500963D07 /* pandocnested-emphasis.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D05D4523C9F51500963D07 /* pandocnested-emphasis.html */; };
 		E8D05D5423C9F51500963D07 /* pandocunordered-list-followed-by-ordered-list.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D05D4623C9F51500963D07 /* pandocunordered-list-followed-by-ordered-list.txt */; };
-		E8D05D5523C9F51500963D07 /* pandocunordered-list-and-horizontal-rules.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D05D4723C9F51500963D07 /* pandocunordered-list-and-horizontal-rules.html */; };
-		E8D05D5623C9F51500963D07 /* pandocindented-code-in-list-item.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D05D4823C9F51500963D07 /* pandocindented-code-in-list-item.html */; };
-		E8D05D5723C9F51500963D07 /* pandocunpredictable-sublists.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D05D4923C9F51500963D07 /* pandocunpredictable-sublists.html */; };
 		E8D05D5823C9F51500963D07 /* pandocnested-divs.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D05D4A23C9F51500963D07 /* pandocnested-divs.html */; };
 		E8D05D5923C9F51500963D07 /* pandocfailure-to-escape-less-than.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D05D4B23C9F51500963D07 /* pandocfailure-to-escape-less-than.html */; };
-		E8D05D5A23C9F51500963D07 /* pandocunordered-list-and-horizontal-rules.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D05D4C23C9F51500963D07 /* pandocunordered-list-and-horizontal-rules.txt */; };
 		E8D05D5B23C9F51500963D07 /* pandocnested-divs.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D05D4D23C9F51500963D07 /* pandocnested-divs.txt */; };
-		E8D05D5C23C9F51500963D07 /* pandocindented-code-in-list-item.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D05D4E23C9F51500963D07 /* pandocindented-code-in-list-item.txt */; };
 		E8D05D5E23C9F52700963D07 /* PandocTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D05D5D23C9F52700963D07 /* PandocTests.swift */; };
 		E8D6DB7223C389DE0090414A /* HardWrappedListItems.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB4C23C389DD0090414A /* HardWrappedListItems.txt */; };
 		E8D6DB7323C389DE0090414A /* HardWrappedParagraphWithListLikeLine.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D6DB4D23C389DD0090414A /* HardWrappedParagraphWithListLikeLine.txt */; };
@@ -412,20 +406,14 @@
 		E8D05D0F23C9EE9000963D07 /* md11_Links_inline_style.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = md11_Links_inline_style.txt; sourceTree = "<group>"; };
 		E8D05D1023C9EE9000963D07 /* md11_Links_reference_style.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = md11_Links_reference_style.html; sourceTree = "<group>"; };
 		E8D05D1123C9EE9000963D07 /* md11_Strong_and_em_together.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = md11_Strong_and_em_together.html; sourceTree = "<group>"; };
-		E8D05D4123C9F51500963D07 /* pandocunpredictable-sublists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pandocunpredictable-sublists.txt"; sourceTree = "<group>"; };
 		E8D05D4223C9F51500963D07 /* pandocunordered-list-followed-by-ordered-list.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "pandocunordered-list-followed-by-ordered-list.html"; sourceTree = "<group>"; };
 		E8D05D4323C9F51500963D07 /* pandocnested-emphasis.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pandocnested-emphasis.txt"; sourceTree = "<group>"; };
 		E8D05D4423C9F51500963D07 /* pandocfailure-to-escape-less-than.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pandocfailure-to-escape-less-than.txt"; sourceTree = "<group>"; };
 		E8D05D4523C9F51500963D07 /* pandocnested-emphasis.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "pandocnested-emphasis.html"; sourceTree = "<group>"; };
 		E8D05D4623C9F51500963D07 /* pandocunordered-list-followed-by-ordered-list.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pandocunordered-list-followed-by-ordered-list.txt"; sourceTree = "<group>"; };
-		E8D05D4723C9F51500963D07 /* pandocunordered-list-and-horizontal-rules.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "pandocunordered-list-and-horizontal-rules.html"; sourceTree = "<group>"; };
-		E8D05D4823C9F51500963D07 /* pandocindented-code-in-list-item.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "pandocindented-code-in-list-item.html"; sourceTree = "<group>"; };
-		E8D05D4923C9F51500963D07 /* pandocunpredictable-sublists.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "pandocunpredictable-sublists.html"; sourceTree = "<group>"; };
 		E8D05D4A23C9F51500963D07 /* pandocnested-divs.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "pandocnested-divs.html"; sourceTree = "<group>"; };
 		E8D05D4B23C9F51500963D07 /* pandocfailure-to-escape-less-than.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "pandocfailure-to-escape-less-than.html"; sourceTree = "<group>"; };
-		E8D05D4C23C9F51500963D07 /* pandocunordered-list-and-horizontal-rules.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pandocunordered-list-and-horizontal-rules.txt"; sourceTree = "<group>"; };
 		E8D05D4D23C9F51500963D07 /* pandocnested-divs.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pandocnested-divs.txt"; sourceTree = "<group>"; };
-		E8D05D4E23C9F51500963D07 /* pandocindented-code-in-list-item.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pandocindented-code-in-list-item.txt"; sourceTree = "<group>"; };
 		E8D05D5D23C9F52700963D07 /* PandocTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandocTests.swift; sourceTree = "<group>"; };
 		E8D6DB4C23C389DD0090414A /* HardWrappedListItems.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HardWrappedListItems.txt; sourceTree = "<group>"; };
 		E8D6DB4D23C389DD0090414A /* HardWrappedParagraphWithListLikeLine.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HardWrappedParagraphWithListLikeLine.txt; sourceTree = "<group>"; };
@@ -833,18 +821,12 @@
 			children = (
 				E8D05D4B23C9F51500963D07 /* pandocfailure-to-escape-less-than.html */,
 				E8D05D4423C9F51500963D07 /* pandocfailure-to-escape-less-than.txt */,
-				E8D05D4823C9F51500963D07 /* pandocindented-code-in-list-item.html */,
-				E8D05D4E23C9F51500963D07 /* pandocindented-code-in-list-item.txt */,
 				E8D05D4A23C9F51500963D07 /* pandocnested-divs.html */,
 				E8D05D4D23C9F51500963D07 /* pandocnested-divs.txt */,
 				E8D05D4523C9F51500963D07 /* pandocnested-emphasis.html */,
 				E8D05D4323C9F51500963D07 /* pandocnested-emphasis.txt */,
-				E8D05D4723C9F51500963D07 /* pandocunordered-list-and-horizontal-rules.html */,
-				E8D05D4C23C9F51500963D07 /* pandocunordered-list-and-horizontal-rules.txt */,
 				E8D05D4223C9F51500963D07 /* pandocunordered-list-followed-by-ordered-list.html */,
 				E8D05D4623C9F51500963D07 /* pandocunordered-list-followed-by-ordered-list.txt */,
-				E8D05D4923C9F51500963D07 /* pandocunpredictable-sublists.html */,
-				E8D05D4123C9F51500963D07 /* pandocunpredictable-sublists.txt */,
 			);
 			path = Pandoc;
 			sourceTree = "<group>";
@@ -1001,7 +983,6 @@
 				E8D6DB8723C389DE0090414A /* HtmlAttributeWithoutValue.txt in Resources */,
 				E8D05D5123C9F51500963D07 /* pandocnested-emphasis.txt in Resources */,
 				E8D05D3E23C9EE9000963D07 /* md11_Links_reference_style.html in Resources */,
-				E8D05D5C23C9F51500963D07 /* pandocindented-code-in-list-item.txt in Resources */,
 				E8482D0C23C8A172006C1677 /* line-endings-cr.txt in Resources */,
 				E8D6DB7923C389DE0090414A /* HardWrappedParagraphWithListLikeLine.html in Resources */,
 				E83717C923C621060010AD7C /* HtmlEncodeLinks.txt in Resources */,
@@ -1085,7 +1066,6 @@
 				E8DA358623C73F5D00B47C6F /* TableAlignment(ExtraMode).txt in Resources */,
 				E8482CF523C8948E006C1677 /* phpm-LinksInlineStyle.txt in Resources */,
 				E8D05D1823C9EE9000963D07 /* md11_Inline_HTML_Simple.txt in Resources */,
-				E8D05D4F23C9F51500963D07 /* pandocunpredictable-sublists.txt in Resources */,
 				E8D6DB8923C389DE0090414A /* HtmlBlock.txt in Resources */,
 				E83717CE23C621060010AD7C /* ImplicitReferenceLinkWithoutTitle.txt in Resources */,
 				E8A52C1C23C0BFF700C6953E /* CodeBlocks.html in Resources */,
@@ -1097,7 +1077,6 @@
 				E8DA358A23C73F5D00B47C6F /* FencedCodeBlocks(ExtraMode).txt in Resources */,
 				E8D05D2223C9EE9000963D07 /* md11_Ordered_and_unordered_lists.txt in Resources */,
 				E8D05D1523C9EE9000963D07 /* md11_Inline_HTML_Advanced.txt in Resources */,
-				E8D05D5523C9F51500963D07 /* pandocunordered-list-and-horizontal-rules.html in Resources */,
 				E8D05D2923C9EE9000963D07 /* md11_Markdown_Documentation_Basics.txt in Resources */,
 				E8482CEA23C8948E006C1677 /* phpm-ParensInURL.html in Resources */,
 				E8D05D1423C9EE9000963D07 /* md11_Amps_and_angle_encoding.txt in Resources */,
@@ -1116,7 +1095,6 @@
 				E83717D623C621060010AD7C /* ExplicitReferenceLinkWithTitle.txt in Resources */,
 				E8A52C1D23C0BFF700C6953E /* CodeBlocks.txt in Resources */,
 				E8D05D1923C9EE9000963D07 /* md11_Tabs.txt in Resources */,
-				E8D05D5723C9F51500963D07 /* pandocunpredictable-sublists.html in Resources */,
 				E83717D123C621060010AD7C /* BackslashEscapes.html in Resources */,
 				E8DA357F23C73F5D00B47C6F /* MarkdownInHtml-Nested(ExtraMode).txt in Resources */,
 				E8D6DB7B23C389DE0090414A /* SimpleUnorderedList.html in Resources */,
@@ -1167,12 +1145,10 @@
 				E8D6DB9123C389DE0090414A /* SimpleOrderedList.html in Resources */,
 				E83717C823C621060010AD7C /* ImplicitReferenceLinkWithTitle.html in Resources */,
 				E8DA359223C73F5D00B47C6F /* MarkdownInHtml-Nested(ExtraMode).html in Resources */,
-				E8D05D5623C9F51500963D07 /* pandocindented-code-in-list-item.html in Resources */,
 				E8D6DB9723C389DE0090414A /* ComplexListItems.html in Resources */,
 				E8D05D5923C9F51500963D07 /* pandocfailure-to-escape-less-than.html in Resources */,
 				E8D05D3123C9EE9000963D07 /* md11_Literal_quotes_in_titles.txt in Resources */,
 				E8D6DB7423C389DE0090414A /* SetExtHeadings.html in Resources */,
-				E8D05D5A23C9F51500963D07 /* pandocunordered-list-and-horizontal-rules.txt in Resources */,
 				E8482D0E23C8A172006C1677 /* markdown-readme.txt in Resources */,
 				E8482D0123C8A15A006C1677 /* code-inside-list.html in Resources */,
 				E8D05D3B23C9EE9000963D07 /* md11_Images.txt in Resources */,
