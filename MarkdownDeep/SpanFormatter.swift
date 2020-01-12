@@ -818,7 +818,7 @@ internal class SpanFormatter : StringScanner {
                 var li: LinkInfo! = nil
                 if Utils.isEmailAddress(url) {
                     var link_text: String
-                    if url.hasPrefix("mailto:") {
+                    if url.lowercased().hasPrefix("mailto:") {
                         link_text = url.right(from: 7)
                     } else {
                         link_text = url

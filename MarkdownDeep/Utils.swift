@@ -269,7 +269,8 @@ class Utils {
     // Check if a url is "safe" (we require urls start with valid protocol)
     //  Definitely don't allow "javascript:" or any of it's encodings.
     public static func isSafeUrl(_ url: String) -> Bool {
-        if !url.hasPrefix("http://") && !url.hasPrefix("https://") && !url.hasPrefix("ftp://") {
+        let testUrl = url.lowercased()
+        if !testUrl.hasPrefix("http://") && !testUrl.hasPrefix("https://") && !testUrl.hasPrefix("ftp://") {
             return false
         }
         return true
@@ -345,10 +346,11 @@ class Utils {
 
     // Check if a string looks like a url
     public static func isWebAddress(_ str: String) -> Bool {
-        return str.hasPrefix("http://")
-            || str.hasPrefix("https://")
-            || str.hasPrefix("ftp://")
-            || str.hasPrefix("file://")
+        let testStr = str.lowercased()
+        return testStr.hasPrefix("http://")
+            || testStr.hasPrefix("https://")
+            || testStr.hasPrefix("ftp://")
+            || testStr.hasPrefix("file://")
     }
 
     // Check if a string is a valid HTML ID identifier
@@ -428,7 +430,7 @@ class Utils {
 
     public static func isUrlFullyQualified(_ url: String) -> Bool {
 
-        return url.contains("://") || url.hasPrefix("Mailto:") 
+        return url.contains("://") || url.lowercased().hasPrefix("mailto:") 
     }
 
 }

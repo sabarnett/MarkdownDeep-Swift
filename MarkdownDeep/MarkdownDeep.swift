@@ -705,7 +705,12 @@ class Markdown {
         if (id == nil) {
             return nil
         }
-        return m_LinkDefinitions[id]
+
+        let linkDef = m_LinkDefinitions.first { (key: String, value: LinkDefinition) -> Bool in
+            return key.lowercased() == id.lowercased()
+        }
+
+        return linkDef == nil ? nil : linkDef?.value
     }
 
     internal func addAbbreviation(_ abbr: String, _ title: String) {

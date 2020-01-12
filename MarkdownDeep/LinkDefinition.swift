@@ -60,7 +60,7 @@ class LinkDefinition {
 
     internal func renderLink(_ m: Markdown!, _ b: inout String, _ link_text: String!)
     {
-        if url.hasPrefix("mailto:") {
+        if url.lowercased().hasPrefix("mailto:") {
             b.append("<a href=\"")
             Utils.htmlRandomize(&b, url)
             b.append("\"")
