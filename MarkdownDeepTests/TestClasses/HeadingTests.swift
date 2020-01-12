@@ -2,6 +2,8 @@
 //
 // Copyright © 2020 Steven Barnett. All rights reserved. 
 //
+// Incorporating AutoHeaderIDTests from the cs project
+//
 
 import XCTest
 @testable import MarkdownDeep
@@ -74,4 +76,51 @@ class HeadingTests: XCTestCase {
         XCTAssertEqual(expectedResult, actualResult)
     }
 
+    func testSimple() {
+        md.AutoHeadingIDs = true
+        md.ExtraMode = true
+
+        XCTAssertEqual("header-identifiers-in-html",
+                    md.makeUniqueHeaderID("Header identifiers in HTML"))
+    }
+
+    func testWithPunctuatoin() {
+        md.AutoHeadingIDs = true
+        md.ExtraMode = true
+
+        XCTAssertEqual("dogs--in-my-house",
+                       md.makeUniqueHeaderID("Dogs?--in *my* house?"))
+
+    }
+
+    func testWithLinks() {
+        md.AutoHeadingIDs = true
+        md.ExtraMode = true
+
+        XCTAssertEqual("html-s5-rtf",
+                md.makeUniqueHeaderID("[HTML](#html), [S5](#S5), [RTF](#rtf)"))
+    }
+
+    func testWithLeadingNubers() {
+        md.AutoHeadingIDs = true
+        md.ExtraMode = true
+
+        XCTAssertEqual("applications", md.makeUniqueHeaderID("3. Applications"));
+    }
+
+    func testRevertToSection() {
+        md.AutoHeadingIDs = true
+        md.ExtraMode = true
+
+        XCTAssertEqual("section", md.makeUniqueHeaderID("!!!"));
+    }
+
+    func testDuplicates() {
+        md.AutoHeadingIDs = true
+        md.ExtraMode = true
+
+        XCTAssertEqual("heading", md.makeUniqueHeaderID("heading"))
+        XCTAssertEqual("heading-1", md.makeUniqueHeaderID("heading"))
+        XCTAssertEqual("heading-2", md.makeUniqueHeaderID("heading"))
+    }
 }
