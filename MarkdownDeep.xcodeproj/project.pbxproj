@@ -41,6 +41,7 @@
 		E8442D6C23AFFAF300F5F37C /* LinkInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8442D6B23AFFAF300F5F37C /* LinkInfo.swift */; };
 		E8442D6E23AFFBBD00F5F37C /* FootnodeReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8442D6D23AFFBBD00F5F37C /* FootnodeReference.swift */; };
 		E847A5D123CB707100C6A19C /* EmphasisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E847A5D023CB707100C6A19C /* EmphasisTests.swift */; };
+		E847A5D323CB752100C6A19C /* EscapeCharacterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E847A5D223CB752100C6A19C /* EscapeCharacterTests.swift */; };
 		E8482C2123C88CE8006C1677 /* SafeModeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8482C2023C88CE8006C1677 /* SafeModeTests.swift */; };
 		E8482C2523C88DE0006C1677 /* Basic(SafeMode).html in Resources */ = {isa = PBXBuildFile; fileRef = E8482C2323C88DE0006C1677 /* Basic(SafeMode).html */; };
 		E8482C2623C88DE0006C1677 /* Basic(SafeMode).txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482C2423C88DE0006C1677 /* Basic(SafeMode).txt */; };
@@ -292,6 +293,7 @@
 		E8442D6B23AFFAF300F5F37C /* LinkInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkInfo.swift; sourceTree = "<group>"; };
 		E8442D6D23AFFBBD00F5F37C /* FootnodeReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootnodeReference.swift; sourceTree = "<group>"; };
 		E847A5D023CB707100C6A19C /* EmphasisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmphasisTests.swift; sourceTree = "<group>"; };
+		E847A5D223CB752100C6A19C /* EscapeCharacterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscapeCharacterTests.swift; sourceTree = "<group>"; };
 		E8482C2023C88CE8006C1677 /* SafeModeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeModeTests.swift; sourceTree = "<group>"; };
 		E8482C2323C88DE0006C1677 /* Basic(SafeMode).html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Basic(SafeMode).html"; sourceTree = "<group>"; };
 		E8482C2423C88DE0006C1677 /* Basic(SafeMode).txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Basic(SafeMode).txt"; sourceTree = "<group>"; };
@@ -535,6 +537,7 @@
 				E8D05CE223C9EDF100963D07 /* mdTest11Tests.swift */,
 				E8D05D5D23C9F52700963D07 /* PandocTests.swift */,
 				E847A5D023CB707100C6A19C /* EmphasisTests.swift */,
+				E847A5D223CB752100C6A19C /* EscapeCharacterTests.swift */,
 			);
 			path = TestClasses;
 			sourceTree = "<group>";
@@ -1228,6 +1231,7 @@
 				E8D05D5E23C9F52700963D07 /* PandocTests.swift in Sources */,
 				E829B77123C24210002BA727 /* TestHelper.swift in Sources */,
 				E87BEC7723AE9B4200CEA45E /* MarkdownDeepTests.swift in Sources */,
+				E847A5D323CB752100C6A19C /* EscapeCharacterTests.swift in Sources */,
 				E8D05CE323C9EDF200963D07 /* mdTest11Tests.swift in Sources */,
 				E83717A323C620EC0010AD7C /* SpanTests.swift in Sources */,
 				E8353C1823BFCEEF00602189 /* HeadingTests.swift in Sources */,
