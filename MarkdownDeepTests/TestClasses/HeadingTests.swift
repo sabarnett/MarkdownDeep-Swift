@@ -16,10 +16,6 @@ class HeadingTests: XCTestCase {
         md = Markdown()
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func testHead1() {
         let testString = "# Heading 1"
         let expectedResult = "<h1>Heading 1</h1>\n"

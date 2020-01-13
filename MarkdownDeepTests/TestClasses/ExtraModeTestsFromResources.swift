@@ -5,10 +5,7 @@
 
 import XCTest
 
-class ExtraModeTests: XCTestCase {
-/*
-     testIssue12
-*/
+class ExtraModeTestsFromResources: XCTestCase {
 
     func testAbbreviationsExtraMode() {
         TestHelper().runTest(testFileName: "Abbreviations(ExtraMode)", showDebugInfo: true)

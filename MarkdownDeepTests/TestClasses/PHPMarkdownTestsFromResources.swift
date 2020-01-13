@@ -5,17 +5,7 @@
 
 import XCTest
 
-class PHPMarkdownTests: XCTestCase {
-
-    // TODO: Fix test testEmailAutoLinksPhpMarkdown
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+class PHPMarkdownTestsFromResources: XCTestCase {
 
     func testEmailAutoLinksPhpMarkdown() {
         TestHelper().runTest(testFileName: "phpm-EmailAutoLinks", showDebugInfo: true)

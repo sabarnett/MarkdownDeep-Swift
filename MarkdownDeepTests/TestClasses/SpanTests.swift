@@ -16,63 +16,6 @@ class SpanTests: XCTestCase {
         f = SpanFormatter(Markdown())
     }
 
-    // MARK:- Resource based tests
-
-    func testBackslashEscapes() {
-        TestHelper().runTest(testFileName: "BackslashEscapes")
-    }
-
-    func testEmphasis() {
-        TestHelper().runTest(testFileName: "Emphasis")
-    }
-
-    func testEscapesInUrls() {
-        TestHelper().runTest(testFileName: "EscapesInUrls", showDebugInfo: true)
-    }
-
-    func testExplicitReferenceLinkWithoutTitle() {
-        TestHelper().runTest(testFileName: "ExplicitReferenceLinkWithoutTitle",
-        showDebugInfo: true)
-    }
-
-    func testExplicitReferenceLinkWithTitle() {
-        TestHelper().runTest(testFileName: "ExplicitReferenceLinkWithTitle", showDebugInfo: true)
-    }
-
-    func testFormattingInLinkText() {
-        TestHelper().runTest(testFileName: "FormattingInLinkText")
-    }
-
-    func testHtmlEncodeLinks() {
-        TestHelper().runTest(testFileName: "HtmlEncodeLinks", showDebugInfo: true)
-    }
-
-    func testImplicitReferenceLinkWithoutTitle() {
-        TestHelper().runTest(testFileName: "ImplicitReferenceLinkWithoutTitle")
-    }
-
-    func testImplicitReferenceLinkWithTitle() {
-        TestHelper().runTest(testFileName: "ImplicitReferenceLinkWithTitle")
-    }
-
-    func testInlineLinkWithTitle() {
-        TestHelper().runTest(testFileName: "InlineLinkWithTitle")
-    }
-
-    func testLinkedImage() {
-        TestHelper().runTest(testFileName: "LinkedImage")
-    }
-
-    func testLinkTitlesWithEmbeddedQuotes() {
-        TestHelper().runTest(testFileName: "LinkTitlesWithEmbeddedQuotes")
-    }
-
-    func testReferenceLinkWithIDOnNextLine() {
-        TestHelper().runTest(testFileName: "ReferenceLinkWithIDOnNextLine")
-    }
-
-    // MARK:- String based tests
-
     func testSingleTick() {
         XCTAssertEqual("pre <code>code span</code> post",
                 f!.format("pre `code span` post"))
