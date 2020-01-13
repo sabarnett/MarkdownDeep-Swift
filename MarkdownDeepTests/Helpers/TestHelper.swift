@@ -139,7 +139,7 @@ class TestHelper: XCTestCase {
         return markdown
     }
 
-    private func readTestFile(inBundle: Bundle, forTest: String) -> String {
+    public func readTestFile(inBundle: Bundle, forTest: String) -> String {
         let testPath = inBundle.path(forResource: forTest, ofType: "txt")!
         return try! String(contentsOfFile: testPath)
     }

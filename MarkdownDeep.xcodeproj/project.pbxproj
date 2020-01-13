@@ -108,6 +108,9 @@
 		E8A52C2223C0CA9400C6953E /* AtxHeadings.html in Resources */ = {isa = PBXBuildFile; fileRef = E8A52C2023C0CA9400C6953E /* AtxHeadings.html */; };
 		E8A52C2323C0CA9400C6953E /* AtxHeadings.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8A52C2123C0CA9400C6953E /* AtxHeadings.txt */; };
 		E8A5EF0223CCA14E0047B308 /* TableSpecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A5EF0123CCA14E0047B308 /* TableSpecTests.swift */; };
+		E8A5EF0423CCA4750047B308 /* XssAttackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A5EF0323CCA4750047B308 /* XssAttackTests.swift */; };
+		E8A5EF0823CCA8380047B308 /* xss_attacks.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8A5EF0623CCA8380047B308 /* xss_attacks.txt */; };
+		E8A5EF0923CCA8380047B308 /* non_attacks.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8A5EF0723CCA8380047B308 /* non_attacks.txt */; };
 		E8B833E423B534A2000F31D7 /* MarkdownDeep.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B833E323B534A2000F31D7 /* MarkdownDeep.swift */; };
 		E8BC2AFA23AFA35F006B9C16 /* HtmlTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BC2AF923AFA35F006B9C16 /* HtmlTag.swift */; };
 		E8CAD55523B67E79004E7AA7 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CAD55423B67E79004E7AA7 /* Stack.swift */; };
@@ -370,6 +373,9 @@
 		E8A52C2023C0CA9400C6953E /* AtxHeadings.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AtxHeadings.html; sourceTree = "<group>"; };
 		E8A52C2123C0CA9400C6953E /* AtxHeadings.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AtxHeadings.txt; sourceTree = "<group>"; };
 		E8A5EF0123CCA14E0047B308 /* TableSpecTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSpecTests.swift; sourceTree = "<group>"; };
+		E8A5EF0323CCA4750047B308 /* XssAttackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XssAttackTests.swift; sourceTree = "<group>"; };
+		E8A5EF0623CCA8380047B308 /* xss_attacks.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = xss_attacks.txt; sourceTree = "<group>"; };
+		E8A5EF0723CCA8380047B308 /* non_attacks.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = non_attacks.txt; sourceTree = "<group>"; };
 		E8B833E323B534A2000F31D7 /* MarkdownDeep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownDeep.swift; sourceTree = "<group>"; };
 		E8BC2AF923AFA35F006B9C16 /* HtmlTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlTag.swift; sourceTree = "<group>"; };
 		E8CAD55423B67E79004E7AA7 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
@@ -559,6 +565,7 @@
 				E8E5D8D023CC947D0023954E /* SpecialCharacterTests.swift */,
 				E8E5D8D223CC975A0023954E /* StringScannerTests.swift */,
 				E8A5EF0123CCA14E0047B308 /* TableSpecTests.swift */,
+				E8A5EF0323CCA4750047B308 /* XssAttackTests.swift */,
 			);
 			path = TestClasses;
 			sourceTree = "<group>";
@@ -729,6 +736,7 @@
 		E8A52C1823C0BF7A00C6953E /* TestFiles */ = {
 			isa = PBXGroup;
 			children = (
+				E8A5EF0523CCA81B0047B308 /* xsstests */,
 				E8D05D4023C9F29300963D07 /* Pandoc */,
 				E8D05CE123C9EA1200963D07 /* mdTest11 */,
 				E8482CFD23C89F7C006C1677 /* mdTest01 */,
@@ -788,6 +796,15 @@
 				E8A52C1B23C0BFF700C6953E /* CodeBlocks.txt */,
 			);
 			path = BlockTests;
+			sourceTree = "<group>";
+		};
+		E8A5EF0523CCA81B0047B308 /* xsstests */ = {
+			isa = PBXGroup;
+			children = (
+				E8A5EF0723CCA8380047B308 /* non_attacks.txt */,
+				E8A5EF0623CCA8380047B308 /* xss_attacks.txt */,
+			);
+			path = xsstests;
 			sourceTree = "<group>";
 		};
 		E8D05CE123C9EA1200963D07 /* mdTest11 */ = {
@@ -1149,9 +1166,11 @@
 				E8DA358123C73F5D00B47C6F /* FencedCodeBlocksAlt(ExtraMode).html in Resources */,
 				E83717C523C621060010AD7C /* LinkedImage.html in Resources */,
 				E8D05D5B23C9F51500963D07 /* pandocnested-divs.txt in Resources */,
+				E8A5EF0923CCA8380047B308 /* non_attacks.txt in Resources */,
 				E8482D0F23C8A172006C1677 /* line-endings-lf.html in Resources */,
 				E8D6DB7223C389DE0090414A /* HardWrappedListItems.txt in Resources */,
 				E8D05D2123C9EE9000963D07 /* md11_Backslash_escapes.txt in Resources */,
+				E8A5EF0823CCA8380047B308 /* xss_attacks.txt in Resources */,
 				E8DA358923C73F5D00B47C6F /* TableFormatting(ExtraMode).html in Resources */,
 				E8D6DB8123C389DE0090414A /* HtmlComments.txt in Resources */,
 				E8482CF323C8948E006C1677 /* phpm-MD5Hashes.txt in Resources */,
@@ -1252,6 +1271,7 @@
 				E829B76F23C241C3002BA727 /* TestDefinition.swift in Sources */,
 				E8DA35A323C7461400B47C6F /* ExtraModeTests.swift in Sources */,
 				E8A5EF0223CCA14E0047B308 /* TableSpecTests.swift in Sources */,
+				E8A5EF0423CCA4750047B308 /* XssAttackTests.swift in Sources */,
 				E8482C6C23C88E19006C1677 /* PHPMarkdownTests.swift in Sources */,
 				E847A5D723CB7D5500C6A19C /* LinkAndImgTests.swift in Sources */,
 				E8D05D5E23C9F52700963D07 /* PandocTests.swift in Sources */,
