@@ -12,8 +12,6 @@ class XssAttackTests: XCTestCase {
     {
         switch (tag.name.uppercased())
         {
-        case "IMG":
-            return true
         case "B", "UL", "LI", "I":
             return tag.attributes.count == 0;
 
@@ -75,10 +73,8 @@ class XssAttackTests: XCTestCase {
 
     func testAttacks() {
         let testStrings = readTestData(fromFile: "xss_attacks")
-        print("There are \(testStrings.count) tests in this file.")
 
         for testString in testStrings {
-            print("Testing: " + testString)
             let p: StringScanner = StringScanner(testString)
             while !p.eof {
                 let tag = HtmlTag.parse(scanner: p)

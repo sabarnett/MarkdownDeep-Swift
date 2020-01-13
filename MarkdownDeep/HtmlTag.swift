@@ -70,7 +70,7 @@ public class HtmlTag
 
     public func attribute(key: String) -> String! {
         if let existingAttribute = tagAttributes.first(where: { (attr) -> Bool in
-            attr.key == key
+            attr.key.lowercased() == key.lowercased()
         }) {
             // Found an existing one, return the value
             return existingAttribute.value
