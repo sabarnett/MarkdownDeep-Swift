@@ -123,7 +123,7 @@ class LinkDefinition {
     }
 
     // Parse a link definition from a string (used by test cases)
-    internal func parseLinkDefinition(_ str: String, _ ExtraMode: Bool) -> LinkDefinition! {
+    internal static func parseLinkDefinition(_ str: String, _ ExtraMode: Bool) -> LinkDefinition! {
         let p = StringScanner(str)
         return LinkDefinition.parseLinkDefinitionInternal(p, ExtraMode)
     }

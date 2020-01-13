@@ -247,6 +247,7 @@
 		E8DA35A323C7461400B47C6F /* ExtraModeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DA35A223C7461400B47C6F /* ExtraModeTests.swift */; };
 		E8E368A323B65940007539F7 /* BlockProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E368A223B65940007539F7 /* BlockProcessor.swift */; };
 		E8E5D8CD23CC8F820023954E /* AutoLinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E5D8CC23CC8F820023954E /* AutoLinkTests.swift */; };
+		E8E5D8CF23CC91AE0023954E /* LinkDefinitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E5D8CE23CC91AE0023954E /* LinkDefinitionTests.swift */; };
 		E8EECEC523B3CC72007DB50B /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EECEC423B3CC72007DB50B /* Token.swift */; };
 		E8EECEC723B3CEC0007DB50B /* SpanFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EECEC623B3CEC0007DB50B /* SpanFormatter.swift */; };
 /* End PBXBuildFile section */
@@ -505,6 +506,7 @@
 		E8DA35A223C7461400B47C6F /* ExtraModeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraModeTests.swift; sourceTree = "<group>"; };
 		E8E368A223B65940007539F7 /* BlockProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockProcessor.swift; sourceTree = "<group>"; };
 		E8E5D8CC23CC8F820023954E /* AutoLinkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLinkTests.swift; sourceTree = "<group>"; };
+		E8E5D8CE23CC91AE0023954E /* LinkDefinitionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkDefinitionTests.swift; sourceTree = "<group>"; };
 		E8EECEC423B3CC72007DB50B /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		E8EECEC623B3CEC0007DB50B /* SpanFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpanFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -547,6 +549,7 @@
 				E847A5D423CB798900C6A19C /* HtmlTagTests.swift */,
 				E847A5D623CB7D5500C6A19C /* LinkAndImgTests.swift */,
 				E8E5D8CC23CC8F820023954E /* AutoLinkTests.swift */,
+				E8E5D8CE23CC91AE0023954E /* LinkDefinitionTests.swift */,
 			);
 			path = TestClasses;
 			sourceTree = "<group>";
@@ -1235,6 +1238,7 @@
 				E847A5D123CB707100C6A19C /* EmphasisTests.swift in Sources */,
 				E8482C2123C88CE8006C1677 /* SafeModeTests.swift in Sources */,
 				E8E5D8CD23CC8F820023954E /* AutoLinkTests.swift in Sources */,
+				E8E5D8CF23CC91AE0023954E /* LinkDefinitionTests.swift in Sources */,
 				E8A52C1F23C0C00D00C6953E /* BlockTests.swift in Sources */,
 				E829B76F23C241C3002BA727 /* TestDefinition.swift in Sources */,
 				E8DA35A323C7461400B47C6F /* ExtraModeTests.swift in Sources */,
