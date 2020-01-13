@@ -93,10 +93,12 @@ class Utils {
         let startpos: Int = pos
         pos += 1
 
-        ch = str.charAt(at: pos)!
-        while (pos < str.count) && (ch.isNumber || ch.isLetter || (ch == "_")) {
-            pos += 1
+        if (pos < str.count) {
             ch = str.charAt(at: pos)!
+            while (pos < str.count - 1) && (ch.isNumber || ch.isLetter || (ch == "_")) {
+                pos += 1
+                ch = str.charAt(at: pos)!
+            }
         }
 
         //  Return it
@@ -240,7 +242,7 @@ class Utils {
             switch str.charAt(at: index) {
                 case "&":
                     let start: Int = index
-                    var unused: String! = nil
+                    var unused: String = ""
 
                     if skipHtmlEntity(str, &index, &unused) {
                         dest.append(str.substring(from: start, for: index - start))
