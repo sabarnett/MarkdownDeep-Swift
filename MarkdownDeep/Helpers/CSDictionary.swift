@@ -62,6 +62,10 @@ internal struct CSDictionary<T>: Sequence {
         itemList.remove(at: index)
     }
 
+    mutating public func removeAll() {
+        itemList.removeAll()
+    }
+
     /// Returns the nuber of items in the collection
     var count: Int {
         get {

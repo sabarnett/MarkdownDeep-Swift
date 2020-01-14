@@ -30,36 +30,26 @@ open class ImageInfo {
     public var height: Int = 0
 }
 
-struct FootnoteDefinition {
-
-    init(key: String, footnote: Block) {
-        self.key = key
-        self.footnote = footnote
-    }
-    var key: String
-    var footnote: Block
-}
-
 class Markdown {
 //    public var QualifyUrl: Func<String!,String!>!
 //    public var GetImageSize: Func<ImageInfo!,Bool>!
 //    public var PrepareLink: Func<HtmlTag!,Bool>!
 //    public var PrepareImage: Func<HtmlTag!,Bool,Bool>!
-    internal var RenderingTitledImage: Bool = false
 //    public var FormatCodeBlock: Func<Markdown!,String!,String!>!
+
+    internal var RenderingTitledImage: Bool = false
+
+    var m_AbbreviationMap: [String: Abbreviation] = [:]
+    var m_LinkDefinitions: CSDictionary<LinkDefinition> = CSDictionary<LinkDefinition>()
+    var m_Footnotes: CSDictionary<Block> = CSDictionary<Block>()
+    var m_UsedHeaderIDs: CSDictionary<Bool> = CSDictionary<Bool>()
 
     var m_SpareBlocks: Stack<Block> = Stack<Block>()
     var m_StringBuilder: String = ""
     var m_StringBuilderFinal: String = ""
     var m_StringScanner: StringScanner
     var m_SpanFormatter: SpanFormatter? = nil
-    var m_LinkDefinitions: [String: LinkDefinition] = [:]
-
-    // Note: Converted from dictionary to array to preserve insert order
-    var m_Footnotes: [FootnoteDefinition] = []
     var m_UsedFootnotes: [Block]
-    var m_UsedHeaderIDs: [String: Bool] = [:]
-    var m_AbbreviationMap: [String: Abbreviation] = [:]
     var m_AbbreviationList: [Abbreviation] = []
 
     private var summaryLength: Int = 0
@@ -232,19 +222,19 @@ class Markdown {
         m_StringBuilder = ""
         m_StringBuilderFinal = ""
         m_StringScanner = StringScanner()
-        m_LinkDefinitions = [:]
-        m_Footnotes = []
+        m_LinkDefinitions.removeAll()
+        m_Footnotes.removeAll()
         m_UsedFootnotes = []
-        m_UsedHeaderIDs = [:]
+        m_UsedHeaderIDs.removeAll()
         m_SpanFormatter = SpanFormatter(self)
     }
 
     internal func processBlocks(_ str: String) -> [Block] {
         //  Reset the list of link definitions
-        m_LinkDefinitions = [:]
-        m_Footnotes = []
+        m_LinkDefinitions.removeAll()
+        m_Footnotes.removeAll()
         m_UsedFootnotes = []
-        m_UsedHeaderIDs = [:]
+        m_UsedHeaderIDs.removeAll()
         m_AbbreviationMap = [:]
         m_AbbreviationList = []
 
@@ -253,12 +243,12 @@ class Markdown {
     }
 
     public func transform(_ str: String) -> String {
-        var defs: [String: LinkDefinition] = [:]
+        var defs: CSDictionary<LinkDefinition> = CSDictionary<LinkDefinition>()
         return transform(str, &defs)
     }
 
     // Transform a string
-    public func transform(_ str: String, _ definitions: inout [String: LinkDefinition]) -> String {
+    public func transform(_ str: String, _ definitions: inout CSDictionary<LinkDefinition>) -> String {
         //  Build blocks
         let blocks = processBlocks(str)
 
@@ -356,6 +346,7 @@ class Markdown {
                 sb.append("</div>\n")
             }
         }
+
         definitions = m_LinkDefinitions
         
         //  Done
@@ -656,61 +647,28 @@ class Markdown {
 
     internal func addFootnote(_ footnote: Block) {
         if let fnKey = footnote.data as? String {
-            // Update if it already exists
-            if let fnDef = m_Footnotes.firstIndex(where: { (footDef) -> Bool in
-                footDef.key == fnKey
-            }) {
-                m_Footnotes[fnDef].footnote = footnote
-                return
-            }
-
-            // Not found, so add it
-            let newFootnote = FootnoteDefinition(key: fnKey, footnote: footnote)
-            m_Footnotes.append(newFootnote)
+            // add or update footnote depending on the key
+            m_Footnotes[fnKey] = footnote
+            return
         }
     }
 
     // Look up a footnote, claim it and return it's index (or -1 if not found)
     internal func claimFootnote(_ id: String) -> Int {
 
-//        let intIndex = 1 // where intIndex < myDictionary.count
-//        let index = myDictionary.startIndex.advancedBy(intIndex) // index 1
-//        myDictionary.keys[index]
-
-        if let fnDef = m_Footnotes.firstIndex(where: { (footDef) -> Bool in
-            footDef.key == id
-        }) {
-            m_UsedFootnotes.append(m_Footnotes[fnDef].footnote)
-            m_Footnotes.remove(at: fnDef)
+        if let fnDef = m_Footnotes[id] {
+            m_UsedFootnotes.append(fnDef)
+            m_Footnotes.remove(itemWithKey: id)
 
             return m_UsedFootnotes.count - 1
         }
         return -1
-//        
-//        let test = [String](m_Footnotes.keys)
-//        for ctr in 0 ... test.count - 1 {
-//            if test[ctr] == id {
-//                let fn = m_Footnotes.removeValue(forKey: test[ctr])
-//                m_UsedFootnotes.append(fn!)
-//
-//                return ctr
-//            }
-//        }
-//
-//        return -1
     }
 
     // Get a link definition
     public func getLinkDefinition(_ id: String!) -> LinkDefinition! {
-        if (id == nil) {
-            return nil
-        }
-
-        let linkDef = m_LinkDefinitions.first { (key: String, value: LinkDefinition) -> Bool in
-            return key.lowercased() == id.lowercased()
-        }
-
-        return linkDef == nil ? nil : linkDef?.value
+        guard id != nil else { return nil }
+        return m_LinkDefinitions[id]
     }
 
     internal func addAbbreviation(_ abbr: String, _ title: String) {

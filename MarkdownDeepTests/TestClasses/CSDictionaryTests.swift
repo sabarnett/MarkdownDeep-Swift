@@ -107,6 +107,19 @@ class CSDictionaryTests: XCTestCase {
         XCTAssertNil(testDictionary["Second"])
     }
 
+    func testCanRemoveAllItems() {
+        var testDictionary = CSDictionary<TestItems>()
+        let testItem = TestItems()
+        testDictionary.add(item: testItem, withKey: "First")
+        testDictionary.add(item: testItem, withKey: "Second")
+        testDictionary.add(item: testItem, withKey: "Third")
+
+        XCTAssertEqual(testDictionary.count, 3)
+
+        testDictionary.removeAll()
+        XCTAssertEqual(testDictionary.count, 0)
+    }
+
     func testCanIterateItems() {
         var testDictionary = CSDictionary<TestItems>()
         let testItem = TestItems()
