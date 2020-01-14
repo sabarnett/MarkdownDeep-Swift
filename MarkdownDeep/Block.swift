@@ -212,10 +212,10 @@ class Block
                 return
 
             case BlockType.p:
-                m.GetSpanFormatter.formatParagraph(&b, buf!, contentStart,  contentLen)
+                m.getSpanFormatter.formatParagraph(&b, buf!, contentStart,  contentLen)
 
             case BlockType.span:
-                m.GetSpanFormatter.format(&b, buf!, contentStart, contentLen);
+                m.getSpanFormatter.format(&b, buf!, contentStart, contentLen);
                 b.append("\n")
 
             case BlockType.h1,
@@ -237,7 +237,7 @@ class Block
                 {
                     b.append("<\(blockType.description)>")
                 }
-                m.GetSpanFormatter.format(&b, buf!, contentStart, contentLen)
+                m.getSpanFormatter.format(&b, buf!, contentStart, contentLen)
                 b.append("</\(blockType.description)>\n")
 
             case BlockType.hr:
@@ -250,7 +250,7 @@ class Block
             case BlockType.ol_li,
                  BlockType.ul_li:
                 b.append("<li>")
-                m.GetSpanFormatter.format(&b, buf!, contentStart, contentLen)
+                m.getSpanFormatter.format(&b, buf!, contentStart, contentLen)
                 b.append("</li>\n")
 
             case BlockType.dd:
@@ -261,7 +261,7 @@ class Block
                     renderChildren(m, &b)
                 }
                 else {
-                    m.GetSpanFormatter.format(&b, buf!, contentStart, contentLen)
+                    m.getSpanFormatter.format(&b, buf!, contentStart, contentLen)
                 }
                 b.append("</dd>\n")
 
@@ -271,7 +271,7 @@ class Block
                     for l in content!.split(separator: "\n")
                     {
                         b.append("<dt>")
-                        m.GetSpanFormatter.format(&b, String(l).trimWhitespace())
+                        m.getSpanFormatter.format(&b, String(l).trimWhitespace())
                         b.append("</dt>\n")
                     }
                 }
@@ -379,7 +379,7 @@ class Block
                 b.append("<p>")
                 if (contentLen > 0)
                 {
-                    m.GetSpanFormatter.format(&b, buf!, contentStart, contentLen);
+                    m.getSpanFormatter.format(&b, buf!, contentStart, contentLen);
                     b.append("&nbsp;")
                 }
 
@@ -390,7 +390,7 @@ class Block
 
             default:
                 b.append("<\(blockType.description)>")
-                m.GetSpanFormatter.format(&b, buf!, contentStart, contentLen)
+                m.getSpanFormatter.format(&b, buf!, contentStart, contentLen)
                 b.append("</\(blockType.description)>\n")
         }
     }
@@ -404,20 +404,20 @@ class Block
 
             case BlockType.p,
                  BlockType.span:
-                m.GetSpanFormatter.formatPlain(&b, buf!, contentStart, contentLen)
+                m.getSpanFormatter.formatPlain(&b, buf!, contentStart, contentLen)
                 b.append(" ")
                 break
 
             case BlockType.h1, BlockType.h2, BlockType.h3,
                 BlockType.h4, BlockType.h5, BlockType.h6:
-                m.GetSpanFormatter.formatPlain(&b, buf!, contentStart, contentLen)
+                m.getSpanFormatter.formatPlain(&b, buf!, contentStart, contentLen)
                 b.append(" - ")
                 break
 
             case BlockType.ol_li,
                  BlockType.ul_li:
                 b.append("* ")
-                m.GetSpanFormatter.formatPlain(&b, buf!, contentStart, contentLen)
+                m.getSpanFormatter.formatPlain(&b, buf!, contentStart, contentLen)
                 b.append(" ")
 
             case BlockType.dd:
@@ -427,7 +427,7 @@ class Block
                     renderChildrenPlain(m, &b)
                 }
                 else {
-                    m.GetSpanFormatter.formatPlain(&b, buf!, contentStart, contentLen)
+                    m.getSpanFormatter.formatPlain(&b, buf!, contentStart, contentLen)
                 }
                 break
 
@@ -437,7 +437,7 @@ class Block
                 {
                     for l in content!.split(separator: "\n") {
                         let str: String = String(l).trimWhitespace();
-                        m.GetSpanFormatter.formatPlain(&b, str, 0, str.count)
+                        m.getSpanFormatter.formatPlain(&b, str, 0, str.count)
                     }
                 }
                 else

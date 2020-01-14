@@ -45,10 +45,9 @@ class Markdown {
     var m_UsedHeaderIDs = CSDictionary<Bool>()
 
     var m_StringBuilder: String = ""
-    var m_StringBuilderFinal: String = ""
     var m_StringScanner: StringScanner
     var m_SpanFormatter: SpanFormatter? = nil
-    var m_UsedFootnotes: [Block]
+    var m_UsedFootnotes: [Block] = []
     var m_AbbreviationList: [Abbreviation] = []
 
     private var summaryLength: Int = 0
@@ -205,7 +204,7 @@ class Markdown {
         set { sectionFooter = newValue }
     }
 
-    internal var GetSpanFormatter: SpanFormatter!
+    internal var getSpanFormatter: SpanFormatter!
     {
         get {
             if (m_SpanFormatter == nil) {
@@ -219,11 +218,10 @@ class Markdown {
     public init() {
         htmlClassFootnotes = "footnotes"
         m_StringBuilder = ""
-        m_StringBuilderFinal = ""
         m_StringScanner = StringScanner()
         m_LinkDefinitions.removeAll()
         m_Footnotes.removeAll()
-        m_UsedFootnotes = []
+        m_UsedFootnotes.removeAll()
         m_UsedHeaderIDs.removeAll()
         m_SpanFormatter = SpanFormatter(self)
     }
@@ -232,39 +230,29 @@ class Markdown {
         //  Reset the list of link definitions
         m_LinkDefinitions.removeAll()
         m_Footnotes.removeAll()
-        m_UsedFootnotes = []
+        m_UsedFootnotes.removeAll()
         m_UsedHeaderIDs.removeAll()
         m_AbbreviationMap.removeAll()
-        m_AbbreviationList = []
+        m_AbbreviationList.removeAll()
 
-        //  Process blocks
-        return BlockProcessor(self, MarkdownInHtml).process(str)
+        return BlockProcessor(self, markdownInHtml).process(str)
     }
 
     public func transform(_ str: String) -> String {
-        var defs: CSDictionary<LinkDefinition> = CSDictionary<LinkDefinition>()
+        var defs = CSDictionary<LinkDefinition>()
         return transform(str, &defs)
     }
 
-    // Transform a string
+    /// Transform a string, returning the transformed string and a list of links
+    /// contained in the output.
     public func transform(_ str: String, _ definitions: inout CSDictionary<LinkDefinition>) -> String {
-        //  Build blocks
+
         let blocks = processBlocks(str)
 
-        //  Sort abbreviations by length, longest to shortest
-        if m_AbbreviationMap.count > 0 {
-            m_AbbreviationList = []
-            for (_, itemValue) in m_AbbreviationMap {
-                m_AbbreviationList.append(itemValue)
-            }
+        createAbbreviationList()
 
-            m_AbbreviationList.sort { (a, b) -> Bool in
-                return (b.abbr.count - a.abbr.count) > 0
-            }
-        }
-        //  Setup string builder
-        var sb: String = m_StringBuilderFinal
-        sb = ""
+        // This is the string where the results will be stored.
+        var sb: String = ""
         if summaryLength != 0 {
             //  Render all blocks
             for i in 0 ... blocks.count - 1 {
@@ -310,39 +298,7 @@ class Markdown {
             }
             //  Render footnotes
             if m_UsedFootnotes.count > 0 {
-                sb.append("\n<div class=\"")
-                sb.append(HtmlClassFootnotes)
-                sb.append("\">\n")
-                sb.append("<hr />\n")
-                sb.append("<ol>\n")
-                for i in 0 ... m_UsedFootnotes.count - 1 {
-                    let fn = m_UsedFootnotes[i]
-                    let fnData = (fn.data as? String) ?? ""
-                    sb.append("<li id=\"fn:")
-                    sb.append(fnData)
-                    //  footnote id
-                    sb.append("\">\n")
-                    //  We need to get the return link appended to the last paragraph
-                    //  in the footnote
-                    let strReturnLink: String = "<a href=\"#fnref:" + fnData + "\" rev=\"footnote\">&#8617;</a>"
-
-                    //  Get the last child of the footnote
-                    var child = fn.children[fn.children.count - 1]
-                    if child.blockType == BlockType.p {
-                        child.blockType = BlockType.p_footnote
-                        child.data = strReturnLink
-                    } else {
-                        child = Block()
-                        child.contentLen = 0
-                        child.blockType = BlockType.p_footnote
-                        child.data = strReturnLink
-                        fn.children.append(child)
-                    }
-                    fn.render(self, &sb)
-                    sb.append("</li>\n")
-                }
-                sb.append("</ol>\n")
-                sb.append("</div>\n")
+                renderFootnotes(&sb)
             }
         }
 
@@ -352,8 +308,60 @@ class Markdown {
         return sb
     }
 
+    /// Copy the items from the abbreviation map to the abbreviation list
+    /// and sort the list.
+    fileprivate func createAbbreviationList() {
+        m_AbbreviationList.removeAll()
+
+        if m_AbbreviationMap.count > 0 {
+            for (_, itemValue) in m_AbbreviationMap {
+                m_AbbreviationList.append(itemValue)
+            }
+
+            m_AbbreviationList.sort { (a, b) -> Bool in
+                return (b.abbr.count - a.abbr.count) > 0
+            }
+        }
+    }
+
+    fileprivate func renderFootnotes(_ sb: inout String) {
+        sb.append("\n<div class=\"\(HtmlClassFootnotes!)\">\n")
+        sb.append("<hr />\n")
+        sb.append("<ol>\n")
+
+        for i in 0 ... m_UsedFootnotes.count - 1 {
+            let fn = m_UsedFootnotes[i]
+            let fnData = (fn.data as? String) ?? ""
+            sb.append("<li id=\"fn:")
+            sb.append(fnData)
+            //  footnote id
+            sb.append("\">\n")
+            //  We need to get the return link appended to the last paragraph
+            //  in the footnote
+            let strReturnLink: String = "<a href=\"#fnref:" + fnData + "\" rev=\"footnote\">&#8617;</a>"
+
+            //  Get the last child of the footnote
+            var child = fn.children[fn.children.count - 1]
+            if child.blockType == BlockType.p {
+                child.blockType = BlockType.p_footnote
+                child.data = strReturnLink
+            } else {
+                child = Block()
+                child.contentLen = 0
+                child.blockType = BlockType.p_footnote
+                child.data = strReturnLink
+                fn.children.append(child)
+            }
+            fn.render(self, &sb)
+            sb.append("</li>\n")
+        }
+
+        sb.append("</ol>\n")
+        sb.append("</div>\n")
+    }
+
     // Override to qualify non-local image and link urls
-    open func onQualifyUrl(_ url: String!) -> String! {
+    open func onQualifyUrl(_ url: String!) -> String {
 
         // TODO: User override function call... can I support this?
 //        if QualifyUrl != nil {
@@ -458,7 +466,7 @@ class Markdown {
     }
 
     // Override to modify the attributes of a link
-    open func onPrepareLink(_ tag: HtmlTag!) {
+    open func onPrepareLink(_ tag: HtmlTag) {
 
         // TODO: PrepareLink override method - can I support this?
 //        if prepareLink != nil {
@@ -468,17 +476,19 @@ class Markdown {
 //        }
 
         let url: String! = tag.attribute(key: "href")
-        //  No follow?
 
+        //  No follow?
         if NoFollowLinks {
             tag.addAttribute(key: "rel", value: "nofollow")
         }
+
         //  No follow external links only
         if NoFollowExternalLinks {
             if Utils.isUrlFullyQualified(url) {
                 tag.addAttribute(key: "rel", value: "nofollow")
             }
         }
+
         //  New window?
         if (NewWindowForExternalLinks
             && Utils.isUrlFullyQualified(url))
@@ -486,6 +496,7 @@ class Markdown {
             && !Utils.isUrlFullyQualified(url)) {
             tag.addAttribute(key: "target", value: "_blank")
         }
+
         //  Qualify url
         tag.addAttribute(key: "href", value: onQualifyUrl(url))
     }
@@ -638,12 +649,6 @@ class Markdown {
         return sb
     }
 
-    // Add a link definition
-    internal func AddLinkDefinition(_ link: LinkDefinition!) {
-        //  Store it
-        m_LinkDefinitions[link.id] = link
-    }
-
     internal func addFootnote(_ footnote: Block) {
         if let fnKey = footnote.data as? String {
             // add or update footnote depending on the key
@@ -662,6 +667,12 @@ class Markdown {
             return m_UsedFootnotes.count - 1
         }
         return -1
+    }
+
+    // Add a link definition
+    internal func addLinkDefinition(_ link: LinkDefinition!) {
+        //  Store it
+        m_LinkDefinitions[link.id] = link
     }
 
     // Get a link definition
@@ -697,7 +708,8 @@ class Markdown {
                     dest.append(ch)
             }
             p.skipForward(1)
-        }}
+        }
+    }
 
     // HtmlEncode a string, also converting tabs to spaces (used by CodeBlocks)
     internal func htmlEncodeAndConvertTabsToSpaces(_ dest: inout String, _ str: String, _ start: Int, _ len: Int) {
@@ -744,7 +756,7 @@ class Markdown {
             return nil
         }
         //  Extract a pandoc style cleaned header id from the header text
-        var strBase: String! = GetSpanFormatter.makeID(strHeaderText, startOffset, length)
+        var strBase: String! = getSpanFormatter.makeID(strHeaderText, startOffset, length)
         //  If nothing left, use "section"
         if strBase == nil || strBase!.count == 0
         {

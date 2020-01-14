@@ -94,7 +94,7 @@ internal class TableSpec {
                 }
             }
             b.append(">")
-            m.GetSpanFormatter.format(&b, row[i])
+            m.getSpanFormatter.format(&b, row[i])
             b.append("</")
             b.append(type)
             b.append(">\n")

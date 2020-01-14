@@ -13,10 +13,10 @@ class LinkAndImgTests: XCTestCase {
     override func setUp() {
         let m = Markdown()
 
-        m.AddLinkDefinition(LinkDefinition("link1", "url.com", "title"))
-        m.AddLinkDefinition(LinkDefinition("link2", "url.com"))
-        m.AddLinkDefinition(LinkDefinition("img1", "url.com/image.png", "title"))
-        m.AddLinkDefinition(LinkDefinition("img2", "url.com/image.png"))
+        m.addLinkDefinition(LinkDefinition("link1", "url.com", "title"))
+        m.addLinkDefinition(LinkDefinition("link2", "url.com"))
+        m.addLinkDefinition(LinkDefinition("img1", "url.com/image.png", "title"))
+        m.addLinkDefinition(LinkDefinition("img2", "url.com/image.png"))
 
         s = SpanFormatter(m)
     }

@@ -715,7 +715,7 @@ class BlockProcessor : StringScanner {
             let l: LinkDefinition! = LinkDefinition.parseLinkDefinition(self, m_markdown.ExtraMode)
 
             if l != nil {
-                m_markdown.AddLinkDefinition(l)
+                m_markdown.addLinkDefinition(l)
                 return BlockType.Blank
             }
         }
