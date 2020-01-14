@@ -105,6 +105,7 @@
 		E892538223B1419100473BC5 /* StringScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E892538123B1419100473BC5 /* StringScanner.swift */; };
 		E892538423B1444800473BC5 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E892538323B1444800473BC5 /* StringExtensions.swift */; };
 		E892538623B14FBF00473BC5 /* LinkDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E892538523B14FBF00473BC5 /* LinkDefinition.swift */; };
+		E8973AF223CDF8BB0036F6FF /* CSDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8973AF123CDF8BB0036F6FF /* CSDictionaryTests.swift */; };
 		E8A52C1C23C0BFF700C6953E /* CodeBlocks.html in Resources */ = {isa = PBXBuildFile; fileRef = E8A52C1A23C0BFF700C6953E /* CodeBlocks.html */; };
 		E8A52C1D23C0BFF700C6953E /* CodeBlocks.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8A52C1B23C0BFF700C6953E /* CodeBlocks.txt */; };
 		E8A52C1F23C0C00D00C6953E /* BlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A52C1E23C0C00D00C6953E /* BlockTests.swift */; };
@@ -373,6 +374,7 @@
 		E892538123B1419100473BC5 /* StringScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringScanner.swift; sourceTree = "<group>"; };
 		E892538323B1444800473BC5 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		E892538523B14FBF00473BC5 /* LinkDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkDefinition.swift; sourceTree = "<group>"; };
+		E8973AF123CDF8BB0036F6FF /* CSDictionaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSDictionaryTests.swift; sourceTree = "<group>"; };
 		E8A52C1A23C0BFF700C6953E /* CodeBlocks.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = CodeBlocks.html; sourceTree = "<group>"; };
 		E8A52C1B23C0BFF700C6953E /* CodeBlocks.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CodeBlocks.txt; sourceTree = "<group>"; };
 		E8A52C1E23C0C00D00C6953E /* BlockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockTests.swift; sourceTree = "<group>"; };
@@ -592,6 +594,7 @@
 				E8E5D8D223CC975A0023954E /* StringScannerTests.swift */,
 				E8A5EF0123CCA14E0047B308 /* TableSpecTests.swift */,
 				E8A5EF0323CCA4750047B308 /* XssAttackTests.swift */,
+				E8973AF123CDF8BB0036F6FF /* CSDictionaryTests.swift */,
 			);
 			path = TestClasses;
 			sourceTree = "<group>";
@@ -1300,6 +1303,7 @@
 				E8A5EF0423CCA4750047B308 /* XssAttackTests.swift in Sources */,
 				E8482C6C23C88E19006C1677 /* PHPMarkdownTestsFromResources.swift in Sources */,
 				E847A5D723CB7D5500C6A19C /* LinkAndImgTests.swift in Sources */,
+				E8973AF223CDF8BB0036F6FF /* CSDictionaryTests.swift in Sources */,
 				E84DED9323CCC6C700FCF2AA /* BlockTestsFromResources.swift in Sources */,
 				E8D05D5E23C9F52700963D07 /* PandocTestsFromResources.swift in Sources */,
 				E84DED9523CCC73100FCF2AA /* SpanTestsFromResources.swift in Sources */,
