@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E80D27C523C8F6A9009A8109 /* RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80D27C423C8F6A9009A8109 /* RandomNumberGenerator.swift */; };
+		E810256123CDF1630035601A /* CSDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E810256023CDF1630035601A /* CSDictionary.swift */; };
 		E829B76F23C241C3002BA727 /* TestDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829B76E23C241C3002BA727 /* TestDefinition.swift */; };
 		E829B77123C24210002BA727 /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829B77023C24210002BA727 /* TestHelper.swift */; };
 		E8353C1823BFCEEF00602189 /* HeadingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8353C1723BFCEEF00602189 /* HeadingTests.swift */; };
@@ -272,6 +273,7 @@
 
 /* Begin PBXFileReference section */
 		E80D27C423C8F6A9009A8109 /* RandomNumberGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNumberGenerator.swift; sourceTree = "<group>"; };
+		E810256023CDF1630035601A /* CSDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSDictionary.swift; sourceTree = "<group>"; };
 		E829B76E23C241C3002BA727 /* TestDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDefinition.swift; sourceTree = "<group>"; };
 		E829B77023C24210002BA727 /* TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelper.swift; sourceTree = "<group>"; };
 		E8353C1723BFCEEF00602189 /* HeadingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingTests.swift; sourceTree = "<group>"; };
@@ -546,6 +548,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E810255E23CDF1000035601A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E8CAD55423B67E79004E7AA7 /* Stack.swift */,
+				E80D27C423C8F6A9009A8109 /* RandomNumberGenerator.swift */,
+				E810256023CDF1630035601A /* CSDictionary.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		E810255F23CDF1130035601A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E892538323B1444800473BC5 /* StringExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		E829B77223C24290002BA727 /* TestClasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -706,6 +726,8 @@
 		E87BEC6A23AE9B4200CEA45E /* MarkdownDeep */ = {
 			isa = PBXGroup;
 			children = (
+				E810255F23CDF1130035601A /* Extensions */,
+				E810255E23CDF1000035601A /* Helpers */,
 				E87BEC8223AE9C3100CEA45E /* Abbreviation.swift */,
 				E87BEC8423AE9EEC00CEA45E /* Block.swift */,
 				E8E368A223B65940007539F7 /* BlockProcessor.swift */,
@@ -717,13 +739,10 @@
 				E87BEC6B23AE9B4200CEA45E /* MarkdownDeep.h */,
 				E8B833E323B534A2000F31D7 /* MarkdownDeep.swift */,
 				E8EECEC623B3CEC0007DB50B /* SpanFormatter.swift */,
-				E8CAD55423B67E79004E7AA7 /* Stack.swift */,
-				E892538323B1444800473BC5 /* StringExtensions.swift */,
 				E892538123B1419100473BC5 /* StringScanner.swift */,
 				E8DA200723B22AAD007D0368 /* TableSpec.swift */,
 				E8EECEC423B3CC72007DB50B /* Token.swift */,
 				E8DA200923B23024007D0368 /* Utils.swift */,
-				E80D27C423C8F6A9009A8109 /* RandomNumberGenerator.swift */,
 			);
 			path = MarkdownDeep;
 			sourceTree = "<group>";
@@ -1257,6 +1276,7 @@
 				E8DA200A23B23024007D0368 /* Utils.swift in Sources */,
 				E8EECEC723B3CEC0007DB50B /* SpanFormatter.swift in Sources */,
 				E892538623B14FBF00473BC5 /* LinkDefinition.swift in Sources */,
+				E810256123CDF1630035601A /* CSDictionary.swift in Sources */,
 				E87BEC8523AE9EEC00CEA45E /* Block.swift in Sources */,
 				E8DA200823B22AAD007D0368 /* TableSpec.swift in Sources */,
 				E8E368A323B65940007539F7 /* BlockProcessor.swift in Sources */,
