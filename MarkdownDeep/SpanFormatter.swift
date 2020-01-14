@@ -24,7 +24,6 @@ import Foundation
 
 internal class SpanFormatter : StringScanner {
 
-    var m_SpareTokens = Stack<Token>()
     var m_Markdown: Markdown
     internal var disableLinks: Bool = false
     var m_Tokens: [Token] = []

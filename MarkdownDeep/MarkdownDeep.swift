@@ -39,12 +39,11 @@ class Markdown {
 
     internal var RenderingTitledImage: Bool = false
 
-    var m_AbbreviationMap: [String: Abbreviation] = [:]
-    var m_LinkDefinitions: CSDictionary<LinkDefinition> = CSDictionary<LinkDefinition>()
-    var m_Footnotes: CSDictionary<Block> = CSDictionary<Block>()
-    var m_UsedHeaderIDs: CSDictionary<Bool> = CSDictionary<Bool>()
+    var m_AbbreviationMap = CSDictionary<Abbreviation>()
+    var m_LinkDefinitions = CSDictionary<LinkDefinition>()
+    var m_Footnotes = CSDictionary<Block>()
+    var m_UsedHeaderIDs = CSDictionary<Bool>()
 
-    var m_SpareBlocks: Stack<Block> = Stack<Block>()
     var m_StringBuilder: String = ""
     var m_StringBuilderFinal: String = ""
     var m_StringScanner: StringScanner
@@ -235,7 +234,7 @@ class Markdown {
         m_Footnotes.removeAll()
         m_UsedFootnotes = []
         m_UsedHeaderIDs.removeAll()
-        m_AbbreviationMap = [:]
+        m_AbbreviationMap.removeAll()
         m_AbbreviationList = []
 
         //  Process blocks
@@ -672,11 +671,6 @@ class Markdown {
     }
 
     internal func addAbbreviation(_ abbr: String, _ title: String) {
-        if let mIndex = m_AbbreviationMap.index(forKey: abbr) {
-            m_AbbreviationMap.remove(at: mIndex)
-        }
-
-        //  Store abbreviation
         m_AbbreviationMap[abbr] = Abbreviation(abbr: abbr, title: title)
     }
 

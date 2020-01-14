@@ -117,7 +117,6 @@
 		E8A5EF0923CCA8380047B308 /* non_attacks.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8A5EF0723CCA8380047B308 /* non_attacks.txt */; };
 		E8B833E423B534A2000F31D7 /* MarkdownDeep.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B833E323B534A2000F31D7 /* MarkdownDeep.swift */; };
 		E8BC2AFA23AFA35F006B9C16 /* HtmlTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BC2AF923AFA35F006B9C16 /* HtmlTag.swift */; };
-		E8CAD55523B67E79004E7AA7 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CAD55423B67E79004E7AA7 /* Stack.swift */; };
 		E8D05CE323C9EDF200963D07 /* mdTest11TestsFromResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D05CE223C9EDF100963D07 /* mdTest11TestsFromResources.swift */; };
 		E8D05D1223C9EE9000963D07 /* md11_Code_Spans.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8D05CE423C9EE8F00963D07 /* md11_Code_Spans.txt */; };
 		E8D05D1323C9EE9000963D07 /* md11_Auto_links.html in Resources */ = {isa = PBXBuildFile; fileRef = E8D05CE523C9EE8F00963D07 /* md11_Auto_links.html */; };
@@ -386,7 +385,6 @@
 		E8A5EF0723CCA8380047B308 /* non_attacks.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = non_attacks.txt; sourceTree = "<group>"; };
 		E8B833E323B534A2000F31D7 /* MarkdownDeep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownDeep.swift; sourceTree = "<group>"; };
 		E8BC2AF923AFA35F006B9C16 /* HtmlTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlTag.swift; sourceTree = "<group>"; };
-		E8CAD55423B67E79004E7AA7 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		E8D05CE223C9EDF100963D07 /* mdTest11TestsFromResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mdTest11TestsFromResources.swift; sourceTree = "<group>"; };
 		E8D05CE423C9EE8F00963D07 /* md11_Code_Spans.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = md11_Code_Spans.txt; sourceTree = "<group>"; };
 		E8D05CE523C9EE8F00963D07 /* md11_Auto_links.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = md11_Auto_links.html; sourceTree = "<group>"; };
@@ -553,7 +551,6 @@
 		E810255E23CDF1000035601A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				E8CAD55423B67E79004E7AA7 /* Stack.swift */,
 				E80D27C423C8F6A9009A8109 /* RandomNumberGenerator.swift */,
 				E810256023CDF1630035601A /* CSDictionary.swift */,
 			);
@@ -1267,7 +1264,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E892538423B1444800473BC5 /* StringExtensions.swift in Sources */,
-				E8CAD55523B67E79004E7AA7 /* Stack.swift in Sources */,
 				E892538223B1419100473BC5 /* StringScanner.swift in Sources */,
 				E87BEC8323AE9C3100CEA45E /* Abbreviation.swift in Sources */,
 				E8EECEC523B3CC72007DB50B /* Token.swift in Sources */,
