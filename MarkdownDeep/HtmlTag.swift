@@ -22,34 +22,10 @@
 
 import Foundation
 
-struct HtmlTagFlags: OptionSet
-{
-    let rawValue: Int
-
-    static let NotSet = HtmlTagFlags(rawValue: 0x0000)
-    static let Block  = HtmlTagFlags(rawValue: 0x0001)    // Block tag
-    static let Inline = HtmlTagFlags(rawValue: 0x0002)    // Inline tag
-    static let NoClosing = HtmlTagFlags(rawValue: 0x0004)
-                // No closing tag (eg: <hr> and <!-- -->)
-    static let ContentAsSpan = HtmlTagFlags(rawValue: 0x0008)
-                // When markdown=1 treat content as span, not block
-}
-
-internal class Attribute {
-
-    init(key: String, value: String) {
-        self.key = key
-        self.value = value
-    }
-
-    var key: String = ""
-    var value: String = ""
-}
-
 public class HtmlTag
 {
     private var tagName: String = ""
-    private var tagAttributes = [Attribute]()
+    private var tagAttributes = CSDictionary<String>()
     private var tagClosed: Bool = false
     private var tagClosing: Bool = false
     private var tagFlags: HtmlTagFlags = HtmlTagFlags.NotSet
@@ -64,43 +40,20 @@ public class HtmlTag
     }
 
     // Get a dictionary of attribute values (no decoding done)
-    var attributes: [Attribute] {
+    var attributes: CSDictionary<String> {
         get { return tagAttributes; }
     }
 
     public func attribute(key: String) -> String! {
-        if let existingAttribute = tagAttributes.first(where: { (attr) -> Bool in
-            attr.key.lowercased() == key.lowercased()
-        }) {
-            // Found an existing one, return the value
-            return existingAttribute.value
-        }
-
-        return nil
+        return tagAttributes[key]
     }
 
     public func addAttribute(key: String, value: String) {
-
-        if let existingAttribute = tagAttributes.first(where: { (attr) -> Bool in
-            attr.key == key
-        }) {
-            // Found an existing one, replace it
-            existingAttribute.value = value
-            return
-        }
-
-        let newAttr = Attribute(key: key, value: value)
-        tagAttributes.append(newAttr)
+        tagAttributes[key] = value
     }
 
     public func removeAttribute(key: String) {
-
-        if let existingIndex = tagAttributes.firstIndex(where: { (attr) -> Bool in
-            attr.key == key
-        }) {
-            tagAttributes.remove(at: existingIndex)
-        }
-
+        tagAttributes.remove(itemWithKey: key)
     }
 
     // Is this tag closed eg; <br />
@@ -202,8 +155,8 @@ public class HtmlTag
         }
 
         // Check all are allowed
-        for (attr) in tagAttributes {
-            let keyLower = attr.key.lowercased()
+        for (key, _) in tagAttributes {
+            let keyLower = key.lowercased()
             if !allowed_attributes.contains(keyLower) {
                 // attribute is not allowed
                 return false
@@ -233,11 +186,11 @@ public class HtmlTag
         dest.append("<");
         dest.append(name);
 
-        for attr in attributes {
+        for (key, attr) in attributes {
             dest.append(" ")
-            dest.append(attr.key)
+            dest.append(key)
             dest.append("=\"")
-            dest.append(attr.value)
+            dest.append(attr)
             dest.append("\"")
         }
 

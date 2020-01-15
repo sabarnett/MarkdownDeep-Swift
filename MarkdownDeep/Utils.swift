@@ -41,40 +41,6 @@ class Utils {
         }
     }
 
-    // Extension method. Get the last item in a list (or null if empty)
-    public func last<T>(_ list: [T]) -> T! {
-        if list.count > 0 {
-            return list[list.count - 1]
-        } else {
-            return nil
-        }
-    }
-
-    // Extension method. Get the first item in a list (or null if empty)
-    public func First<T>(_ list: [T]) -> T! {
-        if list.count > 0 {
-            return list[0]
-        } else {
-            return nil
-        }
-    }
-
-    // Extension method.  Use a list like a stack
-    public func push<T>(_ list: inout [T], _ value: T!) {
-        list.append(value)
-    }
-
-    // Extension method.  Remove last item from a list
-    public func pop<T>(_ list: inout [T]) -> T! {
-        if list.count == 0 {
-            return nil
-        } else {
-            let val: T! = list[list.count - 1]
-            list.remove(at: list.count - 1)
-            return val
-        }
-    }
-
     // Scan a string for a valid identifier.  Identifier must start with alpha or underscore
     //  and can be followed by alpha, digit or underscore
     //  Updates `pos` to character after the identifier if matched

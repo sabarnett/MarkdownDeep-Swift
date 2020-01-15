@@ -95,6 +95,8 @@
 		E8482D1223C8A172006C1677 /* line-endings-lf.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482D0A23C8A172006C1677 /* line-endings-lf.txt */; };
 		E8482D1323C8A172006C1677 /* markdown-readme.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482D0B23C8A172006C1677 /* markdown-readme.html */; };
 		E84CD6A723BE765B00F3D111 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84CD6A623BE765B00F3D111 /* StringExtensionTests.swift */; };
+		E84DD51A23CF6A52008D2697 /* BlockType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84DD51923CF6A52008D2697 /* BlockType.swift */; };
+		E84DD51C23CF6B2E008D2697 /* HtmlTagFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84DD51B23CF6B2E008D2697 /* HtmlTagFlags.swift */; };
 		E84DED9323CCC6C700FCF2AA /* BlockTestsFromResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84DED9223CCC6C700FCF2AA /* BlockTestsFromResources.swift */; };
 		E84DED9523CCC73100FCF2AA /* SpanTestsFromResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84DED9423CCC73100FCF2AA /* SpanTestsFromResources.swift */; };
 		E87BEC7223AE9B4200CEA45E /* MarkdownDeep.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E87BEC6823AE9B4200CEA45E /* MarkdownDeep.framework */; };
@@ -360,6 +362,8 @@
 		E8482D0A23C8A172006C1677 /* line-endings-lf.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "line-endings-lf.txt"; sourceTree = "<group>"; };
 		E8482D0B23C8A172006C1677 /* markdown-readme.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "markdown-readme.html"; sourceTree = "<group>"; };
 		E84CD6A623BE765B00F3D111 /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
+		E84DD51923CF6A52008D2697 /* BlockType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockType.swift; sourceTree = "<group>"; };
+		E84DD51B23CF6B2E008D2697 /* HtmlTagFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlTagFlags.swift; sourceTree = "<group>"; };
 		E84DED9223CCC6C700FCF2AA /* BlockTestsFromResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTestsFromResources.swift; sourceTree = "<group>"; };
 		E84DED9423CCC73100FCF2AA /* SpanTestsFromResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanTestsFromResources.swift; sourceTree = "<group>"; };
 		E87BEC6823AE9B4200CEA45E /* MarkdownDeep.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MarkdownDeep.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -705,6 +709,15 @@
 			path = mdTest01;
 			sourceTree = "<group>";
 		};
+		E84DD51823CF6A21008D2697 /* EnumsAndFlags */ = {
+			isa = PBXGroup;
+			children = (
+				E84DD51923CF6A52008D2697 /* BlockType.swift */,
+				E84DD51B23CF6B2E008D2697 /* HtmlTagFlags.swift */,
+			);
+			path = EnumsAndFlags;
+			sourceTree = "<group>";
+		};
 		E87BEC5E23AE9B4100CEA45E = {
 			isa = PBXGroup;
 			children = (
@@ -726,6 +739,7 @@
 		E87BEC6A23AE9B4200CEA45E /* MarkdownDeep */ = {
 			isa = PBXGroup;
 			children = (
+				E84DD51823CF6A21008D2697 /* EnumsAndFlags */,
 				E810255F23CDF1130035601A /* Extensions */,
 				E810255E23CDF1000035601A /* Helpers */,
 				E87BEC8223AE9C3100CEA45E /* Abbreviation.swift */,
@@ -1270,6 +1284,7 @@
 				E8442D6E23AFFBBD00F5F37C /* FootnodeReference.swift in Sources */,
 				E8442D6C23AFFAF300F5F37C /* LinkInfo.swift in Sources */,
 				E80D27C523C8F6A9009A8109 /* RandomNumberGenerator.swift in Sources */,
+				E84DD51A23CF6A52008D2697 /* BlockType.swift in Sources */,
 				E8BC2AFA23AFA35F006B9C16 /* HtmlTag.swift in Sources */,
 				E8B833E423B534A2000F31D7 /* MarkdownDeep.swift in Sources */,
 				E8DA200A23B23024007D0368 /* Utils.swift in Sources */,
@@ -1279,6 +1294,7 @@
 				E87BEC8523AE9EEC00CEA45E /* Block.swift in Sources */,
 				E8DA200823B22AAD007D0368 /* TableSpec.swift in Sources */,
 				E8E368A323B65940007539F7 /* BlockProcessor.swift in Sources */,
+				E84DD51C23CF6B2E008D2697 /* HtmlTagFlags.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
