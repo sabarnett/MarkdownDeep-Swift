@@ -724,6 +724,17 @@
 			path = EnumsAndFlags;
 			sourceTree = "<group>";
 		};
+		E84DD52123CF73F2008D2697 /* DataObjects */ = {
+			isa = PBXGroup;
+			children = (
+				E8EECEC423B3CC72007DB50B /* Token.swift */,
+				E87BEC8223AE9C3100CEA45E /* Abbreviation.swift */,
+				E8442D6D23AFFBBD00F5F37C /* FootnodeReference.swift */,
+				E8442D6B23AFFAF300F5F37C /* LinkInfo.swift */,
+			);
+			path = DataObjects;
+			sourceTree = "<group>";
+		};
 		E87BEC5E23AE9B4100CEA45E = {
 			isa = PBXGroup;
 			children = (
@@ -745,23 +756,20 @@
 		E87BEC6A23AE9B4200CEA45E /* MarkdownDeep */ = {
 			isa = PBXGroup;
 			children = (
+				E84DD52123CF73F2008D2697 /* DataObjects */,
 				E84DD51823CF6A21008D2697 /* EnumsAndFlags */,
 				E810255F23CDF1130035601A /* Extensions */,
 				E810255E23CDF1000035601A /* Helpers */,
-				E87BEC8223AE9C3100CEA45E /* Abbreviation.swift */,
 				E87BEC8423AE9EEC00CEA45E /* Block.swift */,
 				E8E368A223B65940007539F7 /* BlockProcessor.swift */,
-				E8442D6D23AFFBBD00F5F37C /* FootnodeReference.swift */,
 				E8BC2AF923AFA35F006B9C16 /* HtmlTag.swift */,
 				E87BEC6C23AE9B4200CEA45E /* Info.plist */,
 				E892538523B14FBF00473BC5 /* LinkDefinition.swift */,
-				E8442D6B23AFFAF300F5F37C /* LinkInfo.swift */,
 				E87BEC6B23AE9B4200CEA45E /* MarkdownDeep.h */,
 				E8B833E323B534A2000F31D7 /* MarkdownDeep.swift */,
 				E8EECEC623B3CEC0007DB50B /* SpanFormatter.swift */,
 				E892538123B1419100473BC5 /* StringScanner.swift */,
 				E8DA200723B22AAD007D0368 /* TableSpec.swift */,
-				E8EECEC423B3CC72007DB50B /* Token.swift */,
 				E8DA200923B23024007D0368 /* Utils.swift */,
 			);
 			path = MarkdownDeep;

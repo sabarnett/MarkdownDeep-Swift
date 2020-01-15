@@ -22,34 +22,27 @@
 
 import Foundation
 
-
 internal class Token: CustomStringConvertible, Equatable {
-
-    static func == (lhs: Token, rhs: Token) -> Bool {
-        return lhs.description == rhs.description
-    }
-
-    static func != (lhs: Token, rhs: Token) -> Bool {
-        return lhs.description != rhs.description
-    }
 
     public var type: TokenType
     public var startOffset: Int = 0
     public var length: Int = 0
     public var data: Any!
 
-    // Constructor
-    public init(_ type: TokenType, _ startOffset: Int, _ length: Int) {
+    // MARK:- Constructors
+
+    public init(_ type: TokenType, _ startOffset: Int, _ length: Int)  {
         self.type = type
         self.startOffset = startOffset
         self.length = length
     }
 
-    // Constructor
     public init(_ type: TokenType, _ data: Any) {
         self.type = type
         self.data = data
     }
+
+    // MARK:- CustomStringConvertible implementation
 
     var description: String {
         get {
@@ -59,6 +52,16 @@ internal class Token: CustomStringConvertible, Equatable {
                 return "\(type.description) - \(startOffset) - \(length) -> \(String(describing: data))"
             }
         }
+    }
+
+    // MARK:- Equatable implementation
+
+    static func == (lhs: Token, rhs: Token) -> Bool {
+        return lhs.description == rhs.description
+    }
+
+    static func != (lhs: Token, rhs: Token) -> Bool {
+        return lhs.description != rhs.description
     }
 }
 
