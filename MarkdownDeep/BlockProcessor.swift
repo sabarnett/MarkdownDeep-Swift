@@ -311,10 +311,6 @@ class BlockProcessor : StringScanner {
         return blocks
     }
 
-    internal func freeBlocks(_ blocks: inout [Block]) {
-        blocks.removeAll()
-    }
-
     internal func renderLines(_ lines: [Block]) -> String {
         var b = ""
         for l in lines {
@@ -345,13 +341,13 @@ class BlockProcessor : StringScanner {
                 para.contentStart = lines[0].contentStart
                 para.contentEnd = lines[lines.count - 1].contentEnd
                 blocks.append(para)
-                freeBlocks(&lines)
+                lines.removeAll()
 
             case BlockType.quote:
                 //  Create a new quote block
                 let quote = Block(type: BlockType.quote)
                 quote.children = BlockProcessor(m_markdown, m_bMarkdownInHtml, BlockType.quote).process(renderLines(lines))
-                freeBlocks(&lines)
+                lines.removeAll()
                 blocks.append(quote)
 
             case BlockType.ol_li,
@@ -1072,7 +1068,6 @@ class BlockProcessor : StringScanner {
         while i < lines.count - 1 {
             i += 1
 
-//            System.Diagnostics.Debug.Assert((lines[i].blockType == BlockType.ul_li) | (lines[i].blockType == BlockType.ol_li))
             //  Find start of item, including leading blanks
             var start_of_li: Int = i
             while (start_of_li > 0) && (lines[start_of_li - 1].blockType == BlockType.Blank) {
@@ -1121,7 +1116,6 @@ class BlockProcessor : StringScanner {
             //  Continue processing from end of li
             i = end_of_li
         }
-        freeBlocks(&lines)
         lines.removeAll()
 
         //  Continue processing after this item
@@ -1167,8 +1161,7 @@ class BlockProcessor : StringScanner {
         let item = Block()
         item.blockType = BlockType.dd
         item.children = BlockProcessor(m_markdown, m_bMarkdownInHtml, BlockType.dd).process(sb)
-        freeBlocks(&lines)
-        lines = []
+        lines.removeAll()
 
         //  Continue processing after this item
         return item
@@ -1228,7 +1221,6 @@ class BlockProcessor : StringScanner {
         item.blockType = BlockType.footnote
         item.data = lines[0].data
         item.children = BlockProcessor(m_markdown, m_bMarkdownInHtml, BlockType.footnote).process(sb)
-        freeBlocks(&lines)
         lines.removeAll()
 
         //  Continue processing after this item

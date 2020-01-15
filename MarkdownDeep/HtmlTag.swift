@@ -30,16 +30,10 @@ public class HtmlTag
     private var tagClosing: Bool = false
     private var tagFlags: HtmlTagFlags = HtmlTagFlags.NotSet
 
-    init(name: String) {
-        tagName = name;
-    }
+    init(name: String) { tagName = name; }
 
-    // Get the tag name eg: "div"
-    var name: String {
-        get { return tagName; }
-    }
+    // MARK:- Attribute support
 
-    // Get a dictionary of attribute values (no decoding done)
     var attributes: CSDictionary<String> {
         get { return tagAttributes; }
     }
@@ -56,6 +50,13 @@ public class HtmlTag
         tagAttributes.remove(itemWithKey: key)
     }
 
+    // MARK:- Computed Properties
+
+    // Get the tag name eg: "div"
+    var name: String {
+        get { return tagName; }
+    }
+
     // Is this tag closed eg; <br />
     var closed: Bool
     {
@@ -69,14 +70,13 @@ public class HtmlTag
         get { return tagClosing; }
     }
 
-
     var Flags: HtmlTagFlags
     {
         get
         {
             if (tagFlags == .NotSet)
             {
-                if let flagsForTag = tagNameFlags[name.lowercased()] {
+                if let flagsForTag = HtmlHelper.flagsForTag(tag: name.lowercased()) {
                     tagFlags = flagsForTag
                 } else {
                     if !tagFlags.contains(HtmlTagFlags.Inline) {
@@ -89,65 +89,16 @@ public class HtmlTag
         }
     }
 
-    var allowedTypes: [String] = [        "b","blockquote","code","dd","dt","dl","del","em","h1","h2","h3","h4","h5","h6","i","kbd","li","ol","ul",
-        "p", "pre", "s", "sub", "sup", "strong", "strike", "img", "a"
-    ]
-
-    var allowedAttributes: [String: [String]] =
-    [
-        "a": [ "href", "title", "class" ],
-        "img": [ "src", "width", "height", "alt", "title", "class" ]
-    ]
-
-    var tagNameFlags: [String: HtmlTagFlags] =
-    [
-        "p": [HtmlTagFlags.Block,  HtmlTagFlags.ContentAsSpan],
-        "div": [HtmlTagFlags.Block],
-        "h1": [HtmlTagFlags.Block,  HtmlTagFlags.ContentAsSpan],
-        "h2": [HtmlTagFlags.Block, HtmlTagFlags.ContentAsSpan],
-        "h3": [HtmlTagFlags.Block, HtmlTagFlags.ContentAsSpan],
-        "h4": [HtmlTagFlags.Block, HtmlTagFlags.ContentAsSpan],
-        "h5": [HtmlTagFlags.Block, HtmlTagFlags.ContentAsSpan],
-        "h6": [HtmlTagFlags.Block, HtmlTagFlags.ContentAsSpan],
-        "blockquote": HtmlTagFlags.Block,
-        "pre": HtmlTagFlags.Block,
-        "table": HtmlTagFlags.Block,
-        "dl": HtmlTagFlags.Block,
-        "ol": HtmlTagFlags.Block,
-        "ul": HtmlTagFlags.Block,
-        "form": HtmlTagFlags.Block,
-        "fieldset": HtmlTagFlags.Block,
-        "iframe": HtmlTagFlags.Block,
-        "script": [HtmlTagFlags.Block, HtmlTagFlags.Inline],
-        "noscript": [HtmlTagFlags.Block, HtmlTagFlags.Inline],
-        "math": [HtmlTagFlags.Block, HtmlTagFlags.Inline],
-        "ins": [HtmlTagFlags.Block, HtmlTagFlags.Inline],
-        "del": [HtmlTagFlags.Block, HtmlTagFlags.Inline],
-        "img": [HtmlTagFlags.Block, HtmlTagFlags.Inline],
-        "li": HtmlTagFlags.ContentAsSpan,
-        "dd": HtmlTagFlags.ContentAsSpan,
-        "dt": HtmlTagFlags.ContentAsSpan,
-        "td": HtmlTagFlags.ContentAsSpan,
-        "th": HtmlTagFlags.ContentAsSpan,
-        "legend": HtmlTagFlags.ContentAsSpan,
-        "address": HtmlTagFlags.ContentAsSpan,
-        "hr": [HtmlTagFlags.Block, HtmlTagFlags.NoClosing],
-        "!": [HtmlTagFlags.Block, HtmlTagFlags.NoClosing],
-        "head": HtmlTagFlags.Block
-    ]
-
     // Check if this tag is safe
     public func isSafe() -> Bool
     {
-        let nameLower : String = tagName.lowercased()
-
         // Check if tag is in whitelist
-        if (allowedTypes.firstIndex(of: nameLower) == nil) {
+        if !HtmlHelper.isAllowedType(tag: tagName) {
             return false
         }
 
         // Find allowed attributes
-        let allowed_attributes: [String] = allowedAttributes[nameLower] ?? [];
+        let allowed_attributes: [String] = HtmlHelper.attributesForTag(tag: tagName)
         if (allowed_attributes.count == 0)
         {
             // No allowed attributes, check we don't have any
@@ -187,11 +138,7 @@ public class HtmlTag
         dest.append(name);
 
         for (key, attr) in attributes {
-            dest.append(" ")
-            dest.append(key)
-            dest.append("=\"")
-            dest.append(attr)
-            dest.append("\"")
+            dest.append(" \(key)=\"\(attr)\"")
         }
 
         if (tagClosed) {
@@ -206,7 +153,6 @@ public class HtmlTag
     {
         dest.append("</\(name)>")
     }
-
 
     public static func parse(str: String, pos: inout Int) -> HtmlTag?
     {
