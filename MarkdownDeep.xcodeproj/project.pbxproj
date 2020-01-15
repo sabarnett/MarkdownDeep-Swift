@@ -561,6 +561,7 @@
 			children = (
 				E80D27C423C8F6A9009A8109 /* RandomNumberGenerator.swift */,
 				E810256023CDF1630035601A /* CSDictionary.swift */,
+				E8DA200923B23024007D0368 /* Utils.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -770,7 +771,6 @@
 				E8EECEC623B3CEC0007DB50B /* SpanFormatter.swift */,
 				E892538123B1419100473BC5 /* StringScanner.swift */,
 				E8DA200723B22AAD007D0368 /* TableSpec.swift */,
-				E8DA200923B23024007D0368 /* Utils.swift */,
 			);
 			path = MarkdownDeep;
 			sourceTree = "<group>";
