@@ -22,48 +22,17 @@
 
 import Foundation
 
-internal enum TokenType: Int, CustomStringConvertible {
 
-    var description: String {
-        switch self {
-        case .Text: return "Text"
-        case .HtmlTag: return "HtmlTag"
-        case .Html: return "Html"
-        case .open_em: return "open_em"
-        case .close_em: return "close_em"
-        case .open_strong: return "open_strong"
-        case .close_strong: return "close_strong"
-        case .code_span: return "code_span"
-        case .br: return "br"
-        case .link: return "link"
-        case .img: return "img"
-        case .footnote: return "footnote"
-        case .abbreviation: return "abbreviation"
-        case .opening_mark: return "opening_mark"
-        case .closing_mark: return "closing_mark"
-        case .internal_mark: return "internal_mark"
-        }
+internal class Token: CustomStringConvertible, Equatable {
+
+    static func == (lhs: Token, rhs: Token) -> Bool {
+        return lhs.description == rhs.description
     }
 
-    case Text
-    case HtmlTag
-    case Html
-    case open_em
-    case close_em
-    case open_strong
-    case close_strong
-    case code_span
-    case br
-    case link
-    case img
-    case footnote
-    case abbreviation
-    case opening_mark
-    case closing_mark
-    case internal_mark
-}
+    static func != (lhs: Token, rhs: Token) -> Bool {
+        return lhs.description != rhs.description
+    }
 
-internal class Token {
     public var type: TokenType
     public var startOffset: Int = 0
     public var length: Int = 0
@@ -82,11 +51,13 @@ internal class Token {
         self.data = data
     }
 
-    public func toString() -> String {
-        if (data == nil) {
-            return "\(type.description) - \(startOffset) - \(length)"
-        } else {
-            return "\(type.description) - \(startOffset) - \(length) -> \(String(describing: data))"
+    var description: String {
+        get {
+            if (data == nil) {
+                return "\(type.description) - \(startOffset) - \(length)"
+            } else {
+                return "\(type.description) - \(startOffset) - \(length) -> \(String(describing: data))"
+            }
         }
     }
 }

@@ -21,8 +21,9 @@
 //
 import Foundation
 
-class Block
+class Block : CustomStringConvertible
 {
+
     var blockType: BlockType = BlockType.Blank
     var buf: String?
     var contentStart: Int = 0
@@ -48,6 +49,16 @@ class Block
         data = copyFrom.data
         for child in copyFrom.children {
             children.append(Block(child))
+        }
+    }
+
+    var description: String {
+        get {
+            if let text = content {
+                return blockType.description + " - " + text
+            }
+
+            return blockType.description + " - <null>"
         }
     }
 
@@ -84,6 +95,34 @@ class Block
         get
         {
             return lineStart == 0 ? contentStart : lineStart
+        }
+    }
+
+    var contentEnd: Int
+    {
+        get { return contentStart + contentLen; }
+        set { contentLen = newValue - contentStart; }
+    }
+
+    // Count the leading spaces on a block
+    // Used by list item evaluation to determine indent levels
+    // irrespective of indent line type.
+    var leadingSpaces: Int
+    {
+        get
+        {
+            var count = 0
+
+            if let buffer = buf {
+                for i in lineStart ... lineStart + lineLen {
+                    if buffer.charAt(at: i) != " " {
+                        break
+                    }
+                    count += 1
+                }
+            }
+
+            return count
         }
     }
 
@@ -397,44 +436,6 @@ class Block
         contentLen = lineLen;
     }
 
-    var contentEnd: Int
-    {
-        get { return contentStart + contentLen; }
-        set { contentLen = newValue - contentStart; }
-    }
-
-    // Count the leading spaces on a block
-    // Used by list item evaluation to determine indent levels
-    // irrespective of indent line type.
-    var leadingSpaces: Int
-    {
-        get
-        {
-            var count = 0
-
-            if let buffer = buf {
-                for i in lineStart ... lineStart + lineLen {
-                    if buffer.charAt(at: i) != " " {
-                        break
-                    }
-                    count += 1
-                }
-            }
-
-            return count
-        }
-    }
-
-
-    func toString() -> String
-    {
-        if let text = content {
-            return blockType.description + " - " + text
-        }
-
-        return blockType.description + " - <null>"
-    }
-
     func copyFrom(other: Block) -> Block
     {
         blockType = other.blockType
@@ -445,6 +446,5 @@ class Block
         lineLen = other.lineLen
         return self
     }
-
 }
 

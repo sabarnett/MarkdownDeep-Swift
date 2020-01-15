@@ -521,11 +521,11 @@ internal class SpanFormatter : StringScanner {
         token.length = position
 
         let marksTokenIndex = marks.firstIndex { (atoken) -> Bool in
-            return atoken.toString() == token.toString()
+            return atoken == token
         } ?? -1
 
         let tokensTokenIndex = tokens.firstIndex { (atoken) -> Bool in
-            return atoken.toString() == token.toString()
+            return atoken == token
         } ?? -1
 
         //  Insert the new token into each of the parent collections
@@ -590,13 +590,13 @@ internal class SpanFormatter : StringScanner {
 
                     //  Remove the matched marks
                     if let openingIndex = marks.firstIndex(where: { (aToken) -> Bool in
-                        return aToken.toString() == opening_mark.toString()
+                        return aToken == opening_mark
                     }) {
                         marks.remove(at: openingIndex)
                     }
 
                     if let closingIndex = marks.firstIndex(where: { (aToken) -> Bool in
-                        return aToken.toString() == closing_mark.toString()
+                        return aToken == closing_mark
                     }) {
                         marks.remove(at: closingIndex)
                     }
@@ -662,7 +662,7 @@ internal class SpanFormatter : StringScanner {
 
                 //  Continue after the closing mark
                 i = marks.firstIndex(where: { (aToken) -> Bool in
-                    return aToken.toString() == closing_mark.toString()
+                    return aToken == closing_mark
                 }) ?? 0
                 break
             }
@@ -706,7 +706,7 @@ internal class SpanFormatter : StringScanner {
 
                 //  Continue after the closing mark
                 i = marks.firstIndex(where: { (aToken) -> Bool in
-                    return aToken.toString() == closing_mark.toString()
+                    return aToken == closing_mark
                 }) ?? 0
                 break
             }

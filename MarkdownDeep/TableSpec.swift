@@ -22,13 +22,6 @@
 
 import Foundation
 
-internal enum ColumnAlignment {
-    case NA
-    case Left
-    case Right
-    case Center
-}
-
 internal class TableSpec {
     public var LeadingBar: Bool = false
     public var TrailingBar: Bool = false
@@ -191,6 +184,6 @@ internal class TableSpec {
                 return spec
             }
             //  Next column
-        }}
+        }
+    }
 }
-
