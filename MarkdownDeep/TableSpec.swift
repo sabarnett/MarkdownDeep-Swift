@@ -29,6 +29,8 @@ internal class TableSpec {
     public var Headers: [String] = []
     public var Rows: [[String]] = []
 
+    // MARK:- Public interface
+
     public func parseRow(_ p: StringScanner) -> [String]! {
         p.skipLinespace()
         if p.eol {
@@ -68,30 +70,6 @@ internal class TableSpec {
 
         p.skipEol()
         return row
-    }
-
-    internal func renderRow(_ m: Markdown, _ b: inout String, _ row: [String], _ type: String) {
-        for i in 0 ..< row.count {
-            b.append("\t<")
-            b.append(type)
-            if i < Columns.count {
-                switch Columns[i] {
-                    case ColumnAlignment.Left:
-                        b.append(" align=\"left\"")
-                    case ColumnAlignment.Right:
-                        b.append(" align=\"right\"")
-                    case ColumnAlignment.Center:
-                        b.append(" align=\"center\"")
-                default:
-                        break;
-                }
-            }
-            b.append(">")
-            m.getSpanFormatter.format(&b, row[i])
-            b.append("</")
-            b.append(type)
-            b.append(">\n")
-        }
     }
 
     public func render(_ m: Markdown!, _ b: inout String) {
@@ -186,4 +164,31 @@ internal class TableSpec {
             //  Next column
         }
     }
+
+    // MARK:- Private helper methods
+    
+    internal func renderRow(_ m: Markdown, _ b: inout String, _ row: [String], _ type: String) {
+        for i in 0 ..< row.count {
+            b.append("\t<")
+            b.append(type)
+            if i < Columns.count {
+                switch Columns[i] {
+                    case ColumnAlignment.Left:
+                        b.append(" align=\"left\"")
+                    case ColumnAlignment.Right:
+                        b.append(" align=\"right\"")
+                    case ColumnAlignment.Center:
+                        b.append(" align=\"center\"")
+                default:
+                        break;
+                }
+            }
+            b.append(">")
+            m.getSpanFormatter.format(&b, row[i])
+            b.append("</")
+            b.append(type)
+            b.append(">\n")
+        }
+    }
+
 }

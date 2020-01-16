@@ -92,43 +92,7 @@ public class HtmlTag
     // Check if this tag is safe
     public func isSafe() -> Bool
     {
-        // Check if tag is in whitelist
-        if !HtmlHelper.isAllowedType(tag: tagName) {
-            return false
-        }
-
-        // Find allowed attributes
-        let allowed_attributes: [String] = HtmlHelper.attributesForTag(tag: tagName)
-        if (allowed_attributes.count == 0)
-        {
-            // No allowed attributes, check we don't have any
-            return tagAttributes.count == 0
-        }
-
-        // Check all are allowed
-        for (key, _) in tagAttributes {
-            let keyLower = key.lowercased()
-            if !allowed_attributes.contains(keyLower) {
-                // attribute is not allowed
-                return false
-            }
-        }
-
-        // Check href attribute is ok
-        if let href = attribute(key: "href") {
-            if (!Utils.isSafeUrl(href)) {
-                return false;
-            }
-        }
-
-        if let src = attribute(key: "src") {
-            if (!Utils.isSafeUrl(src)) {
-                return false;
-            }
-        }
-
-        // Passed all white list checks, allow it
-        return true;
+        return HtmlHelper.isTagSafe(tag: name, withAttributes: tagAttributes)
     }
 
     // Render opening tag (eg: <tag attr="value">
@@ -168,7 +132,7 @@ public class HtmlTag
         return nil;
     }
 
-    public static func parse(scanner p: StringScanner) -> HtmlTag?
+    internal static func parse(scanner p: StringScanner) -> HtmlTag?
     {
         // Save position
         let savepos: Int = p.position;

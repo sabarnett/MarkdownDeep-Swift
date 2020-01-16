@@ -73,5 +73,44 @@ struct HtmlHelper {
         return HtmlHelper.tagNameFlags[tag.lowercased()]
     }
 
-    
+    static func isTagSafe(tag tagName: String, withAttributes tagAttributes: CSDictionary<String>) -> Bool {
+
+        // Check if tag is in whitelist
+        if !HtmlHelper.isAllowedType(tag: tagName) {
+            return false
+        }
+
+        // Find allowed attributes
+        let allowed_attributes: [String] = HtmlHelper.attributesForTag(tag: tagName)
+        if (allowed_attributes.count == 0)
+        {
+            // No allowed attributes, check we don't have any
+            return tagAttributes.count == 0
+        }
+
+        // Check all are allowed
+        for (key, _) in tagAttributes {
+            let keyLower = key.lowercased()
+            if !allowed_attributes.contains(keyLower) {
+                // attribute is not allowed
+                return false
+            }
+        }
+
+        // Check href attribute is ok
+        if let href = tagAttributes["href"] {
+            if (!Utils.isSafeUrl(href)) {
+                return false;
+            }
+        }
+
+        if let src = tagAttributes["src"] {
+            if (!Utils.isSafeUrl(src)) {
+                return false;
+            }
+        }
+
+        // Passed all white list checks, allow it
+        return true;
+    }
 }

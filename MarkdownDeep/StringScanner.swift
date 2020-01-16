@@ -22,12 +22,14 @@
 
 import Foundation
 
-public class StringScanner {
-     var str: String!
-     var start: Int = 0
-     var pos: Int = 0
-     var end: Int = 0
-     var mark: Int = 0
+internal class StringScanner {
+    var str: String!
+    var start: Int = 0
+    var pos: Int = 0
+    var end: Int = 0
+    var mark: Int = 0
+
+    // MARK:- Public Interface
 
     public var input: String! {
         get {
