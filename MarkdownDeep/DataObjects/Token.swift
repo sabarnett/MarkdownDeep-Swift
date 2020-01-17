@@ -22,7 +22,7 @@
 
 import Foundation
 
-internal class Token: CustomStringConvertible, Equatable {
+class Token: CustomStringConvertible, Equatable {
 
     public var type: TokenType
     public var startOffset: Int = 0
@@ -31,13 +31,13 @@ internal class Token: CustomStringConvertible, Equatable {
 
     // MARK:- Constructors
 
-    public init(_ type: TokenType, _ startOffset: Int, _ length: Int)  {
+    init(_ type: TokenType, _ startOffset: Int, _ length: Int)  {
         self.type = type
         self.startOffset = startOffset
         self.length = length
     }
 
-    public init(_ type: TokenType, _ data: Any) {
+    init(_ type: TokenType, _ data: Any) {
         self.type = type
         self.data = data
     }

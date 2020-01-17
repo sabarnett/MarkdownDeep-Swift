@@ -5,7 +5,7 @@
 
 import Foundation
 
-internal enum TokenType: Int, CustomStringConvertible {
+enum TokenType: Int, CustomStringConvertible {
 
     var description: String {
         switch self {

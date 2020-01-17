@@ -5,7 +5,7 @@
 
 import Foundation
 
-internal enum ColumnAlignment {
+enum ColumnAlignment {
     case NA
     case Left
     case Right

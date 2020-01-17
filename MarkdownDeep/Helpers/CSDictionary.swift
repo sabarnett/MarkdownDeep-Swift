@@ -15,7 +15,7 @@ fileprivate struct CSDictionaryItem<T> {
     }
 }
 
-internal struct CSDictionary<T>: Sequence {
+struct CSDictionary<T>: Sequence {
 
     private var itemList: [CSDictionaryItem<T>] = []
 
@@ -25,7 +25,7 @@ internal struct CSDictionary<T>: Sequence {
     /// - Parameters:
     ///   - item: The item to be added to the collection
     ///   - key: The key of the item (case insensitive)
-    mutating public func add(item: T, withKey key: String) {
+    mutating func add(item: T, withKey key: String) {
         guard key.count > 0 else { return }
 
         if let index = itemIndex(withKey: key) {
@@ -41,7 +41,7 @@ internal struct CSDictionary<T>: Sequence {
     /// ignored. No error is thrown.
     ///
     /// - Parameter key: The key of the item to remove
-    mutating public func remove(itemWithKey key: String) {
+    mutating func remove(itemWithKey key: String) {
         guard key.count > 0 else { return }
 
         if let index = itemIndex(withKey: key) {
@@ -53,7 +53,7 @@ internal struct CSDictionary<T>: Sequence {
     /// the request is ignored.
     ///
     /// - Parameter index: The index of the item in the collection
-    mutating public func remove(at index: Int) {
+    mutating func remove(at index: Int) {
         // is index valid?
         guard index >= 0 && index < itemList.count else {
             return
@@ -62,7 +62,7 @@ internal struct CSDictionary<T>: Sequence {
         itemList.remove(at: index)
     }
 
-    mutating public func removeAll() {
+    mutating func removeAll() {
         itemList.removeAll()
     }
 
@@ -87,14 +87,14 @@ internal struct CSDictionary<T>: Sequence {
     }
 
     /// Returns an iterator for the collection.
-    internal func makeIterator() -> ItemsIterator<String, T> {
+    func makeIterator() -> ItemsIterator<String, T> {
         return ItemsIterator<String, T>(self)
     }
 
     /// Returns the index of the item in the collection if it exists, else
     /// returns -1 if the key does not exist.
-    /// - Parameter key: <#key description#>
-    public func indexOf(key: String) -> Int {
+    /// - Parameter key: The key of the item whos index we want
+    func indexOf(key: String) -> Int {
         guard key.count > 0 else { return -1 }
 
         if let index = itemIndex(withKey: key) {
@@ -104,12 +104,17 @@ internal struct CSDictionary<T>: Sequence {
         return -1
     }
 
-    public func itemExists(withKey key: String) -> Bool {
+    /// Returns True if the ket exists in the dictionary, else false.
+    /// - Parameter key: The key of the item to locate
+    func itemExists(withKey key: String) -> Bool {
         guard key.count > 0 else { return false }
         return findItem(withKey: key) !=  nil
     }
 
-    public func itemAt(index: Int) -> (String, T)? {
+    /// returns the key/value tuple of the item at the specified index
+    /// - Parameter index: The index of the item to retrieve. Returns nil if
+    /// the index is invalid.
+    func itemAt(index: Int) -> (String, T)? {
         guard index >= 0 && index < itemList.count else {
             return nil
         }
@@ -146,9 +151,8 @@ internal struct CSDictionary<T>: Sequence {
     }
 }
 
-/// Concrete Iterators implement various traversal algorithms. These classes
-/// store the current traversal position at all times.
-internal struct ItemsIterator<String, T>: IteratorProtocol {
+/// Iterator to iterate over the dictionary entries.
+struct ItemsIterator<String, T>: IteratorProtocol {
     typealias Element = (String, T)
 
     private let collection: CSDictionary<T>

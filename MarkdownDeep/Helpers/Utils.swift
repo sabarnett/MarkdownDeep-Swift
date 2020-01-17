@@ -25,8 +25,12 @@ import Foundation
 class Utils {
 
 
-    // Check if a character is escapable in markdown
-    public static func isEscapableChar(_ ch: Character, _ ExtraMode: Bool) -> Bool {
+    /// Check if a character is escapable in markdown
+    /// - Parameters:
+    ///   - ch: The character to test
+    ///   - ExtraMode: Flag: Did the caller specify ExtraMode. If so, we include
+    ///     additional characters as escapably characters.
+    static func isEscapableChar(_ ch: Character, _ ExtraMode: Bool) -> Bool {
         switch ch {
             case "\\", "`", "*", "_", "{", "}",
                  "[", "]", "(", ")", ">", "#",
@@ -41,10 +45,16 @@ class Utils {
         }
     }
 
-    // Scan a string for a valid identifier.  Identifier must start with alpha or underscore
-    //  and can be followed by alpha, digit or underscore
-    //  Updates `pos` to character after the identifier if matched
-    public static func parseIdentifier(_ str: String, _ pos: inout Int, _ identifer: inout String) -> Bool {
+    /// Scan a string for a valid identifier.  Identifier must start
+    /// with alpha or underscore and can be followed by alpha, digit or underscore.
+    /// Updates `pos` to character after the identifier if matched
+    ///
+    /// - Parameters:
+    ///   - str: The string to be scanned
+    ///   - pos: The start position to seart scanning from and the next
+    ///   position when we exit.
+    ///   - identifer: The validated identifier we extracted
+    static func parseIdentifier(_ str: String, _ pos: inout Int, _ identifer: inout String) -> Bool {
 
         if pos >= str.count {
             return false
@@ -72,9 +82,14 @@ class Utils {
         return true
     }
 
-    // Skip over anything that looks like a valid html entity (eg: &amp, &#123, &#nnn) etc...
-    //  Updates `pos` to character after the entity if matched
-    public static func skipHtmlEntity(_ str: String, _ pos: inout Int, _ entity: inout String) -> Bool {
+    /// Skip over anything that looks like a valid html entity (eg: &amp, &#123, &#nnn) etc...
+    ///  Updates `pos` to character after the entity if matched
+    ///
+    /// - Parameters:
+    ///   - str: The string being analysed
+    ///   - pos: The current position in the string
+    ///   - entity: The entity we found
+    static func skipHtmlEntity(_ str: String, _ pos: inout Int, _ entity: inout String) -> Bool {
         if str.charAt(at: pos) != "&" {
             return false
         }
@@ -138,13 +153,16 @@ class Utils {
         return true
     }
 
-    // Randomize a string using html entities;
-    public static func htmlRandomize(_ dest: inout String, _ str: String) {
-        //  Randomize
+    /// Randomize a string using html entities; This consists of taking plain text
+    /// and converting the characters to numeric values. Makes the text difficult to
+    /// extract by any page scraing tools.
+    /// - Parameters:
+    ///   - dest: The buffer the encoded address should be added to
+    ///   - str: The input ahhress
+    static func htmlRandomize(_ dest: inout String, _ str: String) {
         let rnd = RandomNumberGenerator()
 
         for ch in str {
-//            let x = Int.random(in: 0..<100)
             let x = (rnd.next()! % 99 + 1)
             if (x > 90) && (ch != "@") {
                 dest.append(ch)
@@ -163,11 +181,12 @@ class Utils {
         }
     }
 
-    // Like HtmlEncode, but don't escape &'s that look like html entities
-    public static func smartHtmlEncodeAmpsAndAngles(_ dest: inout String, _ str: String!) {
-        if str == nil {
-            return
-        }
+    /// Acts like HtmlEncode, but don't escape &'s that look like html entities
+    /// - Parameters:
+    ///   - dest: The buffer to add the results to
+    ///   - str: The string to be encoded
+    static func smartHtmlEncodeAmpsAndAngles(_ dest: inout String, _ str: String!) {
+        guard str != nil else { return }
 
         var index = 0
         while index < str.count {
@@ -197,8 +216,14 @@ class Utils {
         }
     }
 
-    // Like HtmlEncode, but only escape &'s that don't look like html entities
-    public static func smartHtmlEncodeAmps(_ dest: inout String, _ str: String, _ startOffset: Int, _ len: Int) {
+    //
+    /// Acts like HtmlEncode, but only escape &'s that don't look like html entities
+    /// - Parameters:
+    ///   - dest: The buffer to add the results to
+    ///   - str: The string to be encoded
+    ///   - startOffset: The offset in the string to encode
+    ///   - len: The length of the text to encode
+    static func smartHtmlEncodeAmps(_ dest: inout String, _ str: String, _ startOffset: Int, _ len: Int) {
 
         let end: Int = startOffset + len
 
@@ -224,19 +249,10 @@ class Utils {
         }
     }
 
-    // Check if a string is in an array of strings
-    public static func isInList(_ str: String, _ list: [String]) -> Bool {
-        for t in list {
-            if t == str {
-                return true
-            }
-        }
-        return false
-    }
-
-    // Check if a url is "safe" (we require urls start with valid protocol)
-    //  Definitely don't allow "javascript:" or any of it's encodings.
-    public static func isSafeUrl(_ url: String) -> Bool {
+    /// Check if a url is "safe" (we require urls start with valid protocol)
+    ///  Definitely don't allow "javascript:" or any of it's encodings.
+    /// - Parameter url: The URL to be tested (String)
+    static func isSafeUrl(_ url: String) -> Bool {
         let testUrl = url.lowercased()
         if !testUrl.hasPrefix("http://") && !testUrl.hasPrefix("https://") && !testUrl.hasPrefix("ftp://") {
             return false
@@ -244,8 +260,12 @@ class Utils {
         return true
     }
 
-    // Remove the markdown escapes from a string
-    public static func unescapeString(_ str: String, _ ExtraMode: Bool) -> String {
+    /// Remove the markdown escapes from a string
+    /// - Parameters:
+    ///   - str: The string to be un-escaped
+    ///   - ExtraMode: Indicator: did the caller specify ExtraMode - affects what is
+    ///         considered an escapable character.
+    static func unescapeString(_ str: String, _ ExtraMode: Bool) -> String {
 
         if str.firstIndex(of: "\\") == nil {
             return str
@@ -268,7 +288,7 @@ class Utils {
         return b
     }
 
-    public static func normalizeLineEnds(_ str: String) -> String! {
+    static func normalizeLineEnds(_ str: String) -> String! {
 
         let lineends: [Character] = ["\r", "\n"]
 
@@ -300,7 +320,7 @@ class Utils {
     //          *  slowed down some test documents by up to 300%.)
     //
     //  Check if a string looks like an email address
-    public static func isEmailAddress(_ str: String) -> Bool {
+    static func isEmailAddress(_ str: String) -> Bool {
 
         guard let atPos = str.firstIndex(of: "@") else { return false }
         guard let dotPos = str.lastIndex(of: ".") else { return false }
@@ -313,7 +333,7 @@ class Utils {
     }
 
     // Check if a string looks like a url
-    public static func isWebAddress(_ str: String) -> Bool {
+    static func isWebAddress(_ str: String) -> Bool {
         let testStr = str.lowercased()
         return testStr.hasPrefix("http://")
             || testStr.hasPrefix("https://")
@@ -322,7 +342,7 @@ class Utils {
     }
 
     // Check if a string is a valid HTML ID identifier
-    internal static func isValidHtmlID(_ str: String!) -> Bool {
+    static func isValidHtmlID(_ str: String!) -> Bool {
 
         if str == nil || str!.count == 0 {
             return false
@@ -354,7 +374,7 @@ class Utils {
     //             ^start           ^out end              ^end
     //
     //  Returns null if no header id
-    public static func stripHtmlID(_ str: String, _ start: Int, _ end: inout Int) -> String! {
+    static func stripHtmlID(_ str: String, _ start: Int, _ end: inout Int) -> String! {
 
         //  Skip trailing whitespace
         var pos: Int = end - 1
@@ -396,7 +416,7 @@ class Utils {
         return strID
     }
 
-    public static func isUrlFullyQualified(_ url: String) -> Bool {
+    static func isUrlFullyQualified(_ url: String) -> Bool {
 
         return url.contains("://") || url.lowercased().hasPrefix("mailto:") 
     }
