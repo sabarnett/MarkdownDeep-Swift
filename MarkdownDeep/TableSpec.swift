@@ -22,7 +22,7 @@
 
 import Foundation
 
-internal class TableSpec {
+class TableSpec {
     public var LeadingBar: Bool = false
     public var TrailingBar: Bool = false
     public var Columns: [ColumnAlignment] = []
@@ -31,7 +31,7 @@ internal class TableSpec {
 
     // MARK:- Public interface
 
-    public func parseRow(_ p: StringScanner) -> [String]! {
+    func parseRow(_ p: StringScanner) -> [String]! {
         p.skipLinespace()
         if p.eol {
             return nil
@@ -72,7 +72,7 @@ internal class TableSpec {
         return row
     }
 
-    public func render(_ m: Markdown!, _ b: inout String) {
+    func render(_ m: Markdown!, _ b: inout String) {
         b.append("<table>\n")
 
         if Headers.count > 0 {
@@ -92,7 +92,7 @@ internal class TableSpec {
         b.append("</table>\n")
     }
 
-    public static func parse(_ p: StringScanner!) -> TableSpec! {
+    static func parse(_ p: StringScanner!) -> TableSpec! {
         //  Leading line space allowed
         p.skipLinespace()
         //  Quick check for typical case
@@ -167,7 +167,7 @@ internal class TableSpec {
 
     // MARK:- Private helper methods
     
-    internal func renderRow(_ m: Markdown, _ b: inout String, _ row: [String], _ type: String) {
+    func renderRow(_ m: Markdown, _ b: inout String, _ row: [String], _ type: String) {
         for i in 0 ..< row.count {
             b.append("\t<")
             b.append(type)
@@ -190,5 +190,4 @@ internal class TableSpec {
             b.append(">\n")
         }
     }
-
 }

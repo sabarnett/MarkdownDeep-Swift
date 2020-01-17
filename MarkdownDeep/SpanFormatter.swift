@@ -22,7 +22,7 @@
 
 import Foundation
 
-internal class SpanFormatter : StringScanner {
+class SpanFormatter : StringScanner {
 
     var m_Markdown: Markdown
     internal var disableLinks: Bool = false
@@ -31,12 +31,12 @@ internal class SpanFormatter : StringScanner {
     // Constructor
     //  A reference to the owning markdown object is passed incase
     //  we need to check for formatting options
-    public init(_ m: Markdown) {
+    init(_ m: Markdown) {
         m_Markdown = m
         super.init()
     }
 
-    internal func formatParagraph(_ dest: inout String, _ str: String, _ start: Int, _ len: Int) {
+    func formatParagraph(_ dest: inout String, _ str: String, _ start: Int, _ len: Int) {
 
         //  Parse the string into a list of tokens
         tokenize(str, start, len)
@@ -76,12 +76,12 @@ internal class SpanFormatter : StringScanner {
         }
     }
 
-    internal func format(_ dest: inout String, _ str: String) {
+    func format(_ dest: inout String, _ str: String) {
         format(&dest, str, 0, str.count)
     }
 
     // Format a range in an input string and write it to the destination string builder.
-    internal func format(_ dest: inout String, _ str: String, _ start: Int, _ len: Int) {
+    func format(_ dest: inout String, _ str: String, _ start: Int, _ len: Int) {
 
         //  Parse the string into a list of tokens
         tokenize(str, start, len)
@@ -90,7 +90,7 @@ internal class SpanFormatter : StringScanner {
         render(&dest, str)
     }
 
-    internal func formatPlain(_ dest: inout String, _ str: String, _ start: Int, _ len: Int) {
+    func formatPlain(_ dest: inout String, _ str: String, _ start: Int, _ len: Int) {
 
         //  Parse the string into a list of tokens
         tokenize(str, start, len)
@@ -101,17 +101,17 @@ internal class SpanFormatter : StringScanner {
 
     // Format a string and return it as a new string
     //  (used in formatting the text of links)
-    internal func format(_ str: String) -> String {
+    func format(_ str: String) -> String {
         var dest = ""
         format(&dest, str, 0, str.count)
         return dest
     }
 
-    internal func makeID(_ str: String) -> String {
+    func makeID(_ str: String) -> String {
         return makeID(str, 0, str.count)
     }
 
-    internal func makeID(_ str: String, _ start: Int, _ len: Int) -> String {
+    func makeID(_ str: String, _ start: Int, _ len: Int) -> String {
         //  Parse the string into a list of tokens
         tokenize(str, start, len)
 
@@ -273,7 +273,7 @@ internal class SpanFormatter : StringScanner {
     }
 
     // Scan the input string, creating tokens for anything special
-    public func tokenize(_ str: String, _ start: Int, _ len: Int) {
+    private func tokenize(_ str: String, _ start: Int, _ len: Int) {
         //  Prepare
         super.reset(str, start, len)
 
@@ -435,7 +435,7 @@ internal class SpanFormatter : StringScanner {
         return
     }
 
-    func isEmphasisChar(_ ch: Character) -> Bool {
+    private func isEmphasisChar(_ ch: Character) -> Bool {
         return (ch == "_") || (ch == "*")
     }
 
@@ -451,7 +451,7 @@ internal class SpanFormatter : StringScanner {
     //          * Any unresolved emphasis marks are rendered unaltered as * or _
     //
     //  Create emphasis mark for sequences of '*' and '_' (part 1)
-    public func createEmphasisMark() -> Token! {
+    private func createEmphasisMark() -> Token! {
         //  Capture current state
         let ch = current
         //let altch = (ch == "*" ? "_" : "*")
@@ -512,7 +512,7 @@ internal class SpanFormatter : StringScanner {
 
     // Split mark token
     @discardableResult
-    public func splitMarkToken(_ tokens: inout [Token], _ marks: inout [Token], _ token: Token, _ position: Int) -> Token! {
+    private func splitMarkToken(_ tokens: inout [Token], _ marks: inout [Token], _ token: Token, _ position: Int) -> Token! {
 
         //  Create the new rhs token
         let tokenRhs: Token! = createToken(token.type, token.startOffset + position, token.length - position)
@@ -537,7 +537,7 @@ internal class SpanFormatter : StringScanner {
     }
 
     // Resolve emphasis marks (part 2)
-    public func resolveEmphasisMarks(_ tokens: inout [Token], _ marks: inout [Token]) {
+    private func resolveEmphasisMarks(_ tokens: inout [Token], _ marks: inout [Token]) {
         var bContinue: Bool = true
         while bContinue {
             bContinue = false
@@ -612,7 +612,7 @@ internal class SpanFormatter : StringScanner {
     }
 
     // Resolve emphasis marks (part 2)
-    public func resolveEmphasisMarks_classic(_ tokens: inout [Token], _ marks: inout [Token]) {
+    private func resolveEmphasisMarks_classic(_ tokens: inout [Token], _ marks: inout [Token]) {
         //  First pass, do <strong>
         var i = 0
         while (i < marks.count) {
@@ -796,7 +796,7 @@ internal class SpanFormatter : StringScanner {
     //         }
     //
     //  Process auto links eg: <google.com>
-     func processAutoLink() -> Token! {
+    private func processAutoLink() -> Token! {
         if disableLinks {
             return nil
         }
@@ -842,7 +842,7 @@ internal class SpanFormatter : StringScanner {
     }
 
     // Process [link] and ![image] directives
-     func processLinkOrImageOrFootnote() -> Token! {
+    private func processLinkOrImageOrFootnote() -> Token! {
         //  Link or image?
         let token_type: TokenType = (skipChar("!") ? TokenType.img : TokenType.link)
         //  Opening '['
@@ -976,7 +976,7 @@ internal class SpanFormatter : StringScanner {
     }
 
     // Process a ``` code span ```
-     func processCodeSpan() -> Token! {
+    private func processCodeSpan() -> Token! {
         let start: Int = position
         //  Count leading ticks
         var tickcount: Int = 0
@@ -1019,12 +1019,12 @@ internal class SpanFormatter : StringScanner {
     }
 
     // CreateToken - create or re-use a token object
-    internal func createToken(_ type: TokenType, _ data: Any) -> Token {
+    private func createToken(_ type: TokenType, _ data: Any) -> Token {
         return Token(type, data)
     }
 
     // FreeToken - return a token to the spare token pool
-    internal func freeToken(_ token: Token) {
+    private func freeToken(_ token: Token) {
         token.data = nil
         // Do nothing, we're notmaintaining a list of spare tokens
         // m_SpareTokens.Push(token)

@@ -22,7 +22,7 @@
 
 import Foundation
 
-internal class StringScanner {
+class StringScanner {
     var str: String!
     var start: Int = 0
     var pos: Int = 0
@@ -31,13 +31,13 @@ internal class StringScanner {
 
     // MARK:- Public Interface
 
-    public var input: String! {
+    var input: String! {
         get {
             return str
         }
     }
 
-    public var current: Character {
+    var current: Character {
         get {
             if (pos < start) || (pos >= end) || str == nil {
                 return "\0"
@@ -47,64 +47,64 @@ internal class StringScanner {
         }
     }
 
-    public var position: Int {
+    var position: Int {
         get { return pos }
         set { pos = newValue }
     }
 
-    public var remainder: String! {
+    var remainder: String! {
         get { return substring(position) }
     }
 
-    public var eof: Bool {
+    var eof: Bool {
         get {
             return pos >= end
         }
     }
 
-    public var eol: Bool {
+    var eol: Bool {
         get {
             return isLineEnd(current)
         }
     }
 
-    public var bof: Bool {
+    var bof: Bool {
         get {
             return pos == start
         }
     }
 
     // Constructor
-    public init() {
+    init() {
     }
 
     // Constructor
-    public init(_ str: String!) {
+    init(_ str: String!) {
         reset(str)
     }
 
     // Constructor
-    public init(_ str: String!, _ pos: Int) {
+    init(_ str: String!, _ pos: Int) {
         reset(str, pos)
     }
 
     // Constructor
-    public init(_ str: String!, _ pos: Int, _ len: Int) {
+    init(_ str: String!, _ pos: Int, _ len: Int) {
         reset(str, pos, len)
     }
 
     // Reset
-    public func reset(_ str: String!) {
+    func reset(_ str: String!) {
         reset(str, 0, (str != nil ? str.count : 0))
     }
 
     // Reset
-    public func reset(_ str: String!, _ pos: Int) {
+    func reset(_ str: String!, _ pos: Int) {
         reset(str, pos, (str != nil ? str.count - pos : 0))
     }
 
     // Reset
-    public func reset(_ str: String!, _ pos: Int, _ len: Int) {
+    func reset(_ str: String!, _ pos: Int, _ len: Int) {
         var resetStr = str
         var resetLen = len
         var resetPos = pos
@@ -125,12 +125,12 @@ internal class StringScanner {
     }
 
     // Skip to the end of file
-    public func skipToEof() {
+    func skipToEof() {
         pos = end
     }
 
     // Skip to the end of the current line
-    public func skipToEol() {
+    func skipToEol() {
         while pos < end {
             let ch = str!.charAt(at: pos)
             // Fudge. if the returned value is \r\n, we get that back. But that cannot
@@ -146,7 +146,7 @@ internal class StringScanner {
 
     // Skip if currently at a line end
     @discardableResult
-    public func skipEol() -> Bool {
+    func skipEol() -> Bool {
         let testStr = str!
 
         if pos < end {
@@ -171,14 +171,14 @@ internal class StringScanner {
     }
 
     // Skip to the next line
-    public func skipToNextLine() {
+    func skipToNextLine() {
         skipToEol()
         skipEol()
     }
 
     // Get the character at offset from current position
     //  Or, \0 if out of range
-    public func charAtOffset(_ offset: Int) -> Character {
+    func charAtOffset(_ offset: Int) -> Character {
         let index: Int = pos + offset
         if index < start {
             return "\0"
@@ -190,13 +190,13 @@ internal class StringScanner {
     }
 
     // Skip a number of characters
-    public func skipForward(_ characters: Int) {
+    func skipForward(_ characters: Int) {
         pos = pos + characters
     }
 
     // Skip a character if present
     @discardableResult
-    public func skipChar(_ ch: Character) -> Bool {
+    func skipChar(_ ch: Character) -> Bool {
         if current == ch {
             skipForward(1)
             return true
@@ -206,7 +206,7 @@ internal class StringScanner {
 
     // Skip a matching string
     @discardableResult
-    public func skipString(_ str: String!) -> Bool {
+    func skipString(_ str: String!) -> Bool {
         if doesMatch(str) {
             skipForward(str.count)
             return true
@@ -216,7 +216,7 @@ internal class StringScanner {
 
     // Skip a matching string
     @discardableResult
-    public func skipStringI(_ str: String!) -> Bool {
+    func skipStringI(_ str: String!) -> Bool {
         if doesMatchI(str) {
             skipForward(str.count)
             return true
@@ -226,7 +226,7 @@ internal class StringScanner {
 
     // Skip any whitespace
     @discardableResult
-    public func skipWhitespace() -> Bool {
+    func skipWhitespace() -> Bool {
 
         if !current.isWhitespace {
             return false
@@ -240,7 +240,7 @@ internal class StringScanner {
         return true
     }
 
-    public func skipEscapableChar(_ ExtraMode: Bool) {
+    func skipEscapableChar(_ ExtraMode: Bool) {
         if (current == "\\") && Utils.isEscapableChar(charAtOffset(1), ExtraMode) {
             skipForward(2)
         } else {
@@ -249,13 +249,13 @@ internal class StringScanner {
     }
 
     // Check if a character is space or tab
-    public func isLineSpace(_ ch: Character) -> Bool {
+    func isLineSpace(_ ch: Character) -> Bool {
         return (ch == " ") || (ch == "\t")
     }
 
     // Skip spaces and tabs
     @discardableResult
-    public func skipLinespace() -> Bool {
+    func skipLinespace() -> Bool {
         if !isLineSpace(current) {
             return false
         }
@@ -269,17 +269,17 @@ internal class StringScanner {
     }
 
     // Does current character match something
-    public func doesMatch(_ ch: Character) -> Bool {
+    func doesMatch(_ ch: Character) -> Bool {
         return current == ch
     }
 
     // Does character at offset match a character
-    public func doesMatch(_ offset: Int, _ ch: Character) -> Bool {
+    func doesMatch(_ offset: Int, _ ch: Character) -> Bool {
         return charAtOffset(offset) == ch
     }
 
     // Does current character match any of a range of characters
-    public func doesMatchAny(_ chars: [String]) -> Bool {
+    func doesMatchAny(_ chars: [String]) -> Bool {
         for i in 0 ... chars.count - 1 {
             if doesMatch(chars[i]) {
                 return true
@@ -289,7 +289,7 @@ internal class StringScanner {
     }
 
     // Does current character match any of a range of characters
-    public func doesMatchAny(_ offset: Int, _ chars: [Character]) -> Bool {
+    func doesMatchAny(_ offset: Int, _ chars: [Character]) -> Bool {
         for testChar in chars {
             if doesMatch(offset, testChar) {
                 return true
@@ -299,7 +299,7 @@ internal class StringScanner {
     }
 
     // Does current string position match a string
-    public func doesMatch(_ str: String!) -> Bool {
+    func doesMatch(_ str: String!) -> Bool {
         for i in 0 ... str.count - 1 {
             if str!.charAt(at: i) != charAtOffset(i) {
                 return false
@@ -309,20 +309,19 @@ internal class StringScanner {
     }
 
     // Does current string position match a string
-    public func doesMatchI(_ str: String) -> Bool {
+    func doesMatchI(_ str: String) -> Bool {
         let left = str.lowercased()
         let right = substring(position, str.count).lowercased()
         return left == right
-//        return String.Compare(str, Substring(position, str.count), true) == 0
     }
 
     // Extract a substring
-    public func substring(_ start: Int) -> String {
+    func substring(_ start: Int) -> String {
         return str.substring(from: start, for: end - start)
     }
 
     // Extract a substring
-    public func substring(_ start: Int, _ len: Int) -> String {
+    func substring(_ start: Int, _ len: Int) -> String {
         var length = len
         if (start + len) > end {
             length = end - start
@@ -331,7 +330,7 @@ internal class StringScanner {
     }
 
     // Scan forward for a character
-    public func find(_ ch: Character) -> Bool {
+    func find(_ ch: Character) -> Bool {
         if pos >= end {
             return false
         }
@@ -347,7 +346,7 @@ internal class StringScanner {
     }
 
     // Find any of a range of characters
-    public func findAny(_ chars: [Character]) -> Bool {
+    func findAny(_ chars: [Character]) -> Bool {
         if pos >= end {
             return false
         }
@@ -363,7 +362,7 @@ internal class StringScanner {
     }
 
     // Forward scan for a string
-    public func find(_ find: String) -> Bool {
+    func find(_ find: String) -> Bool {
         if pos >= end {
             return false
         }
@@ -378,7 +377,7 @@ internal class StringScanner {
     }
 
     // Forward scan for a string (case insensitive)
-    public func findI(_ find: String) -> Bool {
+    func findI(_ find: String) -> Bool {
         if pos >= end {
             return false
         }
@@ -391,12 +390,12 @@ internal class StringScanner {
     }
 
     // Mark current position
-    public func markPosition() {
+    func markPosition() {
         mark = pos
     }
 
     // Extract string from mark to current position
-    public func extract() -> String! {
+    func extract() -> String! {
         if mark >= pos {
             return ""
         }
@@ -404,7 +403,7 @@ internal class StringScanner {
     }
 
     // Skip an identifier
-    public func skipIdentifier(_ identifier: inout String!) -> Bool {
+    func skipIdentifier(_ identifier: inout String!) -> Bool {
         let savepos: Int = position
 
         if !Utils.parseIdentifier(self.str, &(pos), &(identifier)) {
@@ -418,7 +417,7 @@ internal class StringScanner {
         return true
     }
 
-    public func skipFootnoteID(_ id: inout String!) -> Bool {
+    func skipFootnoteID(_ id: inout String!) -> Bool {
         let savepos: Int = position
         skipLinespace()
         markPosition()
@@ -445,7 +444,7 @@ internal class StringScanner {
     }
 
     // Skip a Html entity (eg: &amp;)
-    public func skipHtmlEntity(_ entity: inout String!) -> Bool {
+    func skipHtmlEntity(_ entity: inout String!) -> Bool {
         let savepos: Int = position
         entity = ""                 // TEST FIX 01
 
@@ -460,11 +459,11 @@ internal class StringScanner {
     }
 
     // Check if a character marks end of line
-    public func isLineEnd(_ ch: Character) -> Bool {
+    func isLineEnd(_ ch: Character) -> Bool {
         return (ch == "\r") || (ch == "\n") || (ch == "\0")
     }
 
-     func isUrlChar(_ ch: String) -> Bool {
+    func isUrlChar(_ ch: String) -> Bool {
         switch ch {
             case "+", "&", "@", "#", "/", "%",
                 "?", "=", "~", "_", "|", "[",

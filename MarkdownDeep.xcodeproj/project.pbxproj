@@ -94,6 +94,7 @@
 		E8482D1123C8A172006C1677 /* line-endings-crlf.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482D0923C8A172006C1677 /* line-endings-crlf.html */; };
 		E8482D1223C8A172006C1677 /* line-endings-lf.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8482D0A23C8A172006C1677 /* line-endings-lf.txt */; };
 		E8482D1323C8A172006C1677 /* markdown-readme.html in Resources */ = {isa = PBXBuildFile; fileRef = E8482D0B23C8A172006C1677 /* markdown-readme.html */; };
+		E84AA38023D2191A009D285C /* MarkdownInHtmlMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84AA37F23D2191A009D285C /* MarkdownInHtmlMode.swift */; };
 		E84C8C7D23CF96BB00310FA5 /* HtmlHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84C8C7C23CF96BB00310FA5 /* HtmlHelper.swift */; };
 		E84CD6A723BE765B00F3D111 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84CD6A623BE765B00F3D111 /* StringExtensionTests.swift */; };
 		E84DD51A23CF6A52008D2697 /* BlockType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84DD51923CF6A52008D2697 /* BlockType.swift */; };
@@ -364,6 +365,7 @@
 		E8482D0923C8A172006C1677 /* line-endings-crlf.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "line-endings-crlf.html"; sourceTree = "<group>"; };
 		E8482D0A23C8A172006C1677 /* line-endings-lf.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "line-endings-lf.txt"; sourceTree = "<group>"; };
 		E8482D0B23C8A172006C1677 /* markdown-readme.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "markdown-readme.html"; sourceTree = "<group>"; };
+		E84AA37F23D2191A009D285C /* MarkdownInHtmlMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownInHtmlMode.swift; sourceTree = "<group>"; };
 		E84C8C7C23CF96BB00310FA5 /* HtmlHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlHelper.swift; sourceTree = "<group>"; };
 		E84CD6A623BE765B00F3D111 /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
 		E84DD51923CF6A52008D2697 /* BlockType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockType.swift; sourceTree = "<group>"; };
@@ -724,6 +726,7 @@
 				E84DD51B23CF6B2E008D2697 /* HtmlTagFlags.swift */,
 				E84DD51D23CF7273008D2697 /* TokenType.swift */,
 				E84DD51F23CF72F1008D2697 /* ColumnAlignment.swift */,
+				E84AA37F23D2191A009D285C /* MarkdownInHtmlMode.swift */,
 			);
 			path = EnumsAndFlags;
 			sourceTree = "<group>";
@@ -1301,6 +1304,7 @@
 				E87BEC8323AE9C3100CEA45E /* Abbreviation.swift in Sources */,
 				E8EECEC523B3CC72007DB50B /* Token.swift in Sources */,
 				E8442D6E23AFFBBD00F5F37C /* FootnodeReference.swift in Sources */,
+				E84AA38023D2191A009D285C /* MarkdownInHtmlMode.swift in Sources */,
 				E8442D6C23AFFAF300F5F37C /* LinkInfo.swift in Sources */,
 				E80D27C523C8F6A9009A8109 /* RandomNumberGenerator.swift in Sources */,
 				E84DD51A23CF6A52008D2697 /* BlockType.swift in Sources */,

@@ -28,37 +28,37 @@ class LinkDefinition {
     private var linkUrl: String!
     private var linkTitle: String!
 
-    public var id: String! {
+    var id: String! {
         get { return linkId }
         set { linkId = newValue }
     }
 
-    public var url: String! {
+    var url: String! {
         get { return linkUrl }
         set { linkUrl = newValue }
     }
 
-    public var title: String! {
+    var title: String! {
         get { return linkTitle }
         set { linkTitle = newValue }
     }
 
-    public init(_ id: String!) {
+    init(_ id: String!) {
         self.linkId = id
     }
 
-    public init(_ id: String!, _ url: String!) {
+    init(_ id: String!, _ url: String!) {
         self.linkId = id
         self.linkUrl = url
     }
 
-    public init(_ id: String!, _ url: String!, _ title: String!) {
+    init(_ id: String!, _ url: String!, _ title: String!) {
         self.linkId = id
         self.linkUrl = url
         self.linkTitle = title
     }
 
-    internal func renderLink(_ m: Markdown!, _ b: inout String, _ link_text: String!)
+    func renderLink(_ m: Markdown!, _ b: inout String, _ link_text: String!)
     {
         if url.lowercased().hasPrefix("mailto:") {
             b.append("<a href=\"")
@@ -97,7 +97,7 @@ class LinkDefinition {
         }
     }
 
-    internal func renderImg(_ m: Markdown!, _ b: inout String, _ alt_text: String!) {
+    func renderImg(_ m: Markdown!, _ b: inout String, _ alt_text: String!) {
         let tag: HtmlTag = HtmlTag(name: "img")
 
         //  encode url
@@ -123,13 +123,13 @@ class LinkDefinition {
     }
 
     // Parse a link definition from a string (used by test cases)
-    internal static func parseLinkDefinition(_ str: String, _ ExtraMode: Bool) -> LinkDefinition! {
+    static func parseLinkDefinition(_ str: String, _ ExtraMode: Bool) -> LinkDefinition! {
         let p = StringScanner(str)
         return LinkDefinition.parseLinkDefinitionInternal(p, ExtraMode)
     }
 
     // Parse a link definition
-    internal static func parseLinkDefinition(_ p: StringScanner, _ ExtraMode: Bool) -> LinkDefinition! {
+    static func parseLinkDefinition(_ p: StringScanner, _ ExtraMode: Bool) -> LinkDefinition! {
         let savepos: Int = p.position
         let l = parseLinkDefinitionInternal(p, ExtraMode)
         if l == nil {
@@ -138,7 +138,7 @@ class LinkDefinition {
         return l
     }
 
-    internal static func parseLinkDefinitionInternal(_ p: StringScanner, _ ExtraMode: Bool) -> LinkDefinition! {
+    static func parseLinkDefinitionInternal(_ p: StringScanner, _ ExtraMode: Bool) -> LinkDefinition! {
         //  Skip leading white space
         p.skipWhitespace()
         
@@ -174,7 +174,7 @@ class LinkDefinition {
     // Parse just the link target
     //  For reference link definition, this is the bit after "[id]: thisbit"
     //  For inline link, this is the bit in the parens: [link text](thisbit)
-    internal static func parseLinkTarget(_ p: StringScanner!, _ id: String!, _ ExtraMode: Bool) -> LinkDefinition! {
+    static func parseLinkTarget(_ p: StringScanner!, _ id: String!, _ ExtraMode: Bool) -> LinkDefinition! {
         //  Skip whitespace
         p.skipWhitespace()
         //  End of string?
@@ -295,4 +295,3 @@ class LinkDefinition {
         return r
     }
 }
-

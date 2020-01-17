@@ -22,7 +22,7 @@
 
 import Foundation
 
-public class HtmlTag
+class HtmlTag
 {
     private var tagName: String = ""
     private var tagAttributes = CSDictionary<String>()
@@ -38,15 +38,15 @@ public class HtmlTag
         get { return tagAttributes; }
     }
 
-    public func attribute(key: String) -> String! {
+    func attribute(key: String) -> String! {
         return tagAttributes[key]
     }
 
-    public func addAttribute(key: String, value: String) {
+    func addAttribute(key: String, value: String) {
         tagAttributes[key] = value
     }
 
-    public func removeAttribute(key: String) {
+    func removeAttribute(key: String) {
         tagAttributes.remove(itemWithKey: key)
     }
 
@@ -90,13 +90,13 @@ public class HtmlTag
     }
 
     // Check if this tag is safe
-    public func isSafe() -> Bool
+    func isSafe() -> Bool
     {
         return HtmlHelper.isTagSafe(tag: name, withAttributes: tagAttributes)
     }
 
     // Render opening tag (eg: <tag attr="value">
-    public func renderOpening(_ dest: inout String)
+    func renderOpening(_ dest: inout String)
     {
         dest.append("<");
         dest.append(name);
@@ -113,12 +113,12 @@ public class HtmlTag
     }
 
     // Render closing tag (eg: </tag>)
-    public func renderClosing(_ dest: inout String)
+    func renderClosing(_ dest: inout String)
     {
         dest.append("</\(name)>")
     }
 
-    public static func parse(str: String, pos: inout Int) -> HtmlTag?
+    static func parse(str: String, pos: inout Int) -> HtmlTag?
     {
         let sp: StringScanner = StringScanner(str, pos)
         let ret = parse(scanner: sp)
@@ -132,7 +132,7 @@ public class HtmlTag
         return nil;
     }
 
-    internal static func parse(scanner p: StringScanner) -> HtmlTag?
+    static func parse(scanner p: StringScanner) -> HtmlTag?
     {
         // Save position
         let savepos: Int = p.position;
@@ -148,7 +148,7 @@ public class HtmlTag
         return nil;
     }
 
-    private static func parseHelper(_ p: StringScanner) -> HtmlTag?
+    static func parseHelper(_ p: StringScanner) -> HtmlTag?
     {
         // Does it look like a tag?
         if (p.current != "<") {

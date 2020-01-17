@@ -27,36 +27,36 @@ class BlockProcessor : StringScanner {
      var m_parentType: BlockType!
      var m_bMarkdownInHtml: Bool = false
 
-    public init(_ m: Markdown, _ MarkdownInHtml: Bool) {
+    init(_ m: Markdown, _ MarkdownInHtml: Bool) {
         m_markdown = m
         m_bMarkdownInHtml = MarkdownInHtml
         m_parentType = BlockType.Blank
         super.init()
     }
 
-    internal init(_ m: Markdown, _ MarkdownInHtml: Bool, _ parentType: BlockType) {
+    init(_ m: Markdown, _ MarkdownInHtml: Bool, _ parentType: BlockType) {
         m_markdown = m
         m_bMarkdownInHtml = MarkdownInHtml
         m_parentType = parentType
         super.init()
     }
 
-    internal func process(_ str: String) -> [Block] {
+    func process(_ str: String) -> [Block] {
         return scanLines(str)
     }
 
-    internal func scanLines(_ str: String) -> [Block] {
+    func scanLines(_ str: String) -> [Block] {
         //  Reset string scanner
         reset(str)
         return scanLines()
     }
 
-    internal func scanLines(_ str: String, _ start: Int, _ len: Int) -> [Block] {
+    func scanLines(_ str: String, _ start: Int, _ len: Int) -> [Block] {
         reset(str, start, len)
         return scanLines()
     }
 
-    internal func startTable(_ spec: TableSpec, _ lines: inout [Block]) -> Bool {
+    func startTable(_ spec: TableSpec, _ lines: inout [Block]) -> Bool {
         //  Mustn't have more than 1 preceeding line
         if lines.count > 1 {
             return false
@@ -86,7 +86,7 @@ class BlockProcessor : StringScanner {
         return true
     }
 
-    internal func scanLines() -> [Block] {
+    func scanLines() -> [Block] {
         //  The final set of blocks will be collected here
         var blocks: [Block] = []
 
@@ -311,7 +311,7 @@ class BlockProcessor : StringScanner {
         return blocks
     }
 
-    internal func renderLines(_ lines: [Block]) -> String {
+    func renderLines(_ lines: [Block]) -> String {
         var b = ""
         for l in lines {
             b.append(l.buf!.substring(from: l.contentStart, for: l.contentLen))
@@ -320,7 +320,7 @@ class BlockProcessor : StringScanner {
         return b
     }
 
-    internal func collapseLines(_ blocks: inout [Block], _ lines: inout [Block]) {
+    func collapseLines(_ blocks: inout [Block], _ lines: inout [Block]) {
         //  Remove trailing blank lines
         while (lines.count > 0) && (lines[lines.count - 1].blockType == BlockType.Blank) {
             lines.removeLast()
@@ -720,7 +720,7 @@ class BlockProcessor : StringScanner {
         return BlockType.p
     }
 
-    internal func GetMarkdownMode(_ tag: HtmlTag!) -> MarkdownInHtmlMode {
+    func GetMarkdownMode(_ tag: HtmlTag!) -> MarkdownInHtmlMode {
         //  Get the markdown attribute
         let strMarkdownMode: String! = tag.attribute(key: "markdown")
         if !m_markdown.ExtraMode || strMarkdownMode == nil {
@@ -751,7 +751,7 @@ class BlockProcessor : StringScanner {
         return MarkdownInHtmlMode.Off
     }
 
-    internal func processMarkdownEnabledHtml(_ b: Block, _ openingTag: HtmlTag, _ mode: MarkdownInHtmlMode) -> Bool {
+    func processMarkdownEnabledHtml(_ b: Block, _ openingTag: HtmlTag, _ mode: MarkdownInHtmlMode) -> Bool {
         //  Current position is just after the opening tag
         //  Scan until we find matching closing tag
         let inner_pos: Int = position
@@ -842,7 +842,7 @@ class BlockProcessor : StringScanner {
     }
 
     // Scan from the current position to the end of the html section
-    internal func scanHtml(_ b: Block) -> Bool {
+    func scanHtml(_ b: Block) -> Bool {
         //  Remember start of html
         var posStartPiece: Int = self.position
 
@@ -1227,7 +1227,7 @@ class BlockProcessor : StringScanner {
         return item
     }
 
-     func processFencedCodeBlock(_ b: Block) -> Bool {
+     private func processFencedCodeBlock(_ b: Block) -> Bool {
         let delim = current
 
         //  Extract the fence
@@ -1294,13 +1294,4 @@ class BlockProcessor : StringScanner {
         b.children.append(child)
         return true
     }
-
-    internal enum MarkdownInHtmlMode {
-        case NA
-        case Block
-        case Span
-        case Deep
-        case Off
-    }
 }
-

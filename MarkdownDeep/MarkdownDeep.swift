@@ -30,7 +30,7 @@ open class ImageInfo {
     public var height: Int = 0
 }
 
-class Markdown {
+public class Markdown {
 //    public var QualifyUrl: Func<String!,String!>!
 //    public var GetImageSize: Func<ImageInfo!,Bool>!
 //    public var PrepareLink: Func<HtmlTag!,Bool>!
@@ -204,7 +204,7 @@ class Markdown {
         set { sectionFooter = newValue }
     }
 
-    internal var getSpanFormatter: SpanFormatter!
+    var getSpanFormatter: SpanFormatter!
     {
         get {
             if (m_SpanFormatter == nil) {
@@ -226,7 +226,7 @@ class Markdown {
         m_SpanFormatter = SpanFormatter(self)
     }
 
-    internal func processBlocks(_ str: String) -> [Block] {
+    func processBlocks(_ str: String) -> [Block] {
         //  Reset the list of link definitions
         m_LinkDefinitions.removeAll()
         m_Footnotes.removeAll()
@@ -245,7 +245,7 @@ class Markdown {
 
     /// Transform a string, returning the transformed string and a list of links
     /// contained in the output.
-    public func transform(_ str: String, _ definitions: inout CSDictionary<LinkDefinition>) -> String {
+    func transform(_ str: String, _ definitions: inout CSDictionary<LinkDefinition>) -> String {
 
         let blocks = processBlocks(str)
 
@@ -361,7 +361,7 @@ class Markdown {
     }
 
     // Override to qualify non-local image and link urls
-    open func onQualifyUrl(_ url: String!) -> String {
+    func onQualifyUrl(_ url: String!) -> String {
 
         // TODO: User override function call... can I support this?
 //        if QualifyUrl != nil {
@@ -411,7 +411,7 @@ class Markdown {
     }
 
     // Override to supply the size of an image
-    open func onGetImageSize(_ urlParam: String, _ TitledImage: Bool, _ width: inout Int, _ height: inout Int) -> Bool {
+    func onGetImageSize(_ urlParam: String, _ TitledImage: Bool, _ width: inout Int, _ height: inout Int) -> Bool {
         var url = urlParam;
 
         // TODO: Override for get image size. Can I support this?
@@ -466,7 +466,7 @@ class Markdown {
     }
 
     // Override to modify the attributes of a link
-    open func onPrepareLink(_ tag: HtmlTag) {
+    func onPrepareLink(_ tag: HtmlTag) {
 
         // TODO: PrepareLink override method - can I support this?
 //        if prepareLink != nil {
@@ -502,7 +502,7 @@ class Markdown {
     }
 
     // Override to modify the attributes of an image
-    open func onPrepareImage(_ tag: HtmlTag!, _ TitledImage: Bool) {
+    func onPrepareImage(_ tag: HtmlTag!, _ TitledImage: Bool) {
 
         // TODO: PrepareImage override - can I support this?
 //        if PrepareImage != nil {
@@ -521,25 +521,25 @@ class Markdown {
         tag.addAttribute(key: "src", value: onQualifyUrl(tag.attribute(key: "src")))
     }
 
-    open func onSectionHeader(_ dest: inout String, _ Index: Int) {
+    func onSectionHeader(_ dest: inout String, _ Index: Int) {
         if sectionHeader != nil {
             dest.append(sectionHeader.replacingOccurrences(of: "{0}", with: String(Index)))
         }
     }
 
-    open func onSectionHeadingSuffix(_ dest: inout String, _ Index: Int) {
+    func onSectionHeadingSuffix(_ dest: inout String, _ Index: Int) {
         if sectionHeadingSuffix != nil {
             dest.append(sectionHeadingSuffix.replacingOccurrences(of: "{0}", with: String(Index)))
         }
     }
 
-    open func onSectionFooter(_ dest: inout String, _ Index: Int) {
+    func onSectionFooter(_ dest: inout String, _ Index: Int) {
         if sectionFooter != nil {
             dest.append(sectionFooter.replacingOccurrences(of: "{0}", with: String(Index)))
         }
     }
 
-     func isSectionHeader(_ b: Block) -> Bool {
+    func isSectionHeader(_ b: Block) -> Bool {
         return (b.blockType == BlockType.h1)
             || (b.blockType == BlockType.h2)
             || (b.blockType == BlockType.h3)
@@ -547,7 +547,7 @@ class Markdown {
 
     // Split the markdown into sections, one section for each
     //  top level heading
-    public static func splitUserSections(_ markdown: String) -> [String] {
+    static func splitUserSections(_ markdown: String) -> [String] {
         //  Build blocks
         let md = MarkdownDeep.Markdown()
         md.UserBreaks = true
@@ -584,7 +584,7 @@ class Markdown {
     }
 
     // Join previously split sections back into one document
-    public static func joinUserSections(_ sections: [String]) -> String {
+    static func joinUserSections(_ sections: [String]) -> String {
         var sb = ""
         for i in 0 ... sections.count - 1 {
             if i > 0 {
@@ -605,7 +605,7 @@ class Markdown {
 
     // Split the markdown into sections, one section for each
     //  top level heading
-    public static func splitSections(_ markdown: String!) -> [String] {
+    static func splitSections(_ markdown: String!) -> [String] {
         //  Build blocks
         let md = MarkdownDeep.Markdown()
         //  Process blocks
@@ -631,7 +631,7 @@ class Markdown {
     }
 
     // Join previously split sections back into one document
-    public static func joinSections(_ sections: [String]) -> String {
+    static func joinSections(_ sections: [String]) -> String {
         var sb = ""
         for i in 0 ... sections.count - 1 {
             if i > 0 {
@@ -649,7 +649,7 @@ class Markdown {
         return sb
     }
 
-    internal func addFootnote(_ footnote: Block) {
+    func addFootnote(_ footnote: Block) {
         if let fnKey = footnote.data as? String {
             // add or update footnote depending on the key
             m_Footnotes[fnKey] = footnote
@@ -658,7 +658,7 @@ class Markdown {
     }
 
     // Look up a footnote, claim it and return it's index (or -1 if not found)
-    internal func claimFootnote(_ id: String) -> Int {
+    func claimFootnote(_ id: String) -> Int {
 
         if let fnDef = m_Footnotes[id] {
             m_UsedFootnotes.append(fnDef)
@@ -670,27 +670,27 @@ class Markdown {
     }
 
     // Add a link definition
-    internal func addLinkDefinition(_ link: LinkDefinition!) {
+    func addLinkDefinition(_ link: LinkDefinition!) {
         //  Store it
         m_LinkDefinitions[link.id] = link
     }
 
     // Get a link definition
-    public func getLinkDefinition(_ id: String!) -> LinkDefinition! {
+    func getLinkDefinition(_ id: String!) -> LinkDefinition! {
         guard id != nil else { return nil }
         return m_LinkDefinitions[id]
     }
 
-    internal func addAbbreviation(_ abbr: String, _ title: String) {
+    func addAbbreviation(_ abbr: String, _ title: String) {
         m_AbbreviationMap[abbr] = Abbreviation(abbr: abbr, title: title)
     }
 
-    internal func getAbbreviations() -> [Abbreviation] {
+    func getAbbreviations() -> [Abbreviation] {
         return m_AbbreviationList
     }
 
     // HtmlEncode a range in a string to a specified string builder
-    internal func htmlEncode(_ dest: inout String, _ str: String, _ start: Int, _ len: Int) {
+    func htmlEncode(_ dest: inout String, _ str: String, _ start: Int, _ len: Int) {
         m_StringScanner.reset(str, start, len)
         let p = m_StringScanner
         while !p.eof {
@@ -712,7 +712,7 @@ class Markdown {
     }
 
     // HtmlEncode a string, also converting tabs to spaces (used by CodeBlocks)
-    internal func htmlEncodeAndConvertTabsToSpaces(_ dest: inout String, _ str: String, _ start: Int, _ len: Int) {
+    func htmlEncodeAndConvertTabsToSpaces(_ dest: inout String, _ str: String, _ start: Int, _ len: Int) {
         m_StringScanner.reset(str, start, len)
         let p = m_StringScanner
         var pos: Int = 0
@@ -747,11 +747,11 @@ class Markdown {
             pos += 1
         }}
 
-    internal func makeUniqueHeaderID(_ strHeaderText: String) -> String {
+    func makeUniqueHeaderID(_ strHeaderText: String) -> String {
         return makeUniqueHeaderID(strHeaderText, 0, strHeaderText.count)
     }
 
-    internal func makeUniqueHeaderID(_ strHeaderText: String, _ startOffset: Int, _ length: Int) -> String! {
+    func makeUniqueHeaderID(_ strHeaderText: String, _ startOffset: Int, _ length: Int) -> String! {
         if !AutoHeadingIDs {
             return nil
         }
@@ -787,7 +787,7 @@ class Markdown {
     //          *
     //          * Note, care should be taken when using this string builder to not
     //          * call out to another function that also uses it.
-    internal func getStringBuilder() -> String {
+    func getStringBuilder() -> String {
         m_StringBuilder = ""
         return m_StringBuilder
     }
