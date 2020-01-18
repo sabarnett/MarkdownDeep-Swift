@@ -1,6 +1,6 @@
 //
 //  MarkdownDeep for SWIFT
-//     Copyright (C) 2019 Steven Barnett
+//     Copyright (C) 2020 Steven Barnett
 //
 //  This is a port of the C# version of MarkdownDeep...
 //

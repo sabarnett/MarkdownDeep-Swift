@@ -1,6 +1,6 @@
 //
 //  MarkdownDeep for SWIFT
-//     Copyright (C) 2019 Steven Barnett
+//     Copyright (C) 2020 Steven Barnett
 //
 //  This is a port of the C# version of MarkdownDeep...
 //
@@ -19,7 +19,6 @@
 //   either express or implied. See the License for the specific
 //   language governing permissions and limitations under the License.
 //
-
 import Foundation
 
 class Token: CustomStringConvertible, Equatable {
