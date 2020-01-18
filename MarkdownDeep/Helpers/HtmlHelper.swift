@@ -129,5 +129,127 @@ struct HtmlHelper {
         // Passed all white list checks, allow it
         return true;
     }
-}
 
+    static func parseTag(_ p: StringScanner) -> HtmlTag?
+    {
+        // Does it look like a tag?
+        if (p.current != "<") {
+            return nil;
+        }
+
+        // Skip '<'
+        p.skipForward(1);
+
+        // Is it a comment?
+        if (p.skipString("!--"))
+        {
+            p.markPosition()
+
+            if (p.find("-->"))
+            {
+                let t: HtmlTag = HtmlTag(name: "!")
+                t.addAttribute(key: "content", value: p.extract())
+                t.tagClosed = true
+                p.skipForward(3)
+                return t
+            }
+        }
+
+        // Is it a closing tag eg: </div>
+        let bClosing: Bool = p.skipChar("/")
+
+        // Get the tag name
+        var tagName: String? = "";
+        if (!p.skipIdentifier(&tagName)) {
+            return nil
+        }
+
+        // Probably a tag, create the HtmlTag object now
+        let tag = HtmlTag(name: tagName!)
+        tag.tagClosing = bClosing
+
+        // If it's a closing tag, no attributes
+        if (bClosing)
+        {
+            if (p.current != ">") {
+                return nil
+            }
+
+            p.skipForward(1)
+            return tag
+        }
+
+        while (!p.eof)
+        {
+            // Skip whitespace
+            p.skipWhitespace();
+
+            // Check for closed tag eg: <hr />
+            if (p.skipString("/>"))
+            {
+                tag.tagClosed = true
+                return tag
+            }
+
+            // End of tag?
+            if (p.skipChar(">")) {
+                return tag
+            }
+
+            // attribute name
+            var attributeName: String? = ""
+            if (!p.skipIdentifier(&attributeName)) {
+                return nil
+            }
+
+            // Skip whitespace
+            p.skipWhitespace();
+
+            // Skip equal sign
+            if (p.skipChar("="))
+            {
+                // Skip whitespace
+                p.skipWhitespace();
+
+                // Optional quotes
+                if (p.skipChar("\""))
+                {
+                    // Scan the value
+                    p.markPosition();
+                    if (!p.find("\"")) {
+                        return nil;
+                    }
+
+                    // Store the value
+                    tag.addAttribute(key: attributeName!, value: p.extract());
+
+                    // Skip closing quote
+                    p.skipForward(1);
+                }
+                else
+                {
+                    // Scan the value
+                    p.markPosition();
+                    while !p.eof
+                        && !p.current.isWhitespace
+                        && (p.current != ">")
+                        && (p.current != "/") {
+                        p.skipForward(1)
+                    }
+
+                    if (!p.eof)
+                    {
+                        // Store the value
+                        tag.addAttribute(key: attributeName!, value: p.extract())
+                    }
+                }
+            }
+            else
+            {
+                tag.addAttribute(key: attributeName!, value: "")
+            }
+        }
+
+        return nil;
+    }
+}
