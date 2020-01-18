@@ -45,18 +45,18 @@ class BlockProcessor : StringScanner {
         return scanLines(str)
     }
 
-    func scanLines(_ str: String) -> [Block] {
+    private func scanLines(_ str: String) -> [Block] {
         //  Reset string scanner
         reset(str)
         return scanLines()
     }
 
-    func scanLines(_ str: String, _ start: Int, _ len: Int) -> [Block] {
+    private func scanLines(_ str: String, _ start: Int, _ len: Int) -> [Block] {
         reset(str, start, len)
         return scanLines()
     }
 
-    func startTable(_ spec: TableSpec, _ lines: inout [Block]) -> Bool {
+    private func startTable(_ spec: TableSpec, _ lines: inout [Block]) -> Bool {
         //  Mustn't have more than 1 preceeding line
         if lines.count > 1 {
             return false
@@ -86,7 +86,7 @@ class BlockProcessor : StringScanner {
         return true
     }
 
-    func scanLines() -> [Block] {
+    private func scanLines() -> [Block] {
         //  The final set of blocks will be collected here
         var blocks: [Block] = []
 
@@ -311,7 +311,7 @@ class BlockProcessor : StringScanner {
         return blocks
     }
 
-    func renderLines(_ lines: [Block]) -> String {
+    private func renderLines(_ lines: [Block]) -> String {
         var b = ""
         for l in lines {
             b.append(l.buf!.substring(from: l.contentStart, for: l.contentLen))
@@ -320,7 +320,7 @@ class BlockProcessor : StringScanner {
         return b
     }
 
-    func collapseLines(_ blocks: inout [Block], _ lines: inout [Block]) {
+    private func collapseLines(_ blocks: inout [Block], _ lines: inout [Block]) {
         //  Remove trailing blank lines
         while (lines.count > 0) && (lines[lines.count - 1].blockType == BlockType.Blank) {
             lines.removeLast()
@@ -405,7 +405,7 @@ class BlockProcessor : StringScanner {
         }
     }
 
-     func evaluateLine() -> Block {
+    private func evaluateLine() -> Block {
         //  Create a block
         let b: Block = Block()
 
@@ -435,7 +435,7 @@ class BlockProcessor : StringScanner {
         return b
     }
 
-     func evaluateLine(_ b: Block) -> BlockType {
+    private func evaluateLine(_ b: Block) -> BlockType {
         //  Empty line?
         if eol {
             return BlockType.Blank
@@ -720,7 +720,7 @@ class BlockProcessor : StringScanner {
         return BlockType.p
     }
 
-    func GetMarkdownMode(_ tag: HtmlTag!) -> MarkdownInHtmlMode {
+    private func GetMarkdownMode(_ tag: HtmlTag!) -> MarkdownInHtmlMode {
         //  Get the markdown attribute
         let strMarkdownMode: String! = tag.attribute(key: "markdown")
         if !m_markdown.ExtraMode || strMarkdownMode == nil {
@@ -751,7 +751,7 @@ class BlockProcessor : StringScanner {
         return MarkdownInHtmlMode.Off
     }
 
-    func processMarkdownEnabledHtml(_ b: Block, _ openingTag: HtmlTag, _ mode: MarkdownInHtmlMode) -> Bool {
+    private func processMarkdownEnabledHtml(_ b: Block, _ openingTag: HtmlTag, _ mode: MarkdownInHtmlMode) -> Bool {
         //  Current position is just after the opening tag
         //  Scan until we find matching closing tag
         let inner_pos: Int = position
@@ -840,9 +840,14 @@ class BlockProcessor : StringScanner {
         //  Missing closing tag(s).
         return false
     }
+}
+
+// MARK:- Private scanner functions
+
+extension BlockProcessor {
 
     // Scan from the current position to the end of the html section
-    func scanHtml(_ b: Block) -> Bool {
+    private func scanHtml(_ b: Block) -> Bool {
         //  Remember start of html
         var posStartPiece: Int = self.position
 
@@ -1013,6 +1018,11 @@ class BlockProcessor : StringScanner {
         }//  Rewind to just after the tag
         return false
     }
+}
+
+// MARK:- Private builder functions
+
+extension BlockProcessor {
 
     // * Spacing
     //          *
@@ -1167,7 +1177,7 @@ class BlockProcessor : StringScanner {
         return item
     }
 
-     func buildDefinitionLists(_ blocks: inout [Block]) {
+    private func buildDefinitionLists(_ blocks: inout [Block]) {
         var currentList: Block! = nil
         var i = -1
         while i < blocks.count - 1 {
@@ -1227,7 +1237,7 @@ class BlockProcessor : StringScanner {
         return item
     }
 
-     private func processFencedCodeBlock(_ b: Block) -> Bool {
+    private func processFencedCodeBlock(_ b: Block) -> Bool {
         let delim = current
 
         //  Extract the fence
@@ -1294,4 +1304,5 @@ class BlockProcessor : StringScanner {
         b.children.append(child)
         return true
     }
+
 }
