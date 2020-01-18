@@ -21,24 +21,23 @@
 //
 import Foundation
 
-class Block : CustomStringConvertible
+class Block
 {
-
     var blockType: BlockType = BlockType.Blank
     var buf: String?
     var contentStart: Int = 0
     var contentLen: Int = 0
     var lineStart: Int = 0
     var lineLen: Int = 0
-    var data: Any?          // content depends on block type
+    var data: Any?                      // content depends on block type
     var children: Array<Block> = []
 
-    init() {
-    }
 
-    init(type: BlockType) {
-        blockType = type
-    }
+    // MARK:- Constructors and initialisers
+
+    init() { }
+
+    init(type: BlockType) { blockType = type }
 
     init(_ copyFrom: Block) {
         blockType = copyFrom.blockType
@@ -52,15 +51,18 @@ class Block : CustomStringConvertible
         }
     }
 
-    var description: String {
-        get {
-            if let text = content {
-                return blockType.description + " - " + text
-            }
-
-            return blockType.description + " - <null>"
-        }
+    func copyFrom(other: Block) -> Block
+    {
+        blockType = other.blockType
+        buf = other.buf
+        contentStart = other.contentStart
+        contentLen = other.contentLen
+        lineStart = other.lineStart
+        lineLen = other.lineLen
+        return self
     }
+
+    // MARK:- public properties
 
     var content: String?
     {
@@ -87,14 +89,6 @@ class Block : CustomStringConvertible
             return contentStart == -1
                 ? buf
                 : buf!.substring(from: contentStart, for: contentLen)
-        }
-    }
-
-    var LineStart: Int
-    {
-        get
-        {
-            return lineStart == 0 ? contentStart : lineStart
         }
     }
 
@@ -126,6 +120,12 @@ class Block : CustomStringConvertible
         }
     }
 
+    // MARK:- Publically available methods
+
+    /// Render the child objects of this block in HTML format
+    /// - Parameters:
+    ///   - m: A reference to the Markdown object
+    ///   - b: The buffer to append the output to
     func renderChildren(_ m: Markdown, _ b: inout String)
     {
         for block in children {
@@ -133,6 +133,10 @@ class Block : CustomStringConvertible
         }
     }
 
+    /// Render the child objects of this block as plain text
+    /// - Parameters:
+    ///   - m: A reference to the Markdown object
+    ///   - b: The buffer to append the output to
     func renderChildrenPlain(_ m: Markdown, _ b: inout String)
     {
         for block in children {
@@ -140,30 +144,10 @@ class Block : CustomStringConvertible
         }
     }
 
-    func resolveHeaderID(_ m: Markdown) -> String!
-    {
-        // Already resolved?
-        if let resolvedData = data as? String {
-            return resolvedData
-        }
-
-        // Approach 1 - PHP Markdown Extra style header id
-        var end = contentEnd;
-        var id: String? = Utils.stripHtmlID(buf!, contentStart, &end);
-        if (id != nil)
-        {
-            contentEnd = end;
-        }
-        else
-        {
-            // Approach 2 - pandoc style header id
-            id = m.makeUniqueHeaderID(buf!, contentStart, contentLen);
-        }
-
-        self.data = id;
-        return id;
-    }
-
+    /// Render this block (and possibly it's children) in HTML format
+    /// - Parameters:
+    ///   - m: A reference to the Markdown object
+    ///   - b: The buffer to ppend the output to
     func render(_ m: Markdown, _ b: inout String)
     {
         switch (blockType)
@@ -178,27 +162,9 @@ class Block : CustomStringConvertible
                 m.getSpanFormatter.format(&b, buf!, contentStart, contentLen);
                 b.append("\n")
 
-            case BlockType.h1,
-                BlockType.h2,
-                BlockType.h3,
-                BlockType.h4,
-                BlockType.h5,
-                BlockType.h6:
-                if (m.ExtraMode && !m.SafeMode)
-                {
-                    b.append("<" + blockType.description);
-                    if let hdrId = resolveHeaderID(m) {
-                        b.append(" id=\"\(hdrId)\">")
-                    } else {
-                        b.append(">")
-                    }
-                }
-                else
-                {
-                    b.append("<\(blockType.description)>")
-                }
-                m.getSpanFormatter.format(&b, buf!, contentStart, contentLen)
-                b.append("</\(blockType.description)>\n")
+            case BlockType.h1, BlockType.h2, BlockType.h3,
+                BlockType.h4, BlockType.h5, BlockType.h6:
+                renderHeading(m: m, b: &b)
 
             case BlockType.hr:
                 b.append("<hr />\n")
@@ -207,45 +173,17 @@ class Block : CustomStringConvertible
             case BlockType.user_break:
                 return
 
-            case BlockType.ol_li,
-                 BlockType.ul_li:
-                b.append("<li>")
-                m.getSpanFormatter.format(&b, buf!, contentStart, contentLen)
-                b.append("</li>\n")
+            case BlockType.ol_li, BlockType.ul_li:
+                renderListItem(m: m, b: &b)
 
             case BlockType.dd:
-                b.append("<dd>")
-                if (children.count != 0)
-                {
-                    b.append("\n")
-                    renderChildren(m, &b)
-                }
-                else {
-                    m.getSpanFormatter.format(&b, buf!, contentStart, contentLen)
-                }
-                b.append("</dd>\n")
+                renderDefinitionDescription(m: m, b: &b)
 
             case BlockType.dt:
-                if (children.count == 0)
-                {
-                    for l in content!.split(separator: "\n")
-                    {
-                        b.append("<dt>")
-                        m.getSpanFormatter.format(&b, String(l).trimWhitespace())
-                        b.append("</dt>\n")
-                    }
-                }
-                else
-                {
-                    b.append("<dt>\n")
-                    renderChildren(m, &b)
-                    b.append("</dt>\n")
-                }
+                renderDefinitionTerm(m: m, b: &b)
 
             case BlockType.dl:
-                b.append("<dl>\n")
-                renderChildren(m, &b)
-                b.append("</dl>\n")
+                renderDefinitionList(m: m, b: &b)
                 return
 
             case BlockType.html:
@@ -257,76 +195,30 @@ class Block : CustomStringConvertible
                 return
 
             case BlockType.codeblock:
-
-                // TODO: FormatCodeBlock is a call back and we don't support those yet
-//                if (m.FormatCodeBlock != nil)
-//                {
-//                    var sb = ""
-//                    for line in children {
-//                        m.htmlEncodeAndConvertTabsToSpaces(&sb, line.buf!, line.contentStart, line.contentLen)
-//                        sb.append("\n")
-//                    }
-//                    b.append(m.FormatCodeBlock(m, sb))
-//                }
-//                else
-//                {
-                    b.append("<pre><code>")
-                    for line in children {
-                        m.htmlEncodeAndConvertTabsToSpaces(&b, line.buf!, line.contentStart, line.contentLen)
-                        b.append("\n")
-                    }
-                    b.append("</code></pre>\n")
-//                }
-                return;
+                renderCodeBlock(m: m, b: &b)
+                return
 
             case BlockType.quote:
-                b.append("<blockquote>\n")
-                renderChildren(m, &b)
-                b.append("</blockquote>\n")
+                renderBlockQuote(m: m, b: &b)
                 return
 
             case BlockType.li:
-                b.append("<li>\n")
-                renderChildren(m, &b)
-                b.append("</li>\n")
+                renderChildItems(m: m, b: &b)
                 return
 
             case BlockType.ol:
-                b.append("<ol>\n")
-                renderChildren(m, &b)
-                b.append("</ol>\n")
+                renderOrderedList(m: m, b: &b)
                 return
 
             case BlockType.ul:
-                b.append("<ul>\n")
-                renderChildren(m, &b)
-                b.append("</ul>\n")
+                renderUnorderedList(m: m, b: &b)
                 return
 
             case BlockType.HtmlTag:
-                if let tag = data as? HtmlTag {
-                    // Prepare special tags
-                    let name = tag.name.lowercased()
-                    if (name == "a")
-                    {
-                        m.onPrepareLink(tag);
-                    }
-                    else if (name == "img")
-                    {
-                        m.onPrepareImage(tag, m.RenderingTitledImage);
-                    }
-
-                    tag.renderOpening(&b)
-                    b.append("\n")
-                    renderChildren(m, &b)
-                    tag.renderClosing(&b)
-                    b.append("\n")
-                }
-
+                renderHtmlTag(m: m, b: &b)
                 return
 
-            case BlockType.Composite,
-                 BlockType.footnote:
+            case BlockType.Composite, BlockType.footnote:
                 renderChildren(m, &b)
                 return
 
@@ -336,17 +228,7 @@ class Block : CustomStringConvertible
                 }
 
             case BlockType.p_footnote:
-                b.append("<p>")
-                if (contentLen > 0)
-                {
-                    m.getSpanFormatter.format(&b, buf!, contentStart, contentLen);
-                    b.append("&nbsp;")
-                }
-
-                if let dataString = data as? String {
-                    b.append(dataString)
-                }
-                b.append("</p>\n")
+                renderFootnote(m: m, b: &b)
 
             default:
                 b.append("<\(blockType.description)>")
@@ -355,6 +237,10 @@ class Block : CustomStringConvertible
         }
     }
 
+    /// Render the block (and possibly its children) in plain text
+    /// - Parameters:
+    ///   - m: A reference to the markdown object
+    ///   - b: The buffer to append the output to
     func renderPlain(_ m: Markdown, _ b: inout String)
     {
         switch (blockType)
@@ -362,8 +248,7 @@ class Block : CustomStringConvertible
             case BlockType.Blank:
                 return;
 
-            case BlockType.p,
-                 BlockType.span:
+            case BlockType.p, BlockType.span:
                 m.getSpanFormatter.formatPlain(&b, buf!, contentStart, contentLen)
                 b.append(" ")
                 break
@@ -436,15 +321,179 @@ class Block : CustomStringConvertible
         contentLen = lineLen;
     }
 
-    func copyFrom(other: Block) -> Block
+    // MARK:- Private helper functons
+
+    private func resolveHeaderID(_ m: Markdown) -> String!
     {
-        blockType = other.blockType
-        buf = other.buf
-        contentStart = other.contentStart
-        contentLen = other.contentLen
-        lineStart = other.lineStart
-        lineLen = other.lineLen
-        return self
+        // Already resolved?
+        if let resolvedData = data as? String {
+            return resolvedData
+        }
+
+        // Approach 1 - PHP Markdown Extra style header id
+        var end = contentEnd;
+        var id: String? = Utils.stripHtmlID(buf!, contentStart, &end);
+        if (id != nil)
+        {
+            contentEnd = end;
+        }
+        else
+        {
+            // Approach 2 - pandoc style header id
+            id = m.makeUniqueHeaderID(buf!, contentStart, contentLen);
+        }
+
+        self.data = id;
+        return id;
+    }
+
+}
+
+// MARK:- CustomStringConvertible implementaton
+
+extension Block : CustomStringConvertible {
+    var description: String {
+        get {
+            if let text = content {
+                return blockType.description + " - " + text
+            }
+
+            return blockType.description + " - <null>"
+        }
     }
 }
 
+// MARK:- Helper methods for rendering content
+
+extension Block {
+    private func renderListItem(m: Markdown, b: inout String) {
+        b.append("<li>")
+        m.getSpanFormatter.format(&b, buf!, contentStart, contentLen)
+        b.append("</li>\n")
+    }
+
+    private func renderHeading(m: Markdown, b: inout String) {
+        if (m.ExtraMode && !m.SafeMode)
+        {
+            b.append("<" + blockType.description);
+            if let hdrId = resolveHeaderID(m) {
+                b.append(" id=\"\(hdrId)\">")
+            } else {
+                b.append(">")
+            }
+        }
+        else
+        {
+            b.append("<\(blockType.description)>")
+        }
+        m.getSpanFormatter.format(&b, buf!, contentStart, contentLen)
+        b.append("</\(blockType.description)>\n")
+    }
+
+    private func renderDefinitionDescription(m: Markdown, b: inout String) {
+        b.append("<dd>")
+        if (children.count != 0)
+        {
+            b.append("\n")
+            renderChildren(m, &b)
+        }
+        else {
+            m.getSpanFormatter.format(&b, buf!, contentStart, contentLen)
+        }
+        b.append("</dd>\n")
+    }
+
+    private func renderDefinitionTerm(m: Markdown, b: inout String) {
+        if (children.count == 0)
+        {
+            for l in content!.split(separator: "\n")
+            {
+                b.append("<dt>")
+                m.getSpanFormatter.format(&b, String(l).trimWhitespace())
+                b.append("</dt>\n")
+            }
+        }
+        else
+        {
+            b.append("<dt>\n")
+            renderChildren(m, &b)
+            b.append("</dt>\n")
+        }
+    }
+
+    private func renderDefinitionList(m: Markdown, b: inout String) {
+        b.append("<dl>\n")
+        renderChildren(m, &b)
+        b.append("</dl>\n")
+    }
+
+    private func renderCodeBlock(m: Markdown, b: inout String) {
+        b.append("<pre><code>")
+        for line in children {
+            m.htmlEncodeAndConvertTabsToSpaces(&b, line.buf!, line.contentStart, line.contentLen)
+            b.append("\n")
+        }
+        b.append("</code></pre>\n")
+    }
+
+    private func renderBlockQuote(m: Markdown, b: inout String) {
+        b.append("<blockquote>\n")
+        renderChildren(m, &b)
+        b.append("</blockquote>\n")
+    }
+
+    private func renderHtmlTag(m: Markdown, b: inout String) {
+
+        if let tag = data as? HtmlTag {
+            // Prepare special tags
+            let name = tag.name.lowercased()
+            if (name == "a")
+            {
+                m.onPrepareLink(tag);
+            }
+            else if (name == "img")
+            {
+                m.onPrepareImage(tag, m.RenderingTitledImage);
+            }
+
+            tag.renderOpening(&b)
+            b.append("\n")
+            renderChildren(m, &b)
+            tag.renderClosing(&b)
+            b.append("\n")
+        }
+    }
+
+    private func renderChildItems(m: Markdown, b: inout String) {
+        b.append("<li>\n")
+        renderChildren(m, &b)
+        b.append("</li>\n")
+    }
+
+    private func renderOrderedList(m: Markdown, b: inout String) {
+        b.append("<ol>\n")
+        renderChildren(m, &b)
+        b.append("</ol>\n")
+    }
+
+    private func renderUnorderedList(m: Markdown, b: inout String) {
+        b.append("<ul>\n")
+        renderChildren(m, &b)
+        b.append("</ul>\n")
+    }
+
+    private func renderFootnote(m: Markdown, b: inout String) {
+        b.append("<p>")
+        if (contentLen > 0)
+        {
+            m.getSpanFormatter.format(&b, buf!, contentStart, contentLen);
+            b.append("&nbsp;")
+        }
+
+        if let dataString = data as? String {
+            b.append(dataString)
+        }
+        b.append("</p>\n")
+
+    }
+}
