@@ -130,3 +130,4 @@ struct HtmlHelper {
         return true;
     }
 }
+

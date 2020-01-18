@@ -11,6 +11,11 @@
 		E810256123CDF1630035601A /* CSDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E810256023CDF1630035601A /* CSDictionary.swift */; };
 		E829B76F23C241C3002BA727 /* TestDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829B76E23C241C3002BA727 /* TestDefinition.swift */; };
 		E829B77123C24210002BA727 /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829B77023C24210002BA727 /* TestHelper.swift */; };
+		E834B82B23D38D9900533E2F /* HtmlScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E834B82A23D38D9900533E2F /* HtmlScanner.swift */; };
+		E834B82D23D390BC00533E2F /* FootnoteBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E834B82C23D390BC00533E2F /* FootnoteBuilder.swift */; };
+		E834B82F23D3923C00533E2F /* ListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E834B82E23D3923C00533E2F /* ListBuilder.swift */; };
+		E834B83123D3938900533E2F /* DefinitionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E834B83023D3938900533E2F /* DefinitionBuilder.swift */; };
+		E834B83323D394E300533E2F /* FencedCodeBlocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E834B83223D394E300533E2F /* FencedCodeBlocks.swift */; };
 		E8353C1823BFCEEF00602189 /* HeadingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8353C1723BFCEEF00602189 /* HeadingTests.swift */; };
 		E83717A323C620EC0010AD7C /* SpanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83717A223C620EC0010AD7C /* SpanTests.swift */; };
 		E83717BE23C621060010AD7C /* Emphasis.html in Resources */ = {isa = PBXBuildFile; fileRef = E83717A423C621050010AD7C /* Emphasis.html */; };
@@ -282,6 +287,11 @@
 		E810256023CDF1630035601A /* CSDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSDictionary.swift; sourceTree = "<group>"; };
 		E829B76E23C241C3002BA727 /* TestDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDefinition.swift; sourceTree = "<group>"; };
 		E829B77023C24210002BA727 /* TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelper.swift; sourceTree = "<group>"; };
+		E834B82A23D38D9900533E2F /* HtmlScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlScanner.swift; sourceTree = "<group>"; };
+		E834B82C23D390BC00533E2F /* FootnoteBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootnoteBuilder.swift; sourceTree = "<group>"; };
+		E834B82E23D3923C00533E2F /* ListBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBuilder.swift; sourceTree = "<group>"; };
+		E834B83023D3938900533E2F /* DefinitionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionBuilder.swift; sourceTree = "<group>"; };
+		E834B83223D394E300533E2F /* FencedCodeBlocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FencedCodeBlocks.swift; sourceTree = "<group>"; };
 		E8353C1723BFCEEF00602189 /* HeadingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingTests.swift; sourceTree = "<group>"; };
 		E83717A223C620EC0010AD7C /* SpanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpanTests.swift; sourceTree = "<group>"; };
 		E83717A423C621050010AD7C /* Emphasis.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Emphasis.html; sourceTree = "<group>"; };
@@ -567,6 +577,11 @@
 				E810256023CDF1630035601A /* CSDictionary.swift */,
 				E8DA200923B23024007D0368 /* Utils.swift */,
 				E84C8C7C23CF96BB00310FA5 /* HtmlHelper.swift */,
+				E834B82A23D38D9900533E2F /* HtmlScanner.swift */,
+				E834B82C23D390BC00533E2F /* FootnoteBuilder.swift */,
+				E834B82E23D3923C00533E2F /* ListBuilder.swift */,
+				E834B83023D3938900533E2F /* DefinitionBuilder.swift */,
+				E834B83223D394E300533E2F /* FencedCodeBlocks.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1307,16 +1322,21 @@
 				E84AA38023D2191A009D285C /* MarkdownInHtmlMode.swift in Sources */,
 				E8442D6C23AFFAF300F5F37C /* LinkInfo.swift in Sources */,
 				E80D27C523C8F6A9009A8109 /* RandomNumberGenerator.swift in Sources */,
+				E834B83323D394E300533E2F /* FencedCodeBlocks.swift in Sources */,
 				E84DD51A23CF6A52008D2697 /* BlockType.swift in Sources */,
 				E8BC2AFA23AFA35F006B9C16 /* HtmlTag.swift in Sources */,
 				E8B833E423B534A2000F31D7 /* MarkdownDeep.swift in Sources */,
+				E834B82B23D38D9900533E2F /* HtmlScanner.swift in Sources */,
 				E8DA200A23B23024007D0368 /* Utils.swift in Sources */,
 				E8EECEC723B3CEC0007DB50B /* SpanFormatter.swift in Sources */,
 				E84DD51E23CF7273008D2697 /* TokenType.swift in Sources */,
 				E892538623B14FBF00473BC5 /* LinkDefinition.swift in Sources */,
+				E834B83123D3938900533E2F /* DefinitionBuilder.swift in Sources */,
 				E810256123CDF1630035601A /* CSDictionary.swift in Sources */,
 				E87BEC8523AE9EEC00CEA45E /* Block.swift in Sources */,
 				E8DA200823B22AAD007D0368 /* TableSpec.swift in Sources */,
+				E834B82F23D3923C00533E2F /* ListBuilder.swift in Sources */,
+				E834B82D23D390BC00533E2F /* FootnoteBuilder.swift in Sources */,
 				E8E368A323B65940007539F7 /* BlockProcessor.swift in Sources */,
 				E84DD51C23CF6B2E008D2697 /* HtmlTagFlags.swift in Sources */,
 			);

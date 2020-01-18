@@ -306,7 +306,7 @@ class BlockProcessor : StringScanner {
 
         collapseLines(&blocks, &lines)
         if m_markdown.ExtraMode {
-            buildDefinitionLists(&blocks)
+            DefinitionBuilder(m: m_markdown, p: self).buildDefinitionLists(&blocks)
         }
         return blocks
     }
@@ -350,9 +350,9 @@ class BlockProcessor : StringScanner {
                 lines.removeAll()
                 blocks.append(quote)
 
-            case BlockType.ol_li,
-                 BlockType.ul_li:
-                blocks.append(buildList(&lines))
+            case BlockType.ol_li, BlockType.ul_li:
+                let list = ListBuilder(m: m_markdown, p: self).build(&lines)
+                blocks.append(list)
 
             case BlockType.dd:
                 if blocks.count > 0 {
@@ -374,10 +374,12 @@ class BlockProcessor : StringScanner {
                             blocks.append(wrapper)
                     }
                 }
-                blocks.append(buildDefinition(&lines))
+                let def = DefinitionBuilder(m: m_markdown, p: self).buildDefinition(&lines)
+                blocks.append(def)
 
             case BlockType.footnote:
-                m_markdown.addFootnote(buildFootnote(&lines))
+                let fn = FootnoteBuilder(m: m_markdown, p: self).build(&lines)
+                m_markdown.addFootnote(fn)
 
             case BlockType.indent:
                 let codeblock = Block(type: BlockType.codeblock)
@@ -530,7 +532,7 @@ class BlockProcessor : StringScanner {
         }
         //  Fenced code blocks?
         if m_markdown.ExtraMode && ((ch == "~") || (ch == "`")) {
-            if processFencedCodeBlock(b) {
+            if FencedCodeBlocks(m: m_markdown, p: self).process(b) {
                 return b.blockType
             }
 
@@ -586,7 +588,7 @@ class BlockProcessor : StringScanner {
         //  Html block?
         if ch == "<" {
             //  Scan html block
-            if scanHtml(b) {
+            if HtmlScanner(m: m_markdown, p: self).scanHtml(b: b) {
                 return b.blockType
             }
 
@@ -720,38 +722,8 @@ class BlockProcessor : StringScanner {
         return BlockType.p
     }
 
-    private func GetMarkdownMode(_ tag: HtmlTag!) -> MarkdownInHtmlMode {
-        //  Get the markdown attribute
-        let strMarkdownMode: String! = tag.attribute(key: "markdown")
-        if !m_markdown.ExtraMode || strMarkdownMode == nil {
-            if m_bMarkdownInHtml {
-                return MarkdownInHtmlMode.Deep
-            } else {
-                return MarkdownInHtmlMode.NA
-            }
-        }
-        //  Remove it
-        tag.removeAttribute(key: "markdown")
 
-        //  Parse mode
-        if strMarkdownMode == "1" {
-            return (tag.Flags.contains(HtmlTagFlags.ContentAsSpan)
-                ? MarkdownInHtmlMode.Span
-                : MarkdownInHtmlMode.Block)
-        }
-        if strMarkdownMode == "block" {
-            return MarkdownInHtmlMode.Block
-        }
-        if strMarkdownMode == "deep" {
-            return MarkdownInHtmlMode.Deep
-        }
-        if strMarkdownMode == "span" {
-            return MarkdownInHtmlMode.Span
-        }
-        return MarkdownInHtmlMode.Off
-    }
-
-    private func processMarkdownEnabledHtml(_ b: Block, _ openingTag: HtmlTag, _ mode: MarkdownInHtmlMode) -> Bool {
+    func processMarkdownEnabledHtml(_ b: Block, _ openingTag: HtmlTag, _ mode: MarkdownInHtmlMode) -> Bool {
         //  Current position is just after the opening tag
         //  Scan until we find matching closing tag
         let inner_pos: Int = position
@@ -840,469 +812,4 @@ class BlockProcessor : StringScanner {
         //  Missing closing tag(s).
         return false
     }
-}
-
-// MARK:- Private scanner functions
-
-extension BlockProcessor {
-
-    // Scan from the current position to the end of the html section
-    private func scanHtml(_ b: Block) -> Bool {
-        //  Remember start of html
-        var posStartPiece: Int = self.position
-
-        //  Parse a HTML tag
-        let openingTag: HtmlTag! = HtmlTag.parse(scanner: self)
-        if openingTag == nil {
-            return false
-        }
-
-        //  Closing tag?
-        if openingTag.closing {
-            return false
-        }
-
-        //  Safe mode?
-        var bHasUnsafeContent: Bool = false
-        if m_markdown.SafeMode && !openingTag.isSafe() {
-            bHasUnsafeContent = true
-        }
-
-        let flags: HtmlTagFlags = openingTag.Flags
-
-        //  Is it a block level tag?
-        if !flags.contains(HtmlTagFlags.Block) {
-            return false
-        }
-
-        //  Closed tag, hr or comment?
-        if flags.contains(HtmlTagFlags.NoClosing) || openingTag.closed {
-            skipLinespace()
-            skipEol()
-            b.contentEnd = position
-            b.blockType = (bHasUnsafeContent ? BlockType.unsafe_html : BlockType.html)
-            return true
-        }
-
-        //  Can it also be an inline tag?
-        if flags.contains(HtmlTagFlags.Inline) {
-            //  Yes, opening tag must be on a line by itself
-            skipLinespace()
-            if !eol {
-                return false
-            }
-        }
-
-        //  Head block extraction?
-        let bHeadBlock: Bool = m_markdown.ExtractHeadBlocks
-            && openingTag.name.lowercased() == "head"
-
-        let headStart: Int = self.position
-
-        //  Work out the markdown mode for this element
-        if !bHeadBlock && m_markdown.ExtraMode {
-            let MarkdownMode: MarkdownInHtmlMode! = self.GetMarkdownMode(openingTag)
-            if MarkdownMode != MarkdownInHtmlMode.NA {
-                return self.processMarkdownEnabledHtml(b, openingTag, MarkdownMode)
-            }
-        }
-
-        var childBlocks: [Block] = []
-        //  Now capture everything up to the closing tag and put it all in a single HTML block
-        var depth: Int = 1
-        while !eof {
-            //  Find next angle bracket
-            if !find("<") {
-                break
-            }
-
-            //  Save position of current tag
-            let posStartCurrentTag: Int = position
-            //  Is it a html tag?
-            let tag: HtmlTag! = HtmlTag.parse(scanner: self)
-            if tag == nil {
-                //  Nope, skip it
-                skipForward(1)
-                continue
-            }
-
-            //  Safe mode checks
-            if m_markdown.SafeMode && !tag.isSafe() {
-                bHasUnsafeContent = true
-            }
-
-            //  Ignore self closing tags
-            if tag.closed {
-                continue
-            }
-
-            //  Markdown enabled content?
-            if !bHeadBlock && !tag.closing && m_markdown.ExtraMode && !bHasUnsafeContent {
-                let MarkdownMode: MarkdownInHtmlMode! = self.GetMarkdownMode(tag)
-                if MarkdownMode != MarkdownInHtmlMode.NA {
-                    let markdownBlock: Block = Block()
-                    if self.processMarkdownEnabledHtml(markdownBlock, tag, MarkdownMode) {
-
-                        //  Create a block for everything before the markdown tag
-                        if posStartCurrentTag > posStartPiece {
-                            let htmlBlock: Block = Block()
-                            htmlBlock.buf = input
-                            htmlBlock.blockType = BlockType.html
-                            htmlBlock.contentStart = posStartPiece
-                            htmlBlock.contentLen = posStartCurrentTag - posStartPiece
-                            childBlocks.append(htmlBlock)
-                        }
-                        //  Add the markdown enabled child block
-                        childBlocks.append(markdownBlock)
-                        //  Remember start of the next piece
-                        posStartPiece = position
-                        continue
-                    } else {
-                        //self.freeBlock(markdownBlock)
-                    }
-                }
-            }
-            //  Same tag?
-            if tag.name == openingTag.name {
-                if tag.closing {
-                    depth -= 1
-                    if depth == 0 {
-                        //  End of tag?
-                        skipLinespace()
-                        skipEol()
-
-                        //  If anything unsafe detected, just encode the whole block
-                        if bHasUnsafeContent {
-                            b.blockType = BlockType.unsafe_html
-                            b.contentEnd = position
-                            return true
-                        }
-                        //  Did we create any child blocks
-                        if childBlocks.count > 0 {
-                            //  Create a block for the remainder
-                            if position > posStartPiece {
-                                let htmlBlock: Block = Block()
-                                htmlBlock.buf = input
-                                htmlBlock.blockType = BlockType.html
-                                htmlBlock.contentStart = posStartPiece
-                                htmlBlock.contentLen = position - posStartPiece
-                                childBlocks.append(htmlBlock)
-                            }
-                            //  Return a composite block
-                            b.blockType = BlockType.Composite
-                            b.contentEnd = position
-                            b.children = childBlocks
-                            return true
-                        }
-
-                        //  Extract the head block content
-                        if bHeadBlock {
-                            let content = self.substring(headStart, posStartCurrentTag - headStart)
-                            m_markdown.HeadBlockContent = (m_markdown.HeadBlockContent ?? "")
-                                + content.trimWhitespace() + "\n"
-                            b.blockType = BlockType.html
-                            b.contentStart = position
-                            b.contentEnd = position
-                            b.lineStart = position
-                            return true
-                        }
-                        //  Straight html block
-                        b.blockType = BlockType.html
-                        b.contentEnd = position
-                        return true
-                    }
-                } else {
-                    depth += 1
-                }
-            }
-        }//  Rewind to just after the tag
-        return false
-    }
-}
-
-// MARK:- Private builder functions
-
-extension BlockProcessor {
-
-    // * Spacing
-    //          *
-    //          * 1-3 spaces - Promote to indented if more spaces than original item
-    //          *
-    //
-    //
-    //          * BuildList - build a single <ol> or <ul> list
-    private func buildList(_ lines: inout [Block]) -> Block {
-        //  What sort of list are we dealing with
-        let listType: BlockType! = lines[0].blockType
-        //System.Diagnostics.Debug.Assert((listType == BlockType.ul_li) | (listType == BlockType.ol_li))
-        //  Preprocess
-        //  1. Collapse all plain lines (ie: handle hardwrapped lines)
-        //  2. Promote any unindented lines that have more leading space
-        //     than the original list item to indented, including leading
-        //     special chars
-        let leadingSpace: Int = lines[0].leadingSpaces
-        var i = 0
-        while i < lines.count - 1 {
-            i += 1
-            //  Join plain paragraphs
-            if ((lines[i].blockType == BlockType.p)
-                && (lines[i - 1].blockType == BlockType.p
-                    || lines[i - 1].blockType == BlockType.ul_li
-                    || lines[i - 1].blockType == BlockType.ol_li)) {
-
-                lines[i - 1].contentEnd = lines[i].contentEnd
-
-                lines.remove(at: i)
-                i -= 1
-                continue
-            }
-            if lines[i].blockType != BlockType.indent && lines[i].blockType != BlockType.Blank {
-
-                let thisLeadingSpace: Int = lines[i].leadingSpaces
-                if thisLeadingSpace > leadingSpace {
-                    //  Change line to indented, including original leading chars
-                    //  (eg: '* ', '>', '1.' etc...)
-                    lines[i].blockType = BlockType.indent
-                    let saveend: Int = lines[i].contentEnd
-                    lines[i].contentStart = lines[i].lineStart + thisLeadingSpace
-                    lines[i].contentEnd = saveend
-                }
-            }
-        }
-        //  Create the wrapping list item
-        let List = Block(type: (listType == BlockType.ul_li ? BlockType.ul : BlockType.ol))
-        List.children = []
-
-        //  Process all lines in the range
-        i = -1
-        while i < lines.count - 1 {
-            i += 1
-
-            //  Find start of item, including leading blanks
-            var start_of_li: Int = i
-            while (start_of_li > 0) && (lines[start_of_li - 1].blockType == BlockType.Blank) {
-                start_of_li -= 1
-            }
-
-            //  Find end of the item, including trailing blanks
-            var end_of_li: Int = i
-            while (end_of_li < (lines.count - 1))
-                && (lines[end_of_li + 1].blockType != BlockType.ul_li)
-                && (lines[end_of_li + 1].blockType != BlockType.ol_li) {
-                end_of_li += 1
-            }
-
-            //  Is this a simple or complex list item?
-            if start_of_li == end_of_li {
-                //  It's a simple, single line item item
-            //    System.Diagnostics.Debug.Assert(start_of_li == i)
-                List.children.append(Block(lines[i]))
-            } else {
-                //  Build a new string containing all child items
-                var bAnyBlanks: Bool = false
-                var sb: String = ""
-                for j in start_of_li ... end_of_li {
-                    let l = lines[j]
-                    sb.append(l.buf!.substring(from: l.contentStart, for: l.contentLen))
-                    sb.append("\n")
-                    if lines[j].blockType == BlockType.Blank {
-                        bAnyBlanks = true
-                    }
-                }
-                //  Create the item and process child blocks
-                let item = Block(type: BlockType.li)
-                item.children = BlockProcessor(m_markdown, m_bMarkdownInHtml, listType).process(sb)
-                //  If no blank lines, change all contained paragraphs to plain text
-                if !bAnyBlanks {
-                    for child in item.children {
-                        if child.blockType == BlockType.p {
-                            child.blockType = BlockType.span
-                        }
-                    }
-                }
-                //  Add the complex item
-                List.children.append(item)
-            }
-            //  Continue processing from end of li
-            i = end_of_li
-        }
-        lines.removeAll()
-
-        //  Continue processing after this item
-        return List
-    }
-
-    // * BuildDefinition - build a single <dd> item
-    private func buildDefinition(_ lines: inout [Block]) -> Block {
-        //  Collapse all plain lines (ie: handle hardwrapped lines)
-        var i = 0
-        while (i < lines.count) {
-            i += 1
-            if (i == lines.count) {
-                break
-            }
-
-            //  Join plain paragraphs
-            if (lines[i].blockType == BlockType.p) && ((lines[i - 1].blockType == BlockType.p) || (lines[i - 1].blockType == BlockType.dd)) {
-                lines[i - 1].contentEnd = lines[i].contentEnd
-
-                lines.remove(at: i)
-                i -= 1
-                continue
-            }
-        }
-        //  Single line definition
-        let bPreceededByBlank: Bool = Bool(lines[0].data as! String)!
-        if (lines.count == 1) && !bPreceededByBlank {
-            let ret = lines[0]
-            lines.removeAll()
-            return ret
-        }
-
-        //  Build a new string containing all child items
-        var sb: String = ""
-        for i in 0 ... lines.count - 1 {
-            let l = lines[i]
-            sb.append(l.buf!.substring(from: l.contentStart, for: l.contentLen))
-            sb.append("\n")
-        }
-
-        //  Create the item and process child blocks
-        let item = Block()
-        item.blockType = BlockType.dd
-        item.children = BlockProcessor(m_markdown, m_bMarkdownInHtml, BlockType.dd).process(sb)
-        lines.removeAll()
-
-        //  Continue processing after this item
-        return item
-    }
-
-    private func buildDefinitionLists(_ blocks: inout [Block]) {
-        var currentList: Block! = nil
-        var i = -1
-        while i < blocks.count - 1 {
-            i += 1
-            switch blocks[i].blockType {
-                case BlockType.dt,
-                     BlockType.dd:
-                    if currentList == nil {
-                        currentList = Block()
-                        currentList.blockType = BlockType.dl
-                        currentList.children = []
-                        blocks.insert(currentList, at: i)
-                        i += 1
-                    }
-                    currentList.children.append(blocks[i])
-                    blocks.remove(at: i)
-                    i -= 1
-                default:
-                    currentList = nil
-            }
-        }
-    }
-
-    private func buildFootnote(_ lines: inout [Block]) -> Block {
-        //  Collapse all plain lines (ie: handle hardwrapped lines)
-        var i = 0
-        while i < lines.count {
-            i += 1
-            if i == lines.count {
-                break
-            }
-            //  Join plain paragraphs
-            if (lines[i].blockType == BlockType.p) && ((lines[i - 1].blockType == BlockType.p) || (lines[i - 1].blockType == BlockType.footnote)) {
-
-                lines[i - 1].contentEnd = lines[i].contentEnd
-
-                lines.remove(at: i)
-                i -= 1
-                continue
-            }
-        }
-        //  Build a new string containing all child items
-        var sb = ""
-        for l in lines {
-            sb.append(l.buf!.substring(from: l.contentStart, for: l.contentLen))
-            sb.append("\n")
-        }
-
-        //  Create the item and process child blocks
-        let item = Block()
-        item.blockType = BlockType.footnote
-        item.data = lines[0].data
-        item.children = BlockProcessor(m_markdown, m_bMarkdownInHtml, BlockType.footnote).process(sb)
-        lines.removeAll()
-
-        //  Continue processing after this item
-        return item
-    }
-
-    private func processFencedCodeBlock(_ b: Block) -> Bool {
-        let delim = current
-
-        //  Extract the fence
-        markPosition()
-        while current == delim {
-            skipForward(1)
-        }
-
-        let strFence: String! = extract()
-
-        //  Must be at least 3 long
-        if strFence.count < 3 {
-            return false
-        }
-
-        //  Rest of line must be blank
-        skipLinespace()
-        if !eol {
-            return false
-        }
-
-        //  Skip the eol and remember start of code
-        skipEol()
-        let startCode: Int = position
-        //  Find the end fence
-        if !find(strFence) {
-            return false
-        }
-
-        //  Character before must be a eol char
-        if !isLineEnd(charAtOffset(-1)) {
-            return false
-        }
-
-        var endCode: Int = position
-
-        //  Skip the fence
-        skipForward(strFence.count)
-        //  Whitespace allowed at end
-        skipLinespace()
-        if !eol {
-            return false
-        }
-
-        //  Create the code block
-        b.blockType = BlockType.codeblock
-        b.children = []
-
-        //  Remove the trailing line end
-        if (input.hasSuffix("\r\n")) {
-            endCode -= 2
-        } else if (input.hasSuffix("\n\r")) {
-            endCode -= 2
-        } else  {
-            endCode -= 1
-        }
-
-        //  Create the child block with the entire content
-        let child = Block()
-        child.blockType = BlockType.indent
-        child.buf = input
-        child.contentStart = startCode
-        child.contentEnd = endCode
-        b.children.append(child)
-        return true
-    }
-
 }
