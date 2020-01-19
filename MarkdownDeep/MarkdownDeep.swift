@@ -23,13 +23,6 @@
 import Foundation
 import AppKit
 
-open class ImageInfo {
-    public var url: String!
-    public var titled_image: Bool = false
-    public var width: Int = 0
-    public var height: Int = 0
-}
-
 public class Markdown {
 //    public var QualifyUrl: Func<String!,String!>!
 //    public var GetImageSize: Func<ImageInfo!,Bool>!
@@ -37,7 +30,7 @@ public class Markdown {
 //    public var PrepareImage: Func<HtmlTag!,Bool,Bool>!
 //    public var FormatCodeBlock: Func<Markdown!,String!,String!>!
 
-    internal var RenderingTitledImage: Bool = false
+    var renderingTitledImage: Bool = false
 
     var m_AbbreviationMap = CSDictionary<Abbreviation>()
     var m_LinkDefinitions = CSDictionary<LinkDefinition>()
@@ -50,159 +43,30 @@ public class Markdown {
     var m_UsedFootnotes: [Block] = []
     var m_AbbreviationList: [Abbreviation] = []
 
-    private var summaryLength: Int = 0
-    public var SummaryLength: Int
-    {
-        get { return summaryLength }
-        set { summaryLength = newValue }
-    }
+    // MARK:- Computed properies and user settable options
 
-    private var safeMode: Bool = false;
-    public var SafeMode: Bool
-    {
-        get { return safeMode }
-        set { safeMode = newValue }
-    }
-
-    private var extraMode: Bool = false
-    public var ExtraMode: Bool
-    {
-        get { return extraMode }
-        set { extraMode = newValue }
-    }
-
-    private var markdownInHtml: Bool = false
-    public var MarkdownInHtml: Bool
-    {
-        get { return markdownInHtml }
-        set { markdownInHtml = newValue }
-    }
-
-    private var autoHeadingIDs: Bool = false
-    public var AutoHeadingIDs: Bool
-    {
-        get { return autoHeadingIDs }
-        set { autoHeadingIDs = newValue }
-    }
-
-    private var urlBaseLocation: String! = nil
-    public var UrlBaseLocation: String!
-    {
-        get { return urlBaseLocation }
-        set { urlBaseLocation = newValue }
-    }
-
-    private var urlRootLocation: String! = nil
-    public var UrlRootLocation: String!
-    {
-        get { return urlRootLocation }
-        set { urlRootLocation = newValue }
-    }
-
-    private var newWindowForExternalLinks: Bool = false
-    public var NewWindowForExternalLinks: Bool
-    {
-        get { return newWindowForExternalLinks }
-        set { newWindowForExternalLinks = newValue }
-    }
-
-    private var newWindowForLocalLinks: Bool = false
-    public var NewWindowForLocalLinks: Bool
-    {
-        get { return newWindowForLocalLinks }
-        set { newWindowForLocalLinks = newValue }
-    }
-
-    private var documentRoot: String! = nil
-    public var DocumentRoot: String!
-    {
-        get { return documentRoot }
-        set { documentRoot = newValue }
-    }
-
-    private var documentLocation: String! = nil
-    public var DocumentLocation: String!
-    {
-        get { return documentLocation }
-        set { documentLocation = newValue }
-    }
-
-    private var maxImageWidth: Int = 0
-    public var MaxImageWidth: Int
-    {
-        get { return maxImageWidth }
-        set { maxImageWidth = newValue }
-    }
-
-    private var noFollowLinks: Bool = false
-    public var NoFollowLinks: Bool
-    {
-        get { return noFollowLinks }
-        set { noFollowLinks = newValue }
-    }
-
-    private var noFollowExternalLinks: Bool = false
-    public var NoFollowExternalLinks: Bool
-    {
-        get { return noFollowExternalLinks }
-        set { noFollowExternalLinks = newValue }
-    }
-
-    private var htmlClassFootnotes: String! = nil
-    public var HtmlClassFootnotes: String!
-    {
-        get { return htmlClassFootnotes }
-        set { htmlClassFootnotes = newValue }
-    }
-
-    private var extractHeadBlocks: Bool = false
-    public var ExtractHeadBlocks: Bool
-    {
-        get { return extractHeadBlocks }
-        set { extractHeadBlocks = newValue }
-    }
-
-    private var headBlockContent: String! = nil
-    public var HeadBlockContent: String!
-    {
-        get { return headBlockContent }
-        set { headBlockContent = newValue }
-    }
-
-    private var userBreaks: Bool = false
-    public var UserBreaks: Bool
-    {
-        get { return userBreaks }
-        set { userBreaks = newValue }
-    }
-
-    private var htmlClassTitledImages: String! = nil
-    public var HtmlClassTitledImages: String!
-    {
-        get { return htmlClassTitledImages }
-        set { htmlClassTitledImages = newValue }
-    }
-
-    private var sectionHeader: String! = nil
-    public var SectionHeader: String!
-    {
-        get { return sectionHeader }
-        set { sectionHeader = newValue }
-    }
-
-    private var sectionHeadingSuffix: String! = nil
-    public var SectionHeadingSuffix: String!
-    {
-        get { return sectionHeadingSuffix }
-        set { sectionHeadingSuffix = newValue }
-    }
-
-    private var sectionFooter: String! = nil
-    public var SectionFooter: String!
-    {
-        get { return sectionFooter }
-        set { sectionFooter = newValue }
-    }
+    public var summaryLength: Int = 0
+    public var safeMode: Bool = false;
+    public var extraMode: Bool = false
+    public var markdownInHtml: Bool = false
+    public var autoHeadingIDs: Bool = false
+    public var urlBaseLocation: String! = nil
+    public var urlRootLocation: String! = nil
+    public var newWindowForExternalLinks: Bool = false
+    public var newWindowForLocalLinks: Bool = false
+    public var documentRoot: String! = nil
+    public var documentLocation: String! = nil
+    public var maxImageWidth: Int = 0
+    public var noFollowLinks: Bool = false
+    public var noFollowExternalLinks: Bool = false
+    public var htmlClassFootnotes: String! = nil
+    public var extractHeadBlocks: Bool = false
+    public var headBlockContent: String! = nil
+    public var userBreaks: Bool = false
+    public var htmlClassTitledImages: String! = nil
+    public var sectionHeader: String! = nil
+    public var sectionHeadingSuffix: String! = nil
+    public var sectionFooter: String! = nil
 
     var getSpanFormatter: SpanFormatter!
     {
@@ -213,8 +77,8 @@ public class Markdown {
             return m_SpanFormatter }
     }
 
+    // MARK:- Initialisers
 
-    // Constructor
     public init() {
         htmlClassFootnotes = "footnotes"
         m_StringBuilder = ""
@@ -226,26 +90,12 @@ public class Markdown {
         m_SpanFormatter = SpanFormatter(self)
     }
 
-    func processBlocks(_ str: String) -> [Block] {
-        //  Reset the list of link definitions
-        m_LinkDefinitions.removeAll()
-        m_Footnotes.removeAll()
-        m_UsedFootnotes.removeAll()
-        m_UsedHeaderIDs.removeAll()
-        m_AbbreviationMap.removeAll()
-        m_AbbreviationList.removeAll()
-
-        return BlockProcessor(self, markdownInHtml).process(str)
-    }
-
-    public func transform(_ str: String) -> String {
-        var defs = CSDictionary<LinkDefinition>()
-        return transform(str, &defs)
-    }
+    // MARK:- Public interface
 
     /// Transform a string, returning the transformed string and a list of links
     /// contained in the output.
-    func transform(_ str: String, _ definitions: inout CSDictionary<LinkDefinition>) -> String {
+    /// - Parameter str: The string to be parsed
+    public func transform(_ str: String) -> String {
 
         let blocks = processBlocks(str)
 
@@ -258,7 +108,7 @@ public class Markdown {
             for i in 0 ... blocks.count - 1 {
                 let b = blocks[i]
                 b.renderPlain(self, &sb)
-                if (SummaryLength > 0) && (sb.count > SummaryLength) {
+                if (summaryLength > 0) && (sb.count > summaryLength) {
                     break
                 }
             }
@@ -302,10 +152,22 @@ public class Markdown {
             }
         }
 
-        definitions = m_LinkDefinitions
-        
-        //  Done
         return sb
+    }
+
+
+    // MARK:- Helper functions
+
+    private func processBlocks(_ str: String) -> [Block] {
+        //  Reset the list of link definitions
+        m_LinkDefinitions.removeAll()
+        m_Footnotes.removeAll()
+        m_UsedFootnotes.removeAll()
+        m_UsedHeaderIDs.removeAll()
+        m_AbbreviationMap.removeAll()
+        m_AbbreviationList.removeAll()
+
+        return BlockProcessor(self, markdownInHtml).process(str)
     }
 
     /// Copy the items from the abbreviation map to the abbreviation list
@@ -325,7 +187,7 @@ public class Markdown {
     }
 
     fileprivate func renderFootnotes(_ sb: inout String) {
-        sb.append("\n<div class=\"\(HtmlClassFootnotes!)\">\n")
+        sb.append("\n<div class=\"\(htmlClassFootnotes!)\">\n")
         sb.append("<hr />\n")
         sb.append("<ol>\n")
 
@@ -372,7 +234,7 @@ public class Markdown {
 //        }
 
         //  Quit if we don't have a base location
-        if String.isNullOrEmpty(UrlBaseLocation) {
+        if String.isNullOrEmpty(urlBaseLocation) {
             return url
         }
         //  Is the url a fragment?
@@ -384,28 +246,28 @@ public class Markdown {
             return url
         }
         if url.hasPrefix("/") {
-            if !String.isNullOrEmpty(UrlRootLocation) {
-                return UrlRootLocation + url
+            if !String.isNullOrEmpty(urlRootLocation) {
+                return urlRootLocation + url
             }
             //  Need to find domain root
-            var pos: Int = UrlBaseLocation.indexOf(str: "://")
+            var pos: Int = urlBaseLocation.indexOf(str: "://")
             if pos == -1 {
                 pos = 0
             } else {
                 pos = pos + 3
             }
             //  Find the first slash after the protocol separator
-            pos = UrlBaseLocation.indexOf(str: "/", startPos: pos)
+            pos = urlBaseLocation.indexOf(str: "/", startPos: pos)
 
             //  Get the domain name
-            let strDomain: String! = (pos < 0 ? UrlBaseLocation : UrlBaseLocation.substring(from: 0, for: pos))
+            let strDomain: String! = (pos < 0 ? urlBaseLocation : urlBaseLocation.substring(from: 0, for: pos))
             //  Join em
             return strDomain + url
         } else {
-            if !UrlBaseLocation.hasSuffix("/") {
-                return UrlBaseLocation + "/" + url
+            if !urlBaseLocation.hasSuffix("/") {
+                return urlBaseLocation + "/" + url
             } else {
-                return UrlBaseLocation + url
+                return urlBaseLocation + url
             }
         }
     }
@@ -431,7 +293,7 @@ public class Markdown {
             return false
         }
         //  Work out base location
-        var str: String! = (url.hasPrefix("/") ? DocumentRoot : DocumentLocation)
+        var str: String! = (url.hasPrefix("/") ? documentRoot : documentLocation)
         if String.isNullOrEmpty(str) {
             return false
         }
@@ -453,14 +315,14 @@ public class Markdown {
         width = Int(imgFile.size.width)
         height = Int(imgFile.size.height)
 
-        if (MaxImageWidth != 0) && (width > MaxImageWidth) {
+        if (maxImageWidth != 0) && (width > maxImageWidth) {
             let dHeight = Double(height)
-            let dMaxImageWidth = Double(MaxImageWidth)
+            let dMaxImageWidth = Double(maxImageWidth)
             let dWidth = Double(width)
             let dImgHeight = (dHeight * dMaxImageWidth) / dWidth
             height = Int(dImgHeight)
             //height = ((((height as? Double) * (MaxImageWidth as? Double)) / (width as? Double) as? Int)!)
-            width = MaxImageWidth
+            width = maxImageWidth
         }
         return true
     }
@@ -478,21 +340,21 @@ public class Markdown {
         let url: String! = tag.attribute(key: "href")
 
         //  No follow?
-        if NoFollowLinks {
+        if noFollowLinks {
             tag.addAttribute(key: "rel", value: "nofollow")
         }
 
         //  No follow external links only
-        if NoFollowExternalLinks {
+        if noFollowExternalLinks {
             if Utils.isUrlFullyQualified(url) {
                 tag.addAttribute(key: "rel", value: "nofollow")
             }
         }
 
         //  New window?
-        if (NewWindowForExternalLinks
+        if (newWindowForExternalLinks
             && Utils.isUrlFullyQualified(url))
-            || (NewWindowForLocalLinks
+            || (newWindowForLocalLinks
             && !Utils.isUrlFullyQualified(url)) {
             tag.addAttribute(key: "target", value: "_blank")
         }
@@ -550,7 +412,7 @@ public class Markdown {
     static func splitUserSections(_ markdown: String) -> [String] {
         //  Build blocks
         let md = MarkdownDeep.Markdown()
-        md.UserBreaks = true
+        md.userBreaks = true
 
         //  Process blocks
         let blocks = md.processBlocks(markdown)
@@ -752,7 +614,7 @@ public class Markdown {
     }
 
     func makeUniqueHeaderID(_ strHeaderText: String, _ startOffset: Int, _ length: Int) -> String! {
-        if !AutoHeadingIDs {
+        if !autoHeadingIDs {
             return nil
         }
         //  Extract a pandoc style cleaned header id from the header text

@@ -373,7 +373,7 @@ extension Block {
     }
 
     private func renderHeading(m: Markdown, b: inout String) {
-        if (m.ExtraMode && !m.SafeMode)
+        if (m.extraMode && !m.safeMode)
         {
             b.append("<" + blockType.description);
             if let hdrId = resolveHeaderID(m) {
@@ -453,7 +453,7 @@ extension Block {
             }
             else if (name == "img")
             {
-                m.onPrepareImage(tag, m.RenderingTitledImage);
+                m.onPrepareImage(tag, m.renderingTitledImage);
             }
 
             tag.renderOpening(&b)

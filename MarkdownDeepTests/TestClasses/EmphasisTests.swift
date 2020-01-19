@@ -152,7 +152,7 @@ class EmphasisTests: XCTestCase {
 
     func testCombined17() {
         let md = Markdown()
-        md.ExtraMode = true
+        md.extraMode = true
 
         let fExtra = SpanFormatter(md)
         XCTAssertEqual("<strong>Bold</strong> <em>Italic</em>",
@@ -162,7 +162,7 @@ class EmphasisTests: XCTestCase {
 
     func testCombined18() {
         let md = Markdown()
-        md.ExtraMode = true
+        md.extraMode = true
 
         let fExtra = SpanFormatter(md)
         XCTAssertEqual("<em>Emphasis</em>, trailing",

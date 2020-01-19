@@ -136,7 +136,7 @@ class LinkDefinition {
             tag.addAttribute(key: "title", value: sb)
         }
         tag.closed = true
-        m.onPrepareImage(tag, m.RenderingTitledImage)
+        m.onPrepareImage(tag, m.renderingTitledImage)
         tag.renderOpening(&b)
     }
 

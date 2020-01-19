@@ -118,22 +118,22 @@ class TestHelper: XCTestCase {
 
         if testFileName.contains("(SafeMode)") {
             print("Safe Mode set")
-            markdown.SafeMode = true
+            markdown.safeMode = true
         }
 
         if testFileName.contains("(ExtraMode)") {
             print("Extra Mode set")
-            markdown.ExtraMode = true
+            markdown.extraMode = true
         }
 
         if (testFileName.contains("(MarkdownInHtml)")) {
             print("Markdown in HTML set")
-            markdown.MarkdownInHtml = true
+            markdown.markdownInHtml = true
         }
 
         if (testFileName.contains("(AutoHeadingIDs)")) {
             print("Auto Heading ids set")
-            markdown.AutoHeadingIDs = true
+            markdown.autoHeadingIDs = true
         }
 
         return markdown

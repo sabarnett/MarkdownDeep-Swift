@@ -43,20 +43,20 @@ class SpanFormatter : StringScanner {
 
         //  Titled image?
         if (m_Tokens.count == 1
-            && m_Markdown.HtmlClassTitledImages != nil
+            && m_Markdown.htmlClassTitledImages != nil
             && m_Tokens[0].type == TokenType.img) {
             //  Grab the link info
             let li: LinkInfo! = (m_Tokens[0].data as? LinkInfo)
             //  Render the div opening
             dest.append("<div class=\"")
-            dest.append(m_Markdown.HtmlClassTitledImages)
+            dest.append(m_Markdown.htmlClassTitledImages)
             dest.append("\">\n")
 
             //  Render the img
-            m_Markdown.RenderingTitledImage = true
+            m_Markdown.renderingTitledImage = true
             render(&dest, str)
 
-            m_Markdown.RenderingTitledImage = false
+            m_Markdown.renderingTitledImage = false
             dest.append("\n")
             //  Render the title
             if let title = li.def.title  {
@@ -280,7 +280,7 @@ class SpanFormatter : StringScanner {
         m_Tokens.removeAll()
         var emphasis_marks: [Token] = []
         let Abbreviations: [Abbreviation] = m_Markdown.getAbbreviations()
-        let ExtraMode: Bool = m_Markdown.ExtraMode
+        let ExtraMode: Bool = m_Markdown.extraMode
 
         //  Scan string
         var start_text_token: Int = position
@@ -322,7 +322,7 @@ class SpanFormatter : StringScanner {
                     let save: Int = position
                     let tag: HtmlTag! = HtmlTag.parse(scanner: self)
                     if tag != nil {
-                        if !m_Markdown.SafeMode || tag.isSafe() {
+                        if !m_Markdown.safeMode || tag.isSafe() {
                             //  Yes, create a token for it
                             token = createToken(TokenType.HtmlTag, save, position - save)
                         } else {
@@ -501,7 +501,7 @@ class SpanFormatter : StringScanner {
             return createToken(TokenType.closing_mark, savepos, position - savepos)
         }
 
-        if m_Markdown.ExtraMode
+        if m_Markdown.extraMode
             && (ch == "_")
             && (current.isLetter || current.isNumber) {
             return nil
@@ -803,7 +803,7 @@ class SpanFormatter : StringScanner {
         //  Skip the angle bracket and remember the start
         skipForward(1)
         markPosition()
-        let ExtraMode: Bool = m_Markdown.ExtraMode
+        let ExtraMode: Bool = m_Markdown.extraMode
         //  Allow anything up to the closing angle, watch for escapable characters
         while !eof {
             let ch: Character = current
@@ -851,7 +851,7 @@ class SpanFormatter : StringScanner {
         }
         //  Is it a foonote?
         var savepos = position
-        if m_Markdown.ExtraMode && token_type == TokenType.link && skipChar("^") {
+        if m_Markdown.extraMode && token_type == TokenType.link && skipChar("^") {
             skipLinespace()
 
             //  Parse it
@@ -872,7 +872,7 @@ class SpanFormatter : StringScanner {
             return nil
         }
 
-        let ExtraMode: Bool = m_Markdown.ExtraMode
+        let ExtraMode: Bool = m_Markdown.extraMode
         //  Find the closing square bracket, allowing for nesting, watching for
         //  escapable characters
         markPosition()
@@ -909,7 +909,7 @@ class SpanFormatter : StringScanner {
         //  Inline links must follow immediately
         if skipChar("(") {
             //  Extract the url and title
-            let link_def = LinkDefinition.parseLinkTarget(self, nil, m_Markdown.ExtraMode)
+            let link_def = LinkDefinition.parseLinkTarget(self, nil, m_Markdown.extraMode)
             if link_def == nil {
                 return nil
             }

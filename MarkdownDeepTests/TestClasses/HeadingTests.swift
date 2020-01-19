@@ -73,16 +73,16 @@ class HeadingTests: XCTestCase {
     }
 
     func testSimple() {
-        md.AutoHeadingIDs = true
-        md.ExtraMode = true
+        md.autoHeadingIDs = true
+        md.extraMode = true
 
         XCTAssertEqual("header-identifiers-in-html",
                     md.makeUniqueHeaderID("Header identifiers in HTML"))
     }
 
     func testWithPunctuatoin() {
-        md.AutoHeadingIDs = true
-        md.ExtraMode = true
+        md.autoHeadingIDs = true
+        md.extraMode = true
 
         XCTAssertEqual("dogs--in-my-house",
                        md.makeUniqueHeaderID("Dogs?--in *my* house?"))
@@ -90,30 +90,30 @@ class HeadingTests: XCTestCase {
     }
 
     func testWithLinks() {
-        md.AutoHeadingIDs = true
-        md.ExtraMode = true
+        md.autoHeadingIDs = true
+        md.extraMode = true
 
         XCTAssertEqual("html-s5-rtf",
                 md.makeUniqueHeaderID("[HTML](#html), [S5](#S5), [RTF](#rtf)"))
     }
 
     func testWithLeadingNubers() {
-        md.AutoHeadingIDs = true
-        md.ExtraMode = true
+        md.autoHeadingIDs = true
+        md.extraMode = true
 
         XCTAssertEqual("applications", md.makeUniqueHeaderID("3. Applications"));
     }
 
     func testRevertToSection() {
-        md.AutoHeadingIDs = true
-        md.ExtraMode = true
+        md.autoHeadingIDs = true
+        md.extraMode = true
 
         XCTAssertEqual("section", md.makeUniqueHeaderID("!!!"));
     }
 
     func testDuplicates() {
-        md.AutoHeadingIDs = true
-        md.ExtraMode = true
+        md.autoHeadingIDs = true
+        md.extraMode = true
 
         XCTAssertEqual("heading", md.makeUniqueHeaderID("heading"))
         XCTAssertEqual("heading-1", md.makeUniqueHeaderID("heading"))

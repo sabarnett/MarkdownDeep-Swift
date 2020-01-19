@@ -49,7 +49,7 @@ struct HtmlScanner {
 
         //  Safe mode?
         var bHasUnsafeContent: Bool = false
-        if m.SafeMode && !openingTag.isSafe() {
+        if m.safeMode && !openingTag.isSafe() {
             bHasUnsafeContent = true
         }
 
@@ -79,13 +79,13 @@ struct HtmlScanner {
         }
 
         //  Head block extraction?
-        let bHeadBlock: Bool = m.ExtractHeadBlocks
+        let bHeadBlock: Bool = m.extractHeadBlocks
             && openingTag.name.lowercased() == "head"
 
         let headStart: Int = p.position
 
         //  Work out the markdown mode for this element
-        if !bHeadBlock && m.ExtraMode {
+        if !bHeadBlock && m.extraMode {
             let MarkdownMode: MarkdownInHtmlMode! = getMarkdownMode(openingTag)
             if MarkdownMode != MarkdownInHtmlMode.NA {
                 return processMarkdownEnabledHtml(b, openingTag, MarkdownMode)
@@ -112,7 +112,7 @@ struct HtmlScanner {
             }
 
             //  Safe mode checks
-            if m.SafeMode && !tag.isSafe() {
+            if m.safeMode && !tag.isSafe() {
                 bHasUnsafeContent = true
             }
 
@@ -122,7 +122,7 @@ struct HtmlScanner {
             }
 
             //  Markdown enabled content?
-            if !bHeadBlock && !tag.closing && m.ExtraMode && !bHasUnsafeContent {
+            if !bHeadBlock && !tag.closing && m.extraMode && !bHasUnsafeContent {
                 let MarkdownMode: MarkdownInHtmlMode! = getMarkdownMode(tag)
                 if MarkdownMode != MarkdownInHtmlMode.NA {
                     let markdownBlock: Block = Block()
@@ -183,7 +183,7 @@ struct HtmlScanner {
                         //  Extract the head block content
                         if bHeadBlock {
                             let content = substring(p.str, headStart, posStartCurrentTag - headStart, p.end)
-                            m.HeadBlockContent = (m.HeadBlockContent ?? "")
+                            m.headBlockContent = (m.headBlockContent ?? "")
                                 + content.trimWhitespace() + "\n"
                             b.blockType = BlockType.html
                             b.contentStart = p.position
@@ -215,7 +215,7 @@ struct HtmlScanner {
     private func getMarkdownMode(_ tag: HtmlTag!) -> MarkdownInHtmlMode {
         //  Get the markdown attribute
         let strMarkdownMode: String! = tag.attribute(key: "markdown")
-        if !m.ExtraMode || strMarkdownMode == nil {
+        if !m.extraMode || strMarkdownMode == nil {
             if p.m_bMarkdownInHtml {
                 return MarkdownInHtmlMode.Deep
             } else {
@@ -266,7 +266,7 @@ struct HtmlScanner {
             }
 
             //  In markdown off mode, we need to check for unsafe tags
-            if m.SafeMode && (mode == MarkdownInHtmlMode.Off) && !bHasUnsafeContent {
+            if m.safeMode && (mode == MarkdownInHtmlMode.Off) && !bHasUnsafeContent {
                 if !tag.isSafe() {
                     bHasUnsafeContent = true
                 }

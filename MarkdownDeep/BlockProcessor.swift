@@ -305,7 +305,7 @@ class BlockProcessor : StringScanner {
         }
 
         collapseLines(&blocks, &lines)
-        if m_markdown.ExtraMode {
+        if m_markdown.extraMode {
             DefinitionBuilder(m: m_markdown, p: self).buildDefinitionLists(&blocks)
         }
         return blocks
@@ -472,7 +472,7 @@ class BlockProcessor : StringScanner {
             skipToEol()
 
             //  In extra mode, check for a trailing HTML ID
-            if m_markdown.ExtraMode && !m_markdown.SafeMode {
+            if m_markdown.extraMode && !m_markdown.safeMode {
                 var end: Int = position
                 let strID: String! = Utils.stripHtmlID(input, b.contentStart, &end)
                 if strID != nil {
@@ -522,7 +522,7 @@ class BlockProcessor : StringScanner {
             position = line_start
         }
         //  MarkdownExtra Table row indicator?
-        if m_markdown.ExtraMode {
+        if m_markdown.extraMode {
             let spec: TableSpec! = TableSpec.parse(self)
             if spec != nil {
                 b.data = spec
@@ -531,7 +531,7 @@ class BlockProcessor : StringScanner {
             position = line_start
         }
         //  Fenced code blocks?
-        if m_markdown.ExtraMode && ((ch == "~") || (ch == "`")) {
+        if m_markdown.extraMode && ((ch == "~") || (ch == "`")) {
             if FencedCodeBlocks(m: m_markdown, p: self).process(b) {
                 return b.blockType
             }
@@ -627,7 +627,7 @@ class BlockProcessor : StringScanner {
             }
 
             if eol && (count >= 3) {
-                if m_markdown.UserBreaks {
+                if m_markdown.userBreaks {
                     return BlockType.user_break
                 } else {
                     return BlockType.hr
@@ -637,7 +637,7 @@ class BlockProcessor : StringScanner {
             position = b.contentStart
         }
         //  Abbreviation definition?
-        if m_markdown.ExtraMode && (ch == "*") && (charAtOffset(1) == "[") {
+        if m_markdown.extraMode && (ch == "*") && (charAtOffset(1) == "[") {
             skipForward(2)
             skipLinespace()
             markPosition()
@@ -671,7 +671,7 @@ class BlockProcessor : StringScanner {
         }
 
         //  Definition
-        if (ch == ":") && m_markdown.ExtraMode && isLineSpace(charAtOffset(1)) {
+        if (ch == ":") && m_markdown.extraMode && isLineSpace(charAtOffset(1)) {
             skipForward(1)
             skipLinespace()
             b.contentStart = position
@@ -696,7 +696,7 @@ class BlockProcessor : StringScanner {
         //  Reference link definition?
         if ch == "[" {
             //  Footnote definition?
-            if m_markdown.ExtraMode && (charAtOffset(1) == "^") {
+            if m_markdown.extraMode && (charAtOffset(1) == "^") {
                 let savepos = position
                 skipForward(2)
 
@@ -710,7 +710,7 @@ class BlockProcessor : StringScanner {
                 position = savepos
             }
             //  Parse a link definition
-            let l: LinkDefinition! = LinkDefinition.parseLinkDefinition(self, m_markdown.ExtraMode)
+            let l: LinkDefinition! = LinkDefinition.parseLinkDefinition(self, m_markdown.extraMode)
 
             if l != nil {
                 m_markdown.addLinkDefinition(l)
