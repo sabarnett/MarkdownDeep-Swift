@@ -148,7 +148,7 @@ public class Markdown {
             }
             //  Render footnotes
             if m_UsedFootnotes.count > 0 {
-                renderFootnotes(&sb)
+                FootnoteHelper(m: self).render(footnotes: m_UsedFootnotes, buffer: &sb)
             }
         }
 
@@ -186,41 +186,6 @@ public class Markdown {
         }
     }
 
-    fileprivate func renderFootnotes(_ sb: inout String) {
-        sb.append("\n<div class=\"\(htmlClassFootnotes!)\">\n")
-        sb.append("<hr />\n")
-        sb.append("<ol>\n")
-
-        for i in 0 ... m_UsedFootnotes.count - 1 {
-            let fn = m_UsedFootnotes[i]
-            let fnData = (fn.data as? String) ?? ""
-            sb.append("<li id=\"fn:")
-            sb.append(fnData)
-            //  footnote id
-            sb.append("\">\n")
-            //  We need to get the return link appended to the last paragraph
-            //  in the footnote
-            let strReturnLink: String = "<a href=\"#fnref:" + fnData + "\" rev=\"footnote\">&#8617;</a>"
-
-            //  Get the last child of the footnote
-            var child = fn.children[fn.children.count - 1]
-            if child.blockType == BlockType.p {
-                child.blockType = BlockType.p_footnote
-                child.data = strReturnLink
-            } else {
-                child = Block()
-                child.contentLen = 0
-                child.blockType = BlockType.p_footnote
-                child.data = strReturnLink
-                fn.children.append(child)
-            }
-            fn.render(self, &sb)
-            sb.append("</li>\n")
-        }
-
-        sb.append("</ol>\n")
-        sb.append("</div>\n")
-    }
 
     // Override to qualify non-local image and link urls
     func onQualifyUrl(_ url: String!) -> String {
@@ -407,110 +372,6 @@ public class Markdown {
             || (b.blockType == BlockType.h3)
     }
 
-    // Split the markdown into sections, one section for each
-    //  top level heading
-    static func splitUserSections(_ markdown: String) -> [String] {
-        //  Build blocks
-        let md = MarkdownDeep.Markdown()
-        md.userBreaks = true
-
-        //  Process blocks
-        let blocks = md.processBlocks(markdown)
-
-        //  Create sections
-        var Sections: [String] = []
-        var iPrevSectionOffset: Int = 0
-        for i in 0 ... blocks.count - 1 {
-            let b = blocks[i]
-            if b.blockType == BlockType.user_break {
-                //  Get the offset of the section
-                let iSectionOffset: Int = b.lineStart
-                //  Add section
-                Sections.append(markdown.substring(from: iPrevSectionOffset, for: iSectionOffset - iPrevSectionOffset).trimWhitespace())
-                //  Next section starts on next line
-                if (i + 1) < blocks.count {
-                    iPrevSectionOffset = blocks[i + 1].lineStart
-                    if iPrevSectionOffset == 0 {
-                        iPrevSectionOffset = blocks[i + 1].contentStart
-                    }
-                } else {
-                    iPrevSectionOffset = markdown.count
-                }
-            }
-        }
-        //  Add the last section
-        if markdown.count > iPrevSectionOffset {
-            Sections.append(markdown.right(from: iPrevSectionOffset).trimWhitespace())
-        }
-        return Sections
-    }
-
-    // Join previously split sections back into one document
-    static func joinUserSections(_ sections: [String]) -> String {
-        var sb = ""
-        for i in 0 ... sections.count - 1 {
-            if i > 0 {
-                //  For subsequent sections, need to make sure we
-                //  have a line break after the previous section.
-                let strPrev: String = sections[sections.count - 1]
-                if (strPrev.count > 0)
-                    && !strPrev.hasSuffix("\n")
-                    && !strPrev.hasSuffix("\r") {
-                    sb.append("\n")
-                }
-                sb.append("\n===\n\n")
-            }
-            sb.append(sections[i])
-        }
-        return sb
-    }
-
-    // Split the markdown into sections, one section for each
-    //  top level heading
-    static func splitSections(_ markdown: String!) -> [String] {
-        //  Build blocks
-        let md = MarkdownDeep.Markdown()
-        //  Process blocks
-        let blocks = md.processBlocks(markdown)
-        //  Create sections
-        var Sections: [String] = []
-        var iPrevSectionOffset: Int = 0
-        for i in 0 ... blocks.count - 1 {
-            let b = blocks[i]
-            if md.isSectionHeader(b) {
-                //  Get the offset of the section
-                let iSectionOffset: Int = b.lineStart
-                //  Add section
-                Sections.append(markdown.substring(from: iPrevSectionOffset, for: iSectionOffset - iPrevSectionOffset))
-                iPrevSectionOffset = iSectionOffset
-            }
-        }
-        //  Add the last section
-        if markdown.count > iPrevSectionOffset {
-            Sections.append(markdown.right(from: iPrevSectionOffset))
-        }
-        return Sections
-    }
-
-    // Join previously split sections back into one document
-    static func joinSections(_ sections: [String]) -> String {
-        var sb = ""
-        for i in 0 ... sections.count - 1 {
-            if i > 0 {
-                //  For subsequent sections, need to make sure we
-                //  have a line break after the previous section.
-                let strPrev: String! = sections[sections.count - 1]
-                if (strPrev.count > 0)
-                    && !strPrev.hasSuffix("\n")
-                    && !strPrev.hasSuffix("\r") {
-                    sb.append("\n")
-                }
-            }
-            sb.append(sections[i])
-        }
-        return sb
-    }
-
     func addFootnote(_ footnote: Block) {
         if let fnKey = footnote.data as? String {
             // add or update footnote depending on the key
@@ -551,63 +412,6 @@ public class Markdown {
         return m_AbbreviationList
     }
 
-    // HtmlEncode a range in a string to a specified string builder
-    func htmlEncode(_ dest: inout String, _ str: String, _ start: Int, _ len: Int) {
-        m_StringScanner.reset(str, start, len)
-        let p = m_StringScanner
-        while !p.eof {
-            let ch = p.current
-            switch ch {
-                case "&":
-                    dest.append("&amp;")
-                case "<":
-                    dest.append("&lt;")
-                case ">":
-                    dest.append("&gt;")
-                case "\"":
-                    dest.append("&quot;")
-                default:
-                    dest.append(ch)
-            }
-            p.skipForward(1)
-        }
-    }
-
-    // HtmlEncode a string, also converting tabs to spaces (used by CodeBlocks)
-    func htmlEncodeAndConvertTabsToSpaces(_ dest: inout String, _ str: String, _ start: Int, _ len: Int) {
-        m_StringScanner.reset(str, start, len)
-        let p = m_StringScanner
-        var pos: Int = 0
-        while !p.eof {
-            let ch = p.current
-            switch ch {
-                case "\t":
-                    dest.append(" ")
-                    pos += 1
-                    while (pos % 4) != 0 {
-                        dest.append(" ")
-                        pos += 1
-                    }
-                    pos -= 1
-                case "\r", "\n":
-                    dest.append("\n")
-                    pos = 0
-                    p.skipEol()
-                    continue
-                case "&":
-                    dest.append("&amp;")
-                case "<":
-                    dest.append("&lt;")
-                case ">":
-                    dest.append("&gt;")
-                case "\"":
-                    dest.append("&quot;")
-                default:
-                    dest.append(ch)
-            }
-            p.skipForward(1)
-            pos += 1
-        }}
 
     func makeUniqueHeaderID(_ strHeaderText: String) -> String {
         return makeUniqueHeaderID(strHeaderText, 0, strHeaderText.count)
@@ -640,18 +444,4 @@ public class Markdown {
         //  Return it
         return strWithSuffix
     }
-
-    // * Get this markdown processors string builder.
-    //          *
-    //          * We re-use the same string builder whenever we can for performance.
-    //          * We just reset the length before starting to / use it again, which
-    //          * hopefully should keep the memory around for next time.
-    //          *
-    //          * Note, care should be taken when using this string builder to not
-    //          * call out to another function that also uses it.
-    func getStringBuilder() -> String {
-        m_StringBuilder = ""
-        return m_StringBuilder
-    }
 }
-

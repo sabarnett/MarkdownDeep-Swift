@@ -191,7 +191,7 @@ class Block
                 return
 
             case BlockType.unsafe_html:
-                m.htmlEncode(&b, buf!, contentStart, contentLen)
+                HtmlHelper.htmlEncode(&b, buf!, contentStart, contentLen)
                 return
 
             case BlockType.codeblock:
@@ -430,7 +430,7 @@ extension Block {
     private func renderCodeBlock(m: Markdown, b: inout String) {
         b.append("<pre><code>")
         for line in children {
-            m.htmlEncodeAndConvertTabsToSpaces(&b, line.buf!, line.contentStart, line.contentLen)
+            HtmlHelper.htmlEncodeAndConvertTabsToSpaces(&b, line.buf!, line.contentStart, line.contentLen)
             b.append("\n")
         }
         b.append("</code></pre>\n")

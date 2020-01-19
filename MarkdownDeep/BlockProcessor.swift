@@ -378,7 +378,7 @@ class BlockProcessor : StringScanner {
                 blocks.append(def)
 
             case BlockType.footnote:
-                let fn = FootnoteBuilder(m: m_markdown, p: self).build(&lines)
+                let fn = FootnoteHelper(m: m_markdown, p: self).build(&lines)
                 m_markdown.addFootnote(fn)
 
             case BlockType.indent:

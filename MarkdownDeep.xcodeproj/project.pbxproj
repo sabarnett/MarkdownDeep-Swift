@@ -13,7 +13,7 @@
 		E829B76F23C241C3002BA727 /* TestDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829B76E23C241C3002BA727 /* TestDefinition.swift */; };
 		E829B77123C24210002BA727 /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E829B77023C24210002BA727 /* TestHelper.swift */; };
 		E834B82B23D38D9900533E2F /* HtmlScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E834B82A23D38D9900533E2F /* HtmlScanner.swift */; };
-		E834B82D23D390BC00533E2F /* FootnoteBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E834B82C23D390BC00533E2F /* FootnoteBuilder.swift */; };
+		E834B82D23D390BC00533E2F /* FootnoteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E834B82C23D390BC00533E2F /* FootnoteHelper.swift */; };
 		E834B82F23D3923C00533E2F /* ListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E834B82E23D3923C00533E2F /* ListBuilder.swift */; };
 		E834B83123D3938900533E2F /* DefinitionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E834B83023D3938900533E2F /* DefinitionBuilder.swift */; };
 		E834B83323D394E300533E2F /* FencedCodeBlocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E834B83223D394E300533E2F /* FencedCodeBlocks.swift */; };
@@ -290,7 +290,7 @@
 		E829B76E23C241C3002BA727 /* TestDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDefinition.swift; sourceTree = "<group>"; };
 		E829B77023C24210002BA727 /* TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelper.swift; sourceTree = "<group>"; };
 		E834B82A23D38D9900533E2F /* HtmlScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlScanner.swift; sourceTree = "<group>"; };
-		E834B82C23D390BC00533E2F /* FootnoteBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootnoteBuilder.swift; sourceTree = "<group>"; };
+		E834B82C23D390BC00533E2F /* FootnoteHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootnoteHelper.swift; sourceTree = "<group>"; };
 		E834B82E23D3923C00533E2F /* ListBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBuilder.swift; sourceTree = "<group>"; };
 		E834B83023D3938900533E2F /* DefinitionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefinitionBuilder.swift; sourceTree = "<group>"; };
 		E834B83223D394E300533E2F /* FencedCodeBlocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FencedCodeBlocks.swift; sourceTree = "<group>"; };
@@ -580,7 +580,7 @@
 				E8DA200923B23024007D0368 /* Utils.swift */,
 				E84C8C7C23CF96BB00310FA5 /* HtmlHelper.swift */,
 				E834B82A23D38D9900533E2F /* HtmlScanner.swift */,
-				E834B82C23D390BC00533E2F /* FootnoteBuilder.swift */,
+				E834B82C23D390BC00533E2F /* FootnoteHelper.swift */,
 				E834B82E23D3923C00533E2F /* ListBuilder.swift */,
 				E834B83023D3938900533E2F /* DefinitionBuilder.swift */,
 				E834B83223D394E300533E2F /* FencedCodeBlocks.swift */,
@@ -1340,7 +1340,7 @@
 				E87BEC8523AE9EEC00CEA45E /* Block.swift in Sources */,
 				E8DA200823B22AAD007D0368 /* TableSpec.swift in Sources */,
 				E834B82F23D3923C00533E2F /* ListBuilder.swift in Sources */,
-				E834B82D23D390BC00533E2F /* FootnoteBuilder.swift in Sources */,
+				E834B82D23D390BC00533E2F /* FootnoteHelper.swift in Sources */,
 				E8E368A323B65940007539F7 /* BlockProcessor.swift in Sources */,
 				E84DD51C23CF6B2E008D2697 /* HtmlTagFlags.swift in Sources */,
 			);

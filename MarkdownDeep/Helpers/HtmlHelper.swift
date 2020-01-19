@@ -252,4 +252,72 @@ struct HtmlHelper {
 
         return nil;
     }
+
+    /// HtmlEncode a range in a string to a specified string builder
+    /// - Parameters:
+    ///   - dest: The buffer to add the results to
+    ///   - str: The string to be encoded
+    ///   - start: The start position within the string
+    ///   - len: The length of text to encode
+    static func htmlEncode(_ dest: inout String, _ str: String, _ start: Int, _ len: Int) {
+        let p = StringScanner(str, start, len)
+        while !p.eof {
+            let ch = p.current
+            switch ch {
+                case "&":
+                    dest.append("&amp;")
+                case "<":
+                    dest.append("&lt;")
+                case ">":
+                    dest.append("&gt;")
+                case "\"":
+                    dest.append("&quot;")
+                default:
+                    dest.append(ch)
+            }
+            p.skipForward(1)
+        }
+    }
+
+    /// HtmlEncode a string, also converting tabs to spaces (used by CodeBlocks)
+    /// - Parameters:
+    ///   - dest: The buffer to add the output to
+    ///   - str: The string to be encoded
+    ///   - start: The start position within the string
+    ///   - len: The length to be encoded
+    static func htmlEncodeAndConvertTabsToSpaces(_ dest: inout String, _ str: String, _ start: Int, _ len: Int) {
+
+        let p = StringScanner(str, start, len)
+        var pos: Int = 0
+        while !p.eof {
+            let ch = p.current
+            switch ch {
+                case "\t":
+                    dest.append(" ")
+                    pos += 1
+                    while (pos % 4) != 0 {
+                        dest.append(" ")
+                        pos += 1
+                    }
+                    pos -= 1
+                case "\r", "\n":
+                    dest.append("\n")
+                    pos = 0
+                    p.skipEol()
+                    continue
+                case "&":
+                    dest.append("&amp;")
+                case "<":
+                    dest.append("&lt;")
+                case ">":
+                    dest.append("&gt;")
+                case "\"":
+                    dest.append("&quot;")
+                default:
+                    dest.append(ch)
+            }
+            p.skipForward(1)
+            pos += 1
+        }}
+
 }

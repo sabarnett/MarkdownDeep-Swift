@@ -170,7 +170,7 @@ class SpanFormatter : StringScanner {
         for t in m_Tokens {
             switch t.type {
                 case TokenType.Text:
-                    m_Markdown.htmlEncode(&sb, str, t.startOffset, t.length)
+                    HtmlHelper.htmlEncode(&sb, str, t.startOffset, t.length)
                 case TokenType.HtmlTag:
                     Utils.smartHtmlEncodeAmps(&sb, str, t.startOffset, t.length)
                 case TokenType.Html,
@@ -190,7 +190,7 @@ class SpanFormatter : StringScanner {
                     sb.append("</strong>")
                 case TokenType.code_span:
                     sb.append("<code>")
-                    m_Markdown.htmlEncode(&sb, str, t.startOffset, t.length)
+                    HtmlHelper.htmlEncode(&sb, str, t.startOffset, t.length)
                     sb.append("</code>")
                 case TokenType.link:
                     if let li = (t.data as? LinkInfo) {
@@ -219,12 +219,12 @@ class SpanFormatter : StringScanner {
                     sb.append("<abbr")
                     if (a.title.count > 0) {
                         sb.append(" title=\"")
-                        m_Markdown.htmlEncode(&sb, a.title, 0, a.title.count)
+                        HtmlHelper.htmlEncode(&sb, a.title, 0, a.title.count)
                         sb.append("\"")
                     }
 
                     sb.append(">")
-                    m_Markdown.htmlEncode(&sb, a.abbr, 0, a.abbr.count)
+                    HtmlHelper.htmlEncode(&sb, a.abbr, 0, a.abbr.count)
                     sb.append("</abbr>")
             }
             freeToken(t)

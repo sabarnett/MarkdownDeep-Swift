@@ -22,9 +22,14 @@
 
 import Foundation
 
-struct FootnoteBuilder {
+struct FootnoteHelper {
     private var m: Markdown
-    private var p: BlockProcessor
+    private var p: BlockProcessor!
+
+    init(m: Markdown) {
+        self.m = m
+        self.p = nil
+    }
 
     init(m: Markdown, p: BlockProcessor) {
         self.m = m
@@ -65,5 +70,41 @@ struct FootnoteBuilder {
 
         //  Continue processing after this item
         return item
+    }
+
+    func render(footnotes: [Block], buffer sb: inout String) {
+        sb.append("\n<div class=\"\(m.htmlClassFootnotes!)\">\n")
+        sb.append("<hr />\n")
+        sb.append("<ol>\n")
+
+        for fn in footnotes {
+            let fnData = (fn.data as? String) ?? ""
+            sb.append("<li id=\"fn:")
+            sb.append(fnData)
+            //  footnote id
+            sb.append("\">\n")
+            //  We need to get the return link appended to the last paragraph
+            //  in the footnote
+            let strReturnLink: String = "<a href=\"#fnref:" + fnData + "\" rev=\"footnote\">&#8617;</a>"
+
+            //  Get the last child of the footnote
+            var child = fn.children[fn.children.count - 1]
+            if child.blockType == BlockType.p {
+                child.blockType = BlockType.p_footnote
+                child.data = strReturnLink
+            } else {
+                child = Block()
+                child.contentLen = 0
+                child.blockType = BlockType.p_footnote
+                child.data = strReturnLink
+                fn.children.append(child)
+            }
+            fn.render(m, &sb)
+            sb.append("</li>\n")
+        }
+
+        sb.append("</ol>\n")
+        sb.append("</div>\n")
+
     }
 }
