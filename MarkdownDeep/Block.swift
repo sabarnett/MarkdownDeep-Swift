@@ -120,6 +120,15 @@ class Block
         }
     }
 
+    var isSectionHeader: Bool {
+    get {
+        return (self.blockType == BlockType.h1)
+            || (self.blockType == BlockType.h2)
+            || (self.blockType == BlockType.h3)
+        }
+    }
+
+
     // MARK:- Publically available methods
 
     /// Render the child objects of this block in HTML format

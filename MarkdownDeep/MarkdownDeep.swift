@@ -105,8 +105,7 @@ public class Markdown {
         var sb: String = ""
         if summaryLength != 0 {
             //  Render all blocks
-            for i in 0 ... blocks.count - 1 {
-                let b = blocks[i]
+            for b in blocks {
                 b.renderPlain(self, &sb)
                 if (summaryLength > 0) && (sb.count > summaryLength) {
                     break
@@ -115,16 +114,15 @@ public class Markdown {
         } else {
             var iSection: Int = -1
             //  Leading section (ie: plain text before first heading)
-            if (blocks.count > 0) && !isSectionHeader(blocks[0]) {
+            if (blocks.count > 0) && !(blocks[0].isSectionHeader) {
                 iSection = 0
                 onSectionHeader(&sb, 0)
                 onSectionHeadingSuffix(&sb, 0)
             }
             //  Render all blocks
-            for i in 0 ... blocks.count - 1 {
-                let b = blocks[i]
+            for b in blocks {
                 //  New section?
-                if isSectionHeader(b) {
+                if b.isSectionHeader {
                     //  Finish the previous section
                     if iSection >= 0 {
                         onSectionFooter(&sb, iSection)
@@ -168,22 +166,6 @@ public class Markdown {
         m_AbbreviationList.removeAll()
 
         return BlockProcessor(self, markdownInHtml).process(str)
-    }
-
-    /// Copy the items from the abbreviation map to the abbreviation list
-    /// and sort the list.
-    fileprivate func createAbbreviationList() {
-        m_AbbreviationList.removeAll()
-
-        if m_AbbreviationMap.count > 0 {
-            for (_, itemValue) in m_AbbreviationMap {
-                m_AbbreviationList.append(itemValue)
-            }
-
-            m_AbbreviationList.sort { (a, b) -> Bool in
-                return (b.abbr.count - a.abbr.count) > 0
-            }
-        }
     }
 
 
@@ -366,53 +348,6 @@ public class Markdown {
         }
     }
 
-    func isSectionHeader(_ b: Block) -> Bool {
-        return (b.blockType == BlockType.h1)
-            || (b.blockType == BlockType.h2)
-            || (b.blockType == BlockType.h3)
-    }
-
-    func addFootnote(_ footnote: Block) {
-        if let fnKey = footnote.data as? String {
-            // add or update footnote depending on the key
-            m_Footnotes[fnKey] = footnote
-            return
-        }
-    }
-
-    // Look up a footnote, claim it and return it's index (or -1 if not found)
-    func claimFootnote(_ id: String) -> Int {
-
-        if let fnDef = m_Footnotes[id] {
-            m_UsedFootnotes.append(fnDef)
-            m_Footnotes.remove(itemWithKey: id)
-
-            return m_UsedFootnotes.count - 1
-        }
-        return -1
-    }
-
-    // Add a link definition
-    func addLinkDefinition(_ link: LinkDefinition!) {
-        //  Store it
-        m_LinkDefinitions[link.id] = link
-    }
-
-    // Get a link definition
-    func getLinkDefinition(_ id: String!) -> LinkDefinition! {
-        guard id != nil else { return nil }
-        return m_LinkDefinitions[id]
-    }
-
-    func addAbbreviation(_ abbr: String, _ title: String) {
-        m_AbbreviationMap[abbr] = Abbreviation(abbr: abbr, title: title)
-    }
-
-    func getAbbreviations() -> [Abbreviation] {
-        return m_AbbreviationList
-    }
-
-
     func makeUniqueHeaderID(_ strHeaderText: String) -> String {
         return makeUniqueHeaderID(strHeaderText, 0, strHeaderText.count)
     }
@@ -444,4 +379,75 @@ public class Markdown {
         //  Return it
         return strWithSuffix
     }
+}
+
+
+// MARK:- Abbreviation support
+
+extension Markdown {
+
+    /// Copy the items from the abbreviation map to the abbreviation list
+    /// and sort the list.
+    fileprivate func createAbbreviationList() {
+        m_AbbreviationList.removeAll()
+
+        if m_AbbreviationMap.count > 0 {
+            for (_, itemValue) in m_AbbreviationMap {
+                m_AbbreviationList.append(itemValue)
+            }
+
+            m_AbbreviationList.sort { (a, b) -> Bool in
+                return (b.abbr.count - a.abbr.count) > 0
+            }
+        }
+    }
+
+    func addAbbreviation(_ abbr: String, _ title: String) {
+        m_AbbreviationMap[abbr] = Abbreviation(abbr: abbr, title: title)
+    }
+
+    func getAbbreviations() -> [Abbreviation] {
+        return m_AbbreviationList
+    }
+
+}
+
+// MARK:- Link support
+
+extension Markdown {
+
+    func addLinkDefinition(_ link: LinkDefinition!) {
+        m_LinkDefinitions[link.id] = link
+    }
+
+    func getLinkDefinition(_ id: String!) -> LinkDefinition! {
+        guard id != nil else { return nil }
+        return m_LinkDefinitions[id]
+    }
+}
+
+
+// MARK:- Footnote support
+
+extension Markdown {
+    func addFootnote(_ footnote: Block) {
+        if let fnKey = footnote.data as? String {
+            // add or update footnote depending on the key
+            m_Footnotes[fnKey] = footnote
+            return
+        }
+    }
+
+    func claimFootnote(_ id: String) -> Int {
+
+        if let fnDef = m_Footnotes[id] {
+            m_UsedFootnotes.append(fnDef)
+            m_Footnotes.remove(itemWithKey: id)
+
+            return m_UsedFootnotes.count - 1
+        }
+        return -1
+    }
+
+
 }
