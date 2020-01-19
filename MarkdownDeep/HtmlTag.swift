@@ -30,6 +30,8 @@ class HtmlTag
     var tagClosing: Bool = false
     var tagFlags: HtmlTagFlags = HtmlTagFlags.NotSet
 
+    // MARK:- Initialisers
+    
     init(name: String) { tagName = name; }
 
     // MARK:- Attribute support

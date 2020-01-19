@@ -51,7 +51,7 @@ class BlockProcessor : StringScanner {
         return scanLines()
     }
 
-    private func scanLines(_ str: String, _ start: Int, _ len: Int) -> [Block] {
+    func scanLines(_ str: String, _ start: Int, _ len: Int) -> [Block] {
         reset(str, start, len)
         return scanLines()
     }
@@ -720,96 +720,5 @@ class BlockProcessor : StringScanner {
 
         //  Nothing special
         return BlockType.p
-    }
-
-
-    func processMarkdownEnabledHtml(_ b: Block, _ openingTag: HtmlTag, _ mode: MarkdownInHtmlMode) -> Bool {
-        //  Current position is just after the opening tag
-        //  Scan until we find matching closing tag
-        let inner_pos: Int = position
-        var depth: Int = 1
-        var bHasUnsafeContent: Bool = false
-
-        while !eof {
-            //  Find next angle bracket
-            if !find("<") {
-                break
-            }
-
-            //  Is it a html tag?
-            let tagpos: Int = position
-            let tag: HtmlTag! = HtmlTag.parse(scanner: self)
-            if tag == nil {
-                //  Nope, skip it
-                skipForward(1)
-                continue
-            }
-
-            //  In markdown off mode, we need to check for unsafe tags
-            if m_markdown.SafeMode && (mode == MarkdownInHtmlMode.Off) && !bHasUnsafeContent {
-                if !tag.isSafe() {
-                    bHasUnsafeContent = true
-                }
-            }
-
-            //  Ignore self closing tags
-            if tag.closed {
-                continue
-            }
-
-            //  Same tag?
-            if tag.name == openingTag.name {
-                if tag.closing {
-                    depth -= 1
-                    if depth == 0 {
-                        //  End of tag?
-                        skipLinespace()
-                        skipEol()
-                        b.blockType = BlockType.HtmlTag
-                        b.data = openingTag
-                        b.contentEnd = position
-                        switch mode {
-                            case MarkdownInHtmlMode.Span:
-
-                                let span: Block = Block()
-                                span.buf = input
-                                span.blockType = BlockType.span
-                                span.contentStart = inner_pos
-                                span.contentLen = tagpos - inner_pos
-                                b.children = []
-                                b.children.append(span)
-
-                            case MarkdownInHtmlMode.Block,
-                                 MarkdownInHtmlMode.Deep:
-                                //  Scan the internal content
-                                let bp = BlockProcessor(m_markdown, mode == MarkdownInHtmlMode.Deep)
-                                b.children = bp.scanLines(input, inner_pos, tagpos - inner_pos)
-
-                            case MarkdownInHtmlMode.Off:
-                                if bHasUnsafeContent {
-                                    b.blockType = BlockType.unsafe_html
-                                    b.contentEnd = position
-                                } else {
-                                    let span: Block = Block()
-                                    span.buf = input
-                                    span.blockType = BlockType.html
-                                    span.contentStart = inner_pos
-                                    span.contentLen = tagpos - inner_pos
-                                    b.children = []
-                                    b.children.append(span)
-                                }
-                        default:
-                            break
-                        }
-                        return true
-                    }
-                } else {
-                    depth += 1
-                }
-            }
-        }
-
-        //  Missing closing tag(s).
-        return false
     }
 }

@@ -88,7 +88,7 @@ struct HtmlScanner {
         if !bHeadBlock && m.ExtraMode {
             let MarkdownMode: MarkdownInHtmlMode! = getMarkdownMode(openingTag)
             if MarkdownMode != MarkdownInHtmlMode.NA {
-                return p.processMarkdownEnabledHtml(b, openingTag, MarkdownMode)
+                return processMarkdownEnabledHtml(b, openingTag, MarkdownMode)
             }
         }
 
@@ -126,7 +126,7 @@ struct HtmlScanner {
                 let MarkdownMode: MarkdownInHtmlMode! = getMarkdownMode(tag)
                 if MarkdownMode != MarkdownInHtmlMode.NA {
                     let markdownBlock: Block = Block()
-                    if p.processMarkdownEnabledHtml(markdownBlock, tag, MarkdownMode) {
+                    if processMarkdownEnabledHtml(markdownBlock, tag, MarkdownMode) {
 
                         //  Create a block for everything before the markdown tag
                         if posStartCurrentTag > posStartPiece {
@@ -241,6 +241,96 @@ struct HtmlScanner {
             return MarkdownInHtmlMode.Span
         }
         return MarkdownInHtmlMode.Off
+    }
+
+    private func processMarkdownEnabledHtml(_ b: Block, _ openingTag: HtmlTag, _ mode: MarkdownInHtmlMode) -> Bool {
+        //  Current position is just after the opening tag
+        //  Scan until we find matching closing tag
+        let inner_pos: Int = p.position
+        var depth: Int = 1
+        var bHasUnsafeContent: Bool = false
+
+        while !p.eof {
+            //  Find next angle bracket
+            if !p.find("<") {
+                break
+            }
+
+            //  Is it a html tag?
+            let tagpos: Int = p.position
+            let tag: HtmlTag! = HtmlTag.parse(scanner: p)
+            if tag == nil {
+                //  Nope, skip it
+                p.skipForward(1)
+                continue
+            }
+
+            //  In markdown off mode, we need to check for unsafe tags
+            if m.SafeMode && (mode == MarkdownInHtmlMode.Off) && !bHasUnsafeContent {
+                if !tag.isSafe() {
+                    bHasUnsafeContent = true
+                }
+            }
+
+            //  Ignore self closing tags
+            if tag.closed {
+                continue
+            }
+
+            //  Same tag?
+            if tag.name == openingTag.name {
+                if tag.closing {
+                    depth -= 1
+                    if depth == 0 {
+                        //  End of tag?
+                        p.skipLinespace()
+                        p.skipEol()
+                        b.blockType = BlockType.HtmlTag
+                        b.data = openingTag
+                        b.contentEnd = p.position
+                        switch mode {
+                            case MarkdownInHtmlMode.Span:
+
+                                let span: Block = Block()
+                                span.buf = p.input
+                                span.blockType = BlockType.span
+                                span.contentStart = inner_pos
+                                span.contentLen = tagpos - inner_pos
+                                b.children = []
+                                b.children.append(span)
+
+                            case MarkdownInHtmlMode.Block,
+                                 MarkdownInHtmlMode.Deep:
+                                //  Scan the internal content
+                                let bp = BlockProcessor(m, mode == MarkdownInHtmlMode.Deep)
+                                b.children = bp.scanLines(p.input, inner_pos, tagpos - inner_pos)
+
+                            case MarkdownInHtmlMode.Off:
+                                if bHasUnsafeContent {
+                                    b.blockType = BlockType.unsafe_html
+                                    b.contentEnd = p.position
+                                } else {
+                                    let span: Block = Block()
+                                    span.buf = p.input
+                                    span.blockType = BlockType.html
+                                    span.contentStart = inner_pos
+                                    span.contentLen = tagpos - inner_pos
+                                    b.children = []
+                                    b.children.append(span)
+                                }
+                        default:
+                            break
+                        }
+                        return true
+                    }
+                } else {
+                    depth += 1
+                }
+            }
+        }
+
+        //  Missing closing tag(s).
+        return false
     }
 
 }

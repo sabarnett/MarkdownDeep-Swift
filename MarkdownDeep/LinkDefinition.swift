@@ -28,6 +28,8 @@ class LinkDefinition {
     private var linkUrl: String!
     private var linkTitle: String!
 
+    // MARK:- Computed Properties
+
     var id: String! {
         get { return linkId }
         set { linkId = newValue }
@@ -42,6 +44,8 @@ class LinkDefinition {
         get { return linkTitle }
         set { linkTitle = newValue }
     }
+
+    // MARK:- Initialisers
 
     init(_ id: String!) {
         self.linkId = id
@@ -58,6 +62,15 @@ class LinkDefinition {
         self.linkTitle = title
     }
 
+    // MARK:- Rendering methods
+
+    /// Render a link. This might be an anchor tag leading to a web page or a
+    /// mailto link, leading to an email address.
+    ///
+    /// - Parameters:
+    ///   - m: A reference to the master Makrdown object
+    ///   - b: The buffer to append the output to
+    ///   - link_text: The text for the link
     func renderLink(_ m: Markdown!, _ b: inout String, _ link_text: String!)
     {
         if url.lowercased().hasPrefix("mailto:") {
@@ -97,6 +110,11 @@ class LinkDefinition {
         }
     }
 
+    /// Render an image tag
+    /// - Parameters:
+    ///   - m: A reference to the master Markdown object
+    ///   - b: The buffer to append the output to
+    ///   - alt_text: Alt text for the image
     func renderImg(_ m: Markdown!, _ b: inout String, _ alt_text: String!) {
         let tag: HtmlTag = HtmlTag(name: "img")
 
@@ -122,13 +140,21 @@ class LinkDefinition {
         tag.renderOpening(&b)
     }
 
-    // Parse a link definition from a string (used by test cases)
+    // MARK:- Link scanner methods
+
+    /// Parse a link definition from a string (used by test cases)
+    /// - Parameters:
+    ///   - str: The string to be scanned
+    ///   - ExtraMode: Indicator of ExtraMode - which determines what characters are valid
     static func parseLinkDefinition(_ str: String, _ ExtraMode: Bool) -> LinkDefinition! {
         let p = StringScanner(str)
         return LinkDefinition.parseLinkDefinitionInternal(p, ExtraMode)
     }
 
-    // Parse a link definition
+    /// Parse a link definition from a string scanner instance
+    /// - Parameters:
+    ///   - p: The scting scanner containing the text to parse
+    ///   - ExtraMode: ExtraMode indicator that influences what characters are valid
     static func parseLinkDefinition(_ p: StringScanner, _ ExtraMode: Bool) -> LinkDefinition! {
         let savepos: Int = p.position
         let l = parseLinkDefinitionInternal(p, ExtraMode)
@@ -138,55 +164,30 @@ class LinkDefinition {
         return l
     }
 
-    static func parseLinkDefinitionInternal(_ p: StringScanner, _ ExtraMode: Bool) -> LinkDefinition! {
-        //  Skip leading white space
+    //
+    /// Parse just the link target.  For reference link definition, this is
+    /// the bit after "[id]: thisbit". For inline link, this is the bit in
+    /// the parens: [link text](thisbit)
+    ///
+    /// - Parameters:
+    ///   - p: The string scanner containing the text to process
+    ///   - id: An optional ID for the link
+    ///   - ExtraMode: ExtraMode indicator
+    static func parseLinkTarget(_ p: StringScanner, _ id: String!, _ ExtraMode: Bool) -> LinkDefinition! {
+
         p.skipWhitespace()
-        
-        //  Must start with an opening square bracket
-        if !p.skipChar("[") {
-            return nil
-        }
-        //  Extract the id
-        p.markPosition()
-
-        if !p.find("]") {
-            return nil
-        }
-        let id = p.extract()
-        if id == nil || id!.count == 0 {
-            return nil
-        }
-
-        if !p.skipString("]:") {
-            return nil
-        }
-        //  Parse the url and title
-        let link = parseLinkTarget(p, id, ExtraMode)
-        //  and trailing whitespace
-        p.skipLinespace()
-        //  Trailing crap, not a valid link reference...
-        if !p.eol {
-            return nil
-        }
-        return link
-    }
-
-    // Parse just the link target
-    //  For reference link definition, this is the bit after "[id]: thisbit"
-    //  For inline link, this is the bit in the parens: [link text](thisbit)
-    static func parseLinkTarget(_ p: StringScanner!, _ id: String!, _ ExtraMode: Bool) -> LinkDefinition! {
-        //  Skip whitespace
-        p.skipWhitespace()
-        //  End of string?
         if p.eol {
             return nil
         }
+
         //  Create the link definition
         let r = LinkDefinition(id)
+
         //  Is the url enclosed in angle brackets
         if p.skipChar("<") {
             //  Extract the url
             p.markPosition()
+
             //  Find end of the url
             while p.current != ">" {
                 if p.eof {
@@ -195,19 +196,20 @@ class LinkDefinition {
                 p.skipEscapableChar(ExtraMode)
             }
 
-            let url: String! = p.extract()
+            let url: String = p.extract()
             if !p.skipChar(">") {
                 return nil
             }
 
-            //  Unescape it
             r.url = Utils.unescapeString(url.trimWhitespace(), ExtraMode)
-            //  Skip whitespace
             p.skipWhitespace()
+
         } else {
+
             //  Find end of the url
             p.markPosition()
             var paren_depth: Int = 1
+
             while !p.eol {
                 let ch = p.current
                 if (ch.isWhitespace) {
@@ -294,4 +296,38 @@ class LinkDefinition {
         //  Done!
         return r
     }
+
+    private static func parseLinkDefinitionInternal(_ p: StringScanner, _ ExtraMode: Bool) -> LinkDefinition! {
+        //  Skip leading white space
+        p.skipWhitespace()
+
+        //  Must start with an opening square bracket
+        if !p.skipChar("[") {
+            return nil
+        }
+        //  Extract the id
+        p.markPosition()
+
+        if !p.find("]") {
+            return nil
+        }
+        let id = p.extract()
+        if id == nil || id!.count == 0 {
+            return nil
+        }
+
+        if !p.skipString("]:") {
+            return nil
+        }
+        //  Parse the url and title
+        let link = parseLinkTarget(p, id, ExtraMode)
+        //  and trailing whitespace
+        p.skipLinespace()
+        //  Trailing crap, not a valid link reference...
+        if !p.eol {
+            return nil
+        }
+        return link
+    }
+
 }
