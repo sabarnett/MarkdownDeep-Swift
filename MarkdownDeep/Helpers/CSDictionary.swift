@@ -79,6 +79,7 @@ struct CSDictionary<T>: Sequence {
         itemList.remove(at: index)
     }
 
+    /// Removes everything from the dictionary
     mutating func removeAll() {
         itemList.removeAll()
     }
