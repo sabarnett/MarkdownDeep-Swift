@@ -166,7 +166,7 @@ class TableSpec {
 
     // MARK:- Private helper methods
     
-    func renderRow(_ m: Markdown, _ b: inout String, _ row: [String], _ type: String) {
+    private func renderRow(_ m: Markdown, _ b: inout String, _ row: [String], _ type: String) {
         for i in 0 ..< row.count {
             b.append("\t<")
             b.append(type)

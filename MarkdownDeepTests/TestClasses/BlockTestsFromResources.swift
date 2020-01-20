@@ -19,78 +19,78 @@ class BlockTestsFromResources: XCTestCase {
     }
 
     func testComplexListItems() {
-        TestHelper().runTest(testFileName: "ComplexListItems", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "ComplexListItems")
     }
 
     func testHardWrappedListItems() {
-        TestHelper().runTest(testFileName: "HardWrappedListItems", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "HardWrappedListItems")
     }
 
     func testHardWrappedParagraph() {
-        TestHelper().runTest(testFileName: "HardWrappedParagraph", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "HardWrappedParagraph")
     }
 
     func testHardWrappedParagraphInListItem() {
-        TestHelper().runTest(testFileName: "HardWrappedParagraphInListItem", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "HardWrappedParagraphInListItem")
     }
 
     func testHardWrappedParagraphWithListLikeLine() {
-        TestHelper().runTest(testFileName: "HardWrappedParagraphWithListLikeLine", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "HardWrappedParagraphWithListLikeLine")
     }
 
     func testHtmlAttributeWithoutValue() {
-        TestHelper().runTest(testFileName: "HtmlAttributeWithoutValue", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "HtmlAttributeWithoutValue")
     }
 
     func testHtmlBlock() {
-        TestHelper().runTest(testFileName: "HtmlBlock", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "HtmlBlock")
     }
 
     func testHtmlComments() {
-        TestHelper().runTest(testFileName: "HtmlComments", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "HtmlComments")
     }
 
     func testInsTypes() {
-        TestHelper().runTest(testFileName: "InsTypes", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "InsTypes")
     }
 
     func testMultipleParagraphs() {
-        TestHelper().runTest(testFileName: "MultipleParagraphs", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "MultipleParagraphs")
     }
 
     func testNestedListItems() {
-        TestHelper().runTest(testFileName: "NestedListItems", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "NestedListItems")
     }
 
     func testParagraphBreaks() {
-        TestHelper().runTest(testFileName: "ParagraphBreaks", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "ParagraphBreaks")
     }
 
     func testPartiallyIndentedLists() {
-        TestHelper().runTest(testFileName: "PartiallyIndentedLists", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "PartiallyIndentedLists")
     }
 
     func testQuoteBlocks() {
-        TestHelper().runTest(testFileName: "QuoteBlocks", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "QuoteBlocks")
     }
 
     func testQuoteBlocksNested() {
-        TestHelper().runTest(testFileName: "QuoteBlocksNested", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "QuoteBlocksNested")
     }
 
     func testSetExtHeadings() {
-        TestHelper().runTest(testFileName: "SetExtHeadings", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "SetExtHeadings")
     }
 
     func testSimpleOrderedList() {
-        TestHelper().runTest(testFileName: "SimpleOrderedList", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "SimpleOrderedList")
     }
 
     func testSimpleParagraph() {
-        TestHelper().runTest(testFileName: "SimpleParagraph", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "SimpleParagraph")
     }
 
     func testSimpleUnorderedList() {
-        TestHelper().runTest(testFileName: "SimpleUnorderedList", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "SimpleUnorderedList")
     }
 }

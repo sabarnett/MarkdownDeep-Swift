@@ -8,7 +8,7 @@ import XCTest
 class PHPMarkdownTestsFromResources: XCTestCase {
 
     func testEmailAutoLinksPhpMarkdown() {
-        TestHelper().runTest(testFileName: "phpm-EmailAutoLinks", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "phpm-EmailAutoLinks")
     }
 
     func testBackslashEscapesPhpMarkdown() {

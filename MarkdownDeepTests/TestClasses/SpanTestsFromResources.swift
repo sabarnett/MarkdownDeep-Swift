@@ -19,16 +19,15 @@ class SpanTestsFromResources: XCTestCase {
     }
 
     func testEscapesInUrls() {
-        TestHelper().runTest(testFileName: "EscapesInUrls", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "EscapesInUrls")
     }
 
     func testExplicitReferenceLinkWithoutTitle() {
-        TestHelper().runTest(testFileName: "ExplicitReferenceLinkWithoutTitle",
-        showDebugInfo: true)
+        TestHelper().runTest(testFileName: "ExplicitReferenceLinkWithoutTitle")
     }
 
     func testExplicitReferenceLinkWithTitle() {
-        TestHelper().runTest(testFileName: "ExplicitReferenceLinkWithTitle", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "ExplicitReferenceLinkWithTitle")
     }
 
     func testFormattingInLinkText() {
@@ -36,7 +35,7 @@ class SpanTestsFromResources: XCTestCase {
     }
 
     func testHtmlEncodeLinks() {
-        TestHelper().runTest(testFileName: "HtmlEncodeLinks", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "HtmlEncodeLinks")
     }
 
     func testImplicitReferenceLinkWithoutTitle() {

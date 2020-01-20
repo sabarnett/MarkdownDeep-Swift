@@ -8,6 +8,6 @@ import XCTest
 class SafeModeTestsFromResources: XCTestCase {
 
     func testBasicSafeMode() {
-        TestHelper().runTest(testFileName: "Basic(SafeMode)", showDebugInfo: true)
+        TestHelper().runTest(testFileName: "Basic(SafeMode)")
     }
 }
