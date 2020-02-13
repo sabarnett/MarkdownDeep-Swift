@@ -24,7 +24,7 @@ import Foundation
 // NOTE: Some block types are only used during block parsing, some
 // are only used during rendering and some are used during both
 
-enum BlockType: Int, CustomStringConvertible
+enum BlockType: Int
 {
     case Blank            // blank line (parse only)
     case h1                // headings (render and parse)
@@ -61,6 +61,9 @@ enum BlockType: Int, CustomStringConvertible
                     // `data` holds the footnote id
     case p_footnote // paragraph with footnote return link append.
                     // Return link string is in `data`.
+}
+
+extension BlockType: CustomStringConvertible {
 
     var description: String {
         switch self {

@@ -85,10 +85,21 @@ struct HtmlHelper {
         "head": HtmlTagFlags.Block
     ]
 
+    /// Returns the flags associated with this tag
+    /// - Parameter tag: The name of the tag we want the flags for
     static func flagsForTag(tag: String) -> HtmlTagFlags? {
         return HtmlHelper.tagNameFlags[tag.lowercased()]
     }
 
+    /// Validates the tag and it's attributes to determine if they are 'safe'
+    /// - Parameters:
+    ///   - tagName: The HTML tag name
+    ///   - tagAttributes: The attributes we have for this tag
+    ///
+    /// Determines if the tag is in our whitelist of allowed tags.
+    /// If the tag is in the whitelist, determines whether the attributes are allowed for this tag.
+    /// If we have an "href" attribute, determines if the URL is valid.
+    /// If we have a "src" attribute, determines if the URL is valid.
     static func isTagSafe(tag tagName: String, withAttributes tagAttributes: CSDictionary<String>) -> Bool {
 
         // Check if tag is in whitelist
@@ -130,6 +141,8 @@ struct HtmlHelper {
         return true;
     }
 
+    /// Parse an HTML tag, stripping out the tag name and it's attributes/values
+    /// - Parameter p: The current string being parsed
     static func parseTag(_ p: StringScanner) -> HtmlTag?
     {
         // Does it look like a tag?

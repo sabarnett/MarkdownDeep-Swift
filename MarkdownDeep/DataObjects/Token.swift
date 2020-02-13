@@ -21,7 +21,7 @@
 //
 import Foundation
 
-class Token: CustomStringConvertible, Equatable {
+class Token {
 
     public var type: TokenType
     public var startOffset: Int = 0
@@ -41,7 +41,9 @@ class Token: CustomStringConvertible, Equatable {
         self.data = data
     }
 
-    // MARK:- CustomStringConvertible implementation
+}
+
+extension Token: CustomStringConvertible {
 
     var description: String {
         get {
@@ -52,8 +54,9 @@ class Token: CustomStringConvertible, Equatable {
             }
         }
     }
+}
 
-    // MARK:- Equatable implementation
+extension Token: Equatable {
 
     static func == (lhs: Token, rhs: Token) -> Bool {
         return lhs.description == rhs.description
@@ -63,4 +66,3 @@ class Token: CustomStringConvertible, Equatable {
         return lhs.description != rhs.description
     }
 }
-

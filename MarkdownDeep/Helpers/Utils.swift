@@ -216,7 +216,6 @@ class Utils {
         }
     }
 
-    //
     /// Acts like HtmlEncode, but only escape &'s that don't look like html entities
     /// - Parameters:
     ///   - dest: The buffer to add the results to
@@ -288,6 +287,7 @@ class Utils {
         return b
     }
 
+    /// Standardise the line end character so line ends will always be a newline
     static func normalizeLineEnds(_ str: String) -> String! {
 
         let lineends: [Character] = ["\r", "\n"]
@@ -310,16 +310,9 @@ class Utils {
         return sb
     }
 
-    // * These two functions IsEmailAddress and IsWebAddress
-    //          * are intended as a quick and dirty way to tell if a
-    //          * <autolink> url is email, web address or neither.
-    //          *
-    //          * They are not intended as validating checks.
-    //          *
-    //          * (use of Regex for more correct test unnecessarily
-    //          *  slowed down some test documents by up to 300%.)
-    //
-    //  Check if a string looks like an email address
+    /// Check if a string looks like an email address - this is a quick and
+    /// dirty check, not a comprehensive validation. You could replace this
+    /// with a regex, but it greatly slows the parsing.
     static func isEmailAddress(_ str: String) -> Bool {
 
         guard let atPos = str.firstIndex(of: "@") else { return false }
@@ -332,7 +325,9 @@ class Utils {
         return true
     }
 
-    // Check if a string looks like a url
+    /// Check if a string looks like a URL - this is a quick and
+    /// dirty check, not a comprehensive validation. You could replace this
+    /// with a regex, but it greatly slows the parsing.
     static func isWebAddress(_ str: String) -> Bool {
         let testStr = str.lowercased()
         return testStr.hasPrefix("http://")
@@ -341,7 +336,7 @@ class Utils {
             || testStr.hasPrefix("file://")
     }
 
-    // Check if a string is a valid HTML ID identifier
+    /// Check if a string is a valid HTML ID identifier
     static func isValidHtmlID(_ str: String!) -> Bool {
 
         if str == nil || str!.count == 0 {
@@ -369,11 +364,11 @@ class Utils {
         return true
     }
 
-    // Strip the trailing HTML ID from a header string
-    //  ie:      ## header text ##            {#<idhere>}
-    //             ^start           ^out end              ^end
-    //
-    //  Returns null if no header id
+    /// Strip the trailing HTML ID from a header string
+    ///  ie:      ## header text ##            {#<idhere>}
+    ///             ^start           ^out end              ^end
+    ///
+    ///  Returns null if no header id
     static func stripHtmlID(_ str: String, _ start: Int, _ end: inout Int) -> String! {
 
         //  Skip trailing whitespace
@@ -416,6 +411,7 @@ class Utils {
         return strID
     }
 
+    /// Returns whether the URL starts with "mailto" or a "<protocol>://" prefix
     static func isUrlFullyQualified(_ url: String) -> Bool {
 
         return url.contains("://") || url.lowercased().hasPrefix("mailto:") 

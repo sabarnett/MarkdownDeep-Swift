@@ -21,7 +21,27 @@
 //
 import Foundation
 
-enum TokenType: Int, CustomStringConvertible {
+enum TokenType: Int {
+
+    case Text
+    case HtmlTag
+    case Html
+    case open_em
+    case close_em
+    case open_strong
+    case close_strong
+    case code_span
+    case br
+    case link
+    case img
+    case footnote
+    case abbreviation
+    case opening_mark
+    case closing_mark
+    case internal_mark
+}
+
+extension TokenType: CustomStringConvertible {
 
     var description: String {
         switch self {
@@ -43,21 +63,4 @@ enum TokenType: Int, CustomStringConvertible {
         case .internal_mark: return "internal_mark"
         }
     }
-
-    case Text
-    case HtmlTag
-    case Html
-    case open_em
-    case close_em
-    case open_strong
-    case close_strong
-    case code_span
-    case br
-    case link
-    case img
-    case footnote
-    case abbreviation
-    case opening_mark
-    case closing_mark
-    case internal_mark
 }
