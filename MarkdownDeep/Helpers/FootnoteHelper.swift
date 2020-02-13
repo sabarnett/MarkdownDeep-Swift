@@ -36,6 +36,8 @@ struct FootnoteHelper {
         self.p = p
     }
 
+    /// Using a list of references, build a footnote
+    /// - Parameter lines: The lines read from the file.
     func build(_ lines: inout [Block]) -> Block {
         //  Collapse all plain lines (ie: handle hardwrapped lines)
         var i = 0
@@ -72,6 +74,10 @@ struct FootnoteHelper {
         return item
     }
 
+    /// Render the footnote sin the output HTML
+    /// - Parameters:
+    ///   - footnotes: The list of footnotes we built
+    ///   - sb: The output buffer to add the html to.
     func render(footnotes: [Block], buffer sb: inout String) {
         sb.append("\n<div class=\"\(m.htmlClassFootnotes!)\">\n")
         sb.append("<hr />\n")

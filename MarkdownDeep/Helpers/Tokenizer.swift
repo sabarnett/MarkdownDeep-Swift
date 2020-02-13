@@ -31,7 +31,7 @@ struct Tokenizer {
         self.p = p
     }
 
-    // Scan the input string, creating tokens for anything special
+    /// Scan the input string, creating tokens for anything special
     func tokenize(_ str: String, _ start: Int, _ len: Int) {
         //  Prepare
         p.reset(str, start, len)
@@ -248,7 +248,7 @@ struct Tokenizer {
         return Token(TokenType.internal_mark, savepos, p.position - savepos)
     }
 
-    // Process a ``` code span ```
+    /// Process a ``` code span ```
     private func processCodeSpan() -> Token! {
         let start: Int = p.position
         //  Count leading ticks
@@ -285,7 +285,7 @@ struct Tokenizer {
     }
 
 
-    // Process [link] and ![image] directives
+    /// Process [link] and ![image] directives
     private func processLinkOrImageOrFootnote() -> Token! {
         //  Link or image?
         let token_type: TokenType = (p.skipChar("!") ? TokenType.img : TokenType.link)
@@ -419,7 +419,7 @@ struct Tokenizer {
         return Token(token_type, LinkInfo(linkDef: def!, linkText: link_text))
     }
 
-    //  Process auto links eg: <google.com>
+    ///  Process auto links eg: <google.com>
     private func processAutoLink() -> Token! {
         if p.disableLinks {
             return nil
@@ -466,7 +466,7 @@ struct Tokenizer {
         return nil
     }
 
-    // Resolve emphasis marks (part 2)
+    /// Resolve emphasis marks (part 2)
     private func resolveEmphasisMarks(_ tokens: inout [Token], _ marks: inout [Token]) {
         var bContinue: Bool = true
         while bContinue {
@@ -539,110 +539,6 @@ struct Tokenizer {
             }
         }
 
-    }
-
-    // Resolve emphasis marks (part 2)
-    private func resolveEmphasisMarks_classic(_ tokens: inout [Token], _ marks: inout [Token]) {
-        //  First pass, do <strong>
-        var i = 0
-        while (i < marks.count) {
-            //  Get the next opening or internal mark
-            let opening_mark: Token = marks[i]
-            if (opening_mark.type != TokenType.opening_mark && opening_mark.type != TokenType.internal_mark) {
-                i += 1
-                continue
-            }
-
-            if opening_mark.length < 2 {
-                i += 1
-                continue
-            }
-
-            //  Look for a matching closing mark
-            for j in i+1..<marks.count {
-                //  Get the next closing or internal mark
-                var closing_mark: Token! = marks[j]
-                if (closing_mark.type != TokenType.closing_mark && closing_mark.type != TokenType.internal_mark) {
-                    continue
-                }
-
-                //  Ignore if different type (ie: `*` vs `_`)
-                if p.input.charAt(at: opening_mark.startOffset) != p.input.charAt(at: closing_mark.startOffset) {
-                    continue
-                }
-
-                //  Must be at least two
-                if closing_mark.length < 2 {
-                    continue
-                }
-
-                //  Split the opening mark, keeping the LHS
-                if opening_mark.length > 2 {
-                    splitMarkToken(&tokens, &marks, opening_mark, 2)
-                }
-
-                //  Split the closing mark, keeping the RHS
-                if closing_mark.length > 2 {
-                    closing_mark = splitMarkToken(&tokens, &marks, closing_mark, closing_mark.length - 2)
-                }
-
-                //  Connect them
-                opening_mark.type = TokenType.open_strong
-                closing_mark.type = TokenType.close_strong
-
-                //  Continue after the closing mark
-                i = marks.firstIndex(where: { (aToken) -> Bool in
-                    return aToken == closing_mark
-                }) ?? 0
-                break
-            }
-
-            i += 1
-        }
-
-        //  Second pass, do <em>
-        i = 0
-        while (i < marks.count) {
-            //  Get the next opening or internal mark
-            let opening_mark: Token! = marks[i]
-            if (opening_mark.type != TokenType.opening_mark) && (opening_mark.type != TokenType.internal_mark) {
-                continue
-            }
-            //  Look for a matching closing mark
-            for j in i+1..<marks.count {
-                //  Get the next closing or internal mark
-                var closing_mark: Token! = marks[j]
-                if (closing_mark.type != TokenType.closing_mark && closing_mark.type != TokenType.internal_mark) {
-                    continue
-                }
-
-                //  Ignore if different type (ie: `*` vs `_`)
-                if p.input.charAt(at: opening_mark.startOffset) != p.input.charAt(at: closing_mark.startOffset) {
-                    continue
-                }
-
-                //  Split the opening mark, keeping the LHS
-                if opening_mark.length > 1 {
-                    splitMarkToken(&tokens, &marks, opening_mark, 1)
-                }
-                //  Split the closing mark, keeping the RHS
-                if closing_mark.length > 1 {
-                    closing_mark = splitMarkToken(&tokens, &marks, closing_mark, closing_mark.length - 1)
-                }
-
-                //  Connect them
-                opening_mark.type = TokenType.open_em
-                closing_mark.type = TokenType.close_em
-
-                //  Continue after the closing mark
-                i = marks.firstIndex(where: { (aToken) -> Bool in
-                    return aToken == closing_mark
-                }) ?? 0
-                break
-            }
-
-            i += 1
-        }
     }
 
     private func isEmphasisChar(_ ch: Character) -> Bool {

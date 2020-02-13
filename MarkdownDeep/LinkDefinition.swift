@@ -164,7 +164,6 @@ class LinkDefinition {
         return l
     }
 
-    //
     /// Parse just the link target.  For reference link definition, this is
     /// the bit after "[id]: thisbit". For inline link, this is the bit in
     /// the parens: [link text](thisbit)

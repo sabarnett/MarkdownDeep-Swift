@@ -93,13 +93,13 @@ class HtmlTag
 
     // MARK:- Public interface
 
-    // Check if this tag is safe
+    /// Check if this tag is safe
     func isSafe() -> Bool
     {
         return HtmlHelper.isTagSafe(tag: name, withAttributes: tagAttributes)
     }
 
-    // Render opening tag (eg: <tag attr="value">
+    /// Render opening tag (eg: <tag attr="value">
     func renderOpening(_ dest: inout String)
     {
         dest.append("<");
@@ -116,7 +116,7 @@ class HtmlTag
         }
     }
 
-    // Render closing tag (eg: </tag>)
+    /// Render closing tag (eg: </tag>)
     func renderClosing(_ dest: inout String)
     {
         dest.append("</\(name)>")

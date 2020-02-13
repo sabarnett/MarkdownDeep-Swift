@@ -31,7 +31,7 @@ struct DefinitionBuilder {
         self.p = p
     }
 
-    // * BuildDefinition - build a single <dd> item
+    /// Builds a definition list definition - build a single <dd> item
     func buildDefinition(_ lines: inout [Block]) -> Block {
         //  Collapse all plain lines (ie: handle hardwrapped lines)
         var i = 0
@@ -76,6 +76,7 @@ struct DefinitionBuilder {
         return item
     }
 
+    /// Builds a definition list
     func buildDefinitionLists(_ blocks: inout [Block]) {
         var currentList: Block! = nil
         var i = -1

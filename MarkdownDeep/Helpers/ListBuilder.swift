@@ -31,22 +31,12 @@ struct ListBuilder {
         self.p = p
     }
 
-    // * Spacing
-    //          *
-    //          * 1-3 spaces - Promote to indented if more spaces than original item
-    //          *
-    //
-    //
-    //          * BuildList - build a single <ol> or <ul> list
+    /// Builds an ordered <ol> or unordered <ul> list
+    /// - Parameter lines: The lines to add to the list
     func build(_ lines: inout [Block]) -> Block {
         //  What sort of list are we dealing with
         let listType: BlockType! = lines[0].blockType
-        //System.Diagnostics.Debug.Assert((listType == BlockType.ul_li) | (listType == BlockType.ol_li))
-        //  Preprocess
-        //  1. Collapse all plain lines (ie: handle hardwrapped lines)
-        //  2. Promote any unindented lines that have more leading space
-        //     than the original list item to indented, including leading
-        //     special chars
+
         let leadingSpace: Int = lines[0].leadingSpaces
         var i = 0
         while i < lines.count - 1 {

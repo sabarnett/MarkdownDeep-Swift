@@ -32,20 +32,18 @@ struct HtmlScanner {
         self.p = p
     }
 
+    /// Scans a block of embedded HTML
+    /// - Parameter b: The HTML block
     func scanHtml(b: Block) -> Bool {
         //  Remember start of html
         var posStartPiece: Int = p.position
 
         //  Parse a HTML tag
         let openingTag: HtmlTag! = HtmlTag.parse(scanner: p)
-        if openingTag == nil {
-            return false
-        }
+        if openingTag == nil { return false }
 
         //  Closing tag?
-        if openingTag.closing {
-            return false
-        }
+        if openingTag.closing { return false }
 
         //  Safe mode?
         var bHasUnsafeContent: Bool = false
